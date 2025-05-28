@@ -2,20 +2,31 @@
 all: sim clean
 
 # This compiles with VCS and runs simulation
-compile_and_sim:
-	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../18_19_Slice.v ../18_19_Slice_tb.v -debug_access+all |& tee compile_and_sim.log
+comp_and_sim_fifo:
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all |& tee compile_and_sim.log
+
+comp_and_sim_top:
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all |& tee compile_and_sim.log
 
 # This compiles with VCS
-compile:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../18_19_Slice.v ../18_19_Slice_tb.v -debug_access+all |& tee compile.log
+compile_fifo:
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all |& tee compile.log
+
+compile_top:
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all |& tee compile.log
+
+
 
 # This compiles with VCS and also generates the database for Verdi
-compile_verdi:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../18_19_Slice.v ../18_19_Slice_tb.v -debug_access+all -kdb -lca  |& tee compile_verdi.log
+compile_verdi_fifo:
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all -kdb -lca  |& tee compile_verdi.log
+
+compile_verdi_top:
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all -kdb -lca  |& tee compile_verdi.log
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../18_19_Slice.v ../18_19_Slice_tb.v -debug_access+all -ntb_opts uvm |& tee compile_uvm.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.v ../fifo_tb.v -debug_access+all -ntb_opts uvm |& tee compile_uvm.log
 
 
 # This runs simulation

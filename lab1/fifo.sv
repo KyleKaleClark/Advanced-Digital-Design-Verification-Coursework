@@ -157,7 +157,7 @@ module wptr_full	#(parameter ADDRSIZE = 4)
 	assign waddr = wbin[ADDRSIZE-1:0];
 	
 	assign wbinnext = wbin + (winc & ~wfull);
-	assign wgraynexxt = (wbinnext>>1) ^ wbinnext;
+	assign wgraynext = (wbinnext>>1) ^ wbinnext;
 	
 	//needs to be changed for almost instead of full full
 	assign wfull_val = (wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});

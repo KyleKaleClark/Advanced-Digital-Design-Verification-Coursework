@@ -120,8 +120,10 @@ module rptr_empty #(parameter ADDRSIZE = 4)
 	 
 	
 	always_ff @(posedge rclk or negedge rrst_n) begin
-		if (!rrst_n)
+		if (!rrst_n) begin
 			rempty <= 1'b1;
+			rempty_a <= 1'b1;
+		end
 		else begin
 			rempty <= rempty_val;
 			rempty_a <= rempty_almost_val;
@@ -165,8 +167,10 @@ module wptr_full	#(parameter ADDRSIZE = 4)
 	assign wfull_almost_val = (wgraynext == {wq2_rptr[ADDRSIZE], ~wq2_rptr[ADDRSIZE-1:ADDRSIZE-2], wq2_rptr[ADDRSIZE-3:0]});
 	
 	always_ff @(posedge wclk or negedge wrst_n) begin
-		if (!wrst_n)
+		if (!wrst_n) begin
 			wfull <= 1'b0;
+			wfull_a <= 1'b0;
+		end
 		else begin
 			wfull <= wfull_val;
 			wfull_a <= wfull_almost_val;			

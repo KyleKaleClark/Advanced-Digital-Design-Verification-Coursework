@@ -27,13 +27,43 @@ fifo f1(.*);
 	end
 
 	initial begin
-		wrst_n =1'd0;rrst_n=1'd0;wdata=8'd1; winc=1'd0; rinc=1'd0; #50;
-		wrst_n = 1'd1; rrst_n=1'd1; winc=1'd1; #10;
-		#1000;
-		winc=1'd0; rinc=1'd1; #10;
-		#1000
-		winc=1'd1; #10;
-		#1000;
+		wrst_n =1'd0;rrst_n=1'd0;wdata=8'd1; winc=1'd0; rinc=1'd0; #500;
+		wrst_n = 1'd1; rrst_n=1'd1; winc=1'd1;
+		#20;
+		wdata = 8'd2;
+		#20;
+		wdata = 8'd3;
+		#20;
+		wdata = 8'd4;
+		#20;
+		wdata = 8'd5;
+		#20;
+		wdata = 8'd6;
+		#20;
+		wdata = 8'd7;
+		#20;
+		wdata = 8'd8;
+		#20;
+		wdata = 8'd9;
+		#20;
+		wdata = 8'd10;
+		#20;
+		wdata = 8'd11;
+		#20;
+		wdata = 8'd12;
+		#20;
+		wdata = 8'd13;
+		#20;
+		wdata = 8'd14;
+		#20;
+		wdata = 8'd15;
+		#20;
+		wdata = 8'd1;
+		#20;
+		wdata = 8'd2;
+		#20;
+		
+		winc=1'd0; rinc=1'd1; #1000;
 	
 	end
 

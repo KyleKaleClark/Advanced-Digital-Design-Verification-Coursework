@@ -1,0 +1,73 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : fifo
+Version: V-2023.12-SP5-1
+Date   : Fri May 30 21:46:54 2025
+****************************************
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: wptr_full/wptr_reg[0]
+              (rising edge-triggered flip-flop clocked by wclk)
+  Endpoint: sync_w2r/rq1_wptr_reg[0]
+            (rising edge-triggered flip-flop clocked by rclk)
+  Path Group: rclk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock wclk (rise edge)                 202.08     202.08
+  clock network delay (ideal)              0.00     202.08
+  wptr_full/wptr_reg[0]/CLK (DFFSR)        0.00     202.08 r
+  wptr_full/wptr_reg[0]/Q (DFFSR)          0.11     202.19 r
+  U39/Y (BUFX2)                            0.03     202.22 r
+  sync_w2r/rq1_wptr_reg[0]/D (DFFSR)       0.00     202.22 r
+  data arrival time                                 202.22
+
+  clock rclk (rise edge)                 202.09     202.09
+  clock network delay (ideal)              0.00     202.09
+  sync_w2r/rq1_wptr_reg[0]/CLK (DFFSR)     0.00     202.09 r
+  library setup time                      -0.07     202.01
+  data required time                                202.01
+  -----------------------------------------------------------
+  data required time                                202.01
+  data arrival time                                -202.22
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.21
+
+
+  Startpoint: rptr_empty/rptr_reg[0]
+              (rising edge-triggered flip-flop clocked by rclk)
+  Endpoint: sync_r2w/wq1_rptr_reg[0]
+            (rising edge-triggered flip-flop clocked by wclk)
+  Path Group: wclk
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock rclk (rise edge)                 106.48     106.48
+  clock network delay (ideal)              0.00     106.48
+  rptr_empty/rptr_reg[0]/CLK (DFFSR)       0.00     106.48 r
+  rptr_empty/rptr_reg[0]/Q (DFFSR)         0.11     106.58 r
+  U44/Y (BUFX2)                            0.03     106.62 r
+  sync_r2w/wq1_rptr_reg[0]/D (DFFSR)       0.00     106.62 r
+  data arrival time                                 106.62
+
+  clock wclk (rise edge)                 106.49     106.49
+  clock network delay (ideal)              0.00     106.49
+  sync_r2w/wq1_rptr_reg[0]/CLK (DFFSR)     0.00     106.49 r
+  library setup time                      -0.07     106.41
+  data required time                                106.41
+  -----------------------------------------------------------
+  data required time                                106.41
+  data arrival time                                -106.62
+  -----------------------------------------------------------
+  slack (VIOLATED)                                   -0.20
+
+
+1

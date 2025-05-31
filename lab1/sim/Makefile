@@ -6,14 +6,14 @@ comp_and_sim_fifo:
 	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile_and_sim.log
 
 comp_and_sim_top:
-	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile_and_sim.log
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv -debug_access+all |& tee compile_and_sim.log
 
 # This compiles with VCS
 compile_fifo:
 	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile.log
 
 compile_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv -debug_access+all |& tee compile_top.log
 
 
 
@@ -22,7 +22,7 @@ compile_verdi_fifo:
 	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
 
 compile_verdi_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:

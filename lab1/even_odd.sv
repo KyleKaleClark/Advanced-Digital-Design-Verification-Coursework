@@ -25,8 +25,21 @@ module even_odd
 
 	//Write enable logic
 	//Checks LSB of the input data, if it is 1, the data is odd 
-	assign even_wen = (d_in[0] == 0) ? 1'd1: 1'd0;
-	assign odd_wen = (d_in[0] == 1) ? 1'd1: 1'd0;
+	//assign even_wen = (d_in[0] == 0) ? 1'd1: 1'd0;
+	//assign odd_wen = (d_in[0] == 1) ? 1'd1: 1'd0;
+
+	always_comb begin
+		even_wen = 1'b0;
+		odd_wen = 1'b0;
+		if (d_in[0] == 0) begin
+			even_wen = 1'b1;
+			odd_wen = 1'b0;
+		end
+		else if (d_in[0] == 1) begin
+			even_wen = 1'b0;
+			odd_wen = 1'b1;
+		end
+	end
 
 	
 	//FSM for switching between reading even and odd
@@ -51,7 +64,7 @@ module even_odd
 
 	always_ff @ (posedge clk or negedge reset)
 
-		if (~reset)
+		if (~reset | ~r_en)
 			state <= RESET;
 		else 
 			state <= next_state;

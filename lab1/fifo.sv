@@ -14,8 +14,8 @@ module fifo #(parameter DSIZE=8, parameter ASIZE=4)
 	
 	
 	//synchronizer blocks
-	sync_r2w sync_r2w (.rptr(rptr), .wclk(wclk), .wrst_n(wrst_n), .wq2_rptr(wq2_rptr));
-	sync_w2r sync_w2r (.wptr(wptr), .rclk(rclk), .rrst_n(rrst_n), .rq2_wptr(rq2_wptr));
+	sync_r2w #(.ADDRSIZE(ASIZE)) sync_r2w (.rptr(rptr), .wclk(wclk), .wrst_n(wrst_n), .wq2_rptr(wq2_rptr));
+	sync_w2r #(.ADDRSIZE(ASIZE)) sync_w2r (.wptr(wptr), .rclk(rclk), .rrst_n(rrst_n), .rq2_wptr(rq2_wptr));
 	
 	//this one can't be .* because we set winc to wclken
 	fifomem #(DSIZE, ASIZE) fifomem(.rdata(rdata), .wdata(wdata),

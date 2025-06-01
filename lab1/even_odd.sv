@@ -45,9 +45,9 @@ module even_odd
 		else
 			d_out <= 8'dx;
 
-	localparam RESET = 2'd00;
-	localparam READ_EVEN = 2'd01;
-	localparam READ_ODD = 2'd10;
+	localparam RESET = 2'b00;
+	localparam READ_EVEN = 2'b01;
+	localparam READ_ODD = 2'b10;
 
 	always_ff @ (posedge clk or negedge reset)
 

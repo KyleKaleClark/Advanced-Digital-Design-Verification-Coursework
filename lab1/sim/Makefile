@@ -13,7 +13,7 @@ compile_fifo:
 	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile.log
 
 compile_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv -debug_access+all |& tee compile_top.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv ../fifo.sv -debug_access+all |& tee compile_top.log
 
 
 

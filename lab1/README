@@ -1,0 +1,25 @@
+FIFO & Even Odd Number Sorter
+Kyle Clark & Kendall Welsh
+
+
+Shortcut:
+To compile, run, and open verdi for the FIFO & FIFO testbench:
+	tcsh run_and_verdi.tcsh 
+
+To compile, run, and open verdi for the Even_Odd sorter & testbench:
+	tcsh run_and_verdi_top.tcsh 
+	
+
+
+These breakdown to these:
+
+To Compile:
+	FIFO:		make compile_fifo	
+	EVENODD: 	make compile_top
+	
+Compile & Sim:
+	FIFO:		make comp_and_sim_fifo
+	EVENODD:	make comp_and_sim_top
+	
+Open Verdi:
+	make waves_verdi

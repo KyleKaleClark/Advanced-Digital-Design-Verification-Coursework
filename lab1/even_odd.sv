@@ -15,11 +15,11 @@ module even_odd
 	//Address size of 7 to ensure depth is large
 	//enough to hold 40 pieces of 8bit data
 	
-	fifo #(8,5) even(.wdata(d_in), .winc(even_wen), .rinc(even_ren), .wclk(clk), .rclk(clk),
+	fifo #(8,7) even(.wdata(d_in), .winc(even_wen), .rinc(even_ren), .wclk(clk), .rclk(clk),
 		.wrst_n(reset), .rrst_n(reset), .wfull(even_wfull), .wfull_a(even_wfull_a), .rempty(even_rempty),
 		.rempty_a(even_rempty_a), .rdata(even_dout));
 
-	fifo #(8,5) odd(.wdata(d_in), .winc(odd_wen), .rinc(odd_ren), .wclk(clk), .rclk(clk),
+	fifo #(8,7) odd(.wdata(d_in), .winc(odd_wen), .rinc(odd_ren), .wclk(clk), .rclk(clk),
 		.wrst_n(reset), .rrst_n(reset), .wfull(odd_wfull), .wfull_a(odd_wfull_a), .rempty(odd_rempty),
 		.rempty_a(odd_rempty_a), .rdata(odd_dout));
 
@@ -28,11 +28,11 @@ module even_odd
 	always_comb begin
 		even_wen = 1'b0;
 		odd_wen = 1'b0;
-		if (d_in[0] == 0) begin
+		if (d_in[0] == 0 && w_en) begin
 			even_wen = 1'b1;
 			odd_wen = 1'b0;
 		end
-		else if (d_in[0] == 1) begin
+		else if (d_in[0] == 1 && w_en) begin
 			even_wen = 1'b0;
 			odd_wen = 1'b1;
 		end
@@ -53,7 +53,7 @@ module even_odd
 		else if (odd_ren)
 			d_out <= odd_dout;
 		else
-			d_out <= 8'dx;
+			d_out <= d_out;
 
 	localparam RESET = 2'b00;
 	localparam READ_EVEN = 2'b01;
@@ -80,13 +80,19 @@ module even_odd
 			READ_EVEN: begin
 				even_ren = r_en;
 				odd_ren = 1'd0;
-				next_state = READ_ODD;
+				if (~even_rempty)
+					next_state = READ_ODD;
+				else
+					next_state = state;
 			end
 
 			READ_ODD: begin
 				even_ren = 1'd0;
 				odd_ren = r_en;
-				next_state = READ_EVEN;
+				if (~odd_rempty)
+					next_state = READ_EVEN;
+				else
+					next_state = state;
 			end
 			
 			default: begin

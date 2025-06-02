@@ -18,8 +18,8 @@ set my_write_clock_pin wclk
 set my_read_clock_pin rclk
 
 #/* Target frequency in MHz for optimization       */
-set my_write_clk_freq_MHz 826.4
-set my_read_clk_freq_Mhz 460.2
+set my_write_clk_freq_MHz 717
+set my_read_clk_freq_Mhz 688
 
 #/* Delay of input signals (Clock-to-Q, Package etc.)  */
 set my_input_delay_ns 0.1
@@ -69,10 +69,10 @@ create_clock -period $my_write_period -name wclk [get_ports $my_write_clock_pin]
 create_clock -period $my_read_period -name rclk [get_ports $my_read_clock_pin]
 
 set_driving_cell  -lib_cell INVX1  [all_inputs]
-set_input_delay $my_input_delay_ns -clock $write_clk_name [remove_from_collection [all_inputs] $my_write_clock_pin]
-set_output_delay $my_output_delay_ns -clock $write_clk_name [all_outputs]
-set_input_delay $my_input_delay_ns -clock $read_clk_name [remove_from_collection [all_inputs] $my_read_clock_pin]
-set_output delay $my_output_delay_ns -clock $read_clk_name [all_outputs]
+set_input_delay $my_input_delay_ns -clock wclk [remove_from_collection [all_inputs] $my_write_clock_pin]
+set_output_delay $my_output_delay_ns -clock wclk [all_outputs]
+set_input_delay $my_input_delay_ns -clock rclk [remove_from_collection [all_inputs] $my_read_clock_pin]
+set_output delay $my_output_delay_ns -clock rclk [all_outputs]
 
 compile -ungroup_all -map_effort medium
 

@@ -123,11 +123,11 @@ module rptr_empty #(parameter ADDRSIZE = 4)
 	always_ff @(posedge rclk or negedge rrst_n) begin
 		if (!rrst_n) begin
 			rempty <= 1'b1;
-			rempty_a <= 1'b1;
+			rempty_a <= 1'b0;
 		end
 		else begin
 			rempty <= rempty_val;
-			rempty_a <= rempty_almost_val;
+			rempty_a <= rempty_a | rempty_almost_val;
 		end
 	end
 	

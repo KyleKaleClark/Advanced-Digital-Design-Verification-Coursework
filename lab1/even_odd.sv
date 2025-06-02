@@ -15,19 +15,16 @@ module even_odd
 	//Address size of 7 to ensure depth is large
 	//enough to hold 40 pieces of 8bit data
 	
-	fifo #(8,7) even(.wdata(d_in), .winc(even_wen), .rinc(even_ren), .wclk(clk), .rclk(clk),
+	fifo #(8,5) even(.wdata(d_in), .winc(even_wen), .rinc(even_ren), .wclk(clk), .rclk(clk),
 		.wrst_n(reset), .rrst_n(reset), .wfull(even_wfull), .wfull_a(even_wfull_a), .rempty(even_rempty),
 		.rempty_a(even_rempty_a), .rdata(even_dout));
 
-	fifo #(8,7) odd(.wdata(d_in), .winc(odd_wen), .rinc(odd_ren), .wclk(clk), .rclk(clk),
+	fifo #(8,5) odd(.wdata(d_in), .winc(odd_wen), .rinc(odd_ren), .wclk(clk), .rclk(clk),
 		.wrst_n(reset), .rrst_n(reset), .wfull(odd_wfull), .wfull_a(odd_wfull_a), .rempty(odd_rempty),
 		.rempty_a(odd_rempty_a), .rdata(odd_dout));
 
 	//Write enable logic
 	//Checks LSB of the input data, if it is 1, the data is odd 
-	//assign even_wen = (d_in[0] == 0) ? 1'd1: 1'd0;
-	//assign odd_wen = (d_in[0] == 1) ? 1'd1: 1'd0;
-
 	always_comb begin
 		even_wen = 1'b0;
 		odd_wen = 1'b0;
@@ -64,14 +61,14 @@ module even_odd
 
 	always_ff @ (posedge clk or negedge reset)
 
-		if (~reset | ~r_en)
+		if (~reset)
 			state <= RESET;
+		else if(~r_en)
+			state <= state;
 		else 
 			state <= next_state;
 
 	always_comb begin
-		next_state = RESET; even_ren = 1'd0; odd_ren = 1'd0;
-
 		unique case (state)
 	
 			RESET: begin
@@ -90,6 +87,12 @@ module even_odd
 				even_ren = 1'd0;
 				odd_ren = r_en;
 				next_state = READ_EVEN;
+			end
+			
+			default: begin
+				next_state = RESET;
+				even_ren = 1'd0;
+				odd_ren = 1'd0;
 			end
 		endcase
 	end

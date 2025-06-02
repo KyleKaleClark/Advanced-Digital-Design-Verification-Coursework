@@ -117,7 +117,7 @@ module rptr_empty #(parameter ADDRSIZE = 4)
 	
 	//almost empty is always when rq2_wptr top 4 MSB = 0 101... because of mathmatical reasons, so we flip those to match the max gray value of 1 000
 	//and thats when we know we're 3/4th of the way through dumping the data
-	assign rempty_almost_val = (rgraynext == {~rq2_wptr[ADDRSIZE], rq2_wptr[ADDRSIZE-1], ~rq2_wptr[ADDRSIZE-2:ADDRSIZE-3], rq2_wptr[ADDRSIZE-4:0]});
+	assign rempty_almost_val = (rgraynext[ADDRSIZE:ADDRSIZE-2] == {~rq2_wptr[ADDRSIZE], rq2_wptr[ADDRSIZE-1], rq2_wptr[ADDRSIZE-2]} | rempty_val);
 	 
 	
 	always_ff @(posedge rclk or negedge rrst_n) begin
@@ -127,7 +127,7 @@ module rptr_empty #(parameter ADDRSIZE = 4)
 		end
 		else begin
 			rempty <= rempty_val;
-			rempty_a <= rempty_a | rempty_almost_val;
+			rempty_a <= rempty_almost_val;
 		end
 	end
 	
@@ -163,8 +163,9 @@ module wptr_full	#(parameter ADDRSIZE = 4)
 	//needs to be changed for almost instead of full full
 	assign wfull_val = (wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});
 	
-	//almost full = when gray = A, so we have to match wq2rptr, which happens with top 4 MSB = 0 1010, so we have to invert the all 0s to = 1010, hence .~.~...	
-	assign wfull_almost_val = (wgraynext == {wq2_rptr[ADDRSIZE], ~wq2_rptr[ADDRSIZE-1], wq2_rptr[ADDRSIZE-2], ~wq2_rptr[ADDRSIZE-3], wq2_rptr[ADDRSIZE-4:0]});
+	//almost full = when gray = A, so we have to match wq2rptr, which happens with top 4 MSB = 0 10, so we have to invert the all 0s to = 0 10, hence . ~. OR if its just full, b/c almost full is full
+	assign wfull_almost_val = (wgraynext[ADDRSIZE:ADDRSIZE-2] == {wq2_rptr[ADDRSIZE], ~wq2_rptr[ADDRSIZE-1], wq2_rptr[ADDRSIZE-2]} | wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});
+	//assign wfull_almost_val = (wbinnext[ADDRSIZE-1:ADDRSIZE-2] == 2'b11 | wbinnext[ADDRSIZE] == 1'b1);
 	
 	always_ff @(posedge wclk or negedge wrst_n) begin
 		if (!wrst_n) begin

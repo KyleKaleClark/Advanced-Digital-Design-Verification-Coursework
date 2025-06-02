@@ -9,7 +9,7 @@ module even_odd
 	logic even_ren, odd_ren;
 	logic[7:0] even_dout, odd_dout;
 	logic even_wfull, even_wfull_a, even_rempty, even_rempty_a;
-	logic odd_wfull, odd_full_a, odd_rempty, odd_rempty_a;
+	logic odd_wfull, odd_wfull_a, odd_rempty, odd_rempty_a;
 
 	//Instantiations of Even and Odd registers. 
 	//Address size of 7 to ensure depth is large

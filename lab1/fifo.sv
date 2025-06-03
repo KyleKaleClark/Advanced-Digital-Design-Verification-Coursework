@@ -160,12 +160,12 @@ module wptr_full	#(parameter ADDRSIZE = 4)
 	assign wbinnext = wbin + (winc & ~wfull);
 	assign wgraynext = (wbinnext>>1) ^ wbinnext;
 	
-	//needs to be changed for almost instead of full full
+	//buffer full signal
 	assign wfull_val = (wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});
 	
 	//almost full = when gray = A, so we have to match wq2rptr, which happens with top 4 MSB = 0 10, so we have to invert the all 0s to = 0 10, hence . ~. OR if its just full, b/c almost full is full
 	assign wfull_almost_val = (wgraynext[ADDRSIZE:ADDRSIZE-2] == {wq2_rptr[ADDRSIZE], ~wq2_rptr[ADDRSIZE-1], wq2_rptr[ADDRSIZE-2]} | wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});
-	//assign wfull_almost_val = (wbinnext[ADDRSIZE-1:ADDRSIZE-2] == 2'b11 | wbinnext[ADDRSIZE] == 1'b1);
+	
 	
 	always_ff @(posedge wclk or negedge wrst_n) begin
 		if (!wrst_n) begin

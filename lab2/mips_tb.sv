@@ -69,4 +69,8 @@ module MIPS_Testbench ();
         $display("TEST COMPLETE");
         $finish;
     end
+
+   initial begin
+      $fsdbDumpvars();
+   end
 endmodule

@@ -11,16 +11,16 @@
 module controller (
     input [5:0] op, funct,
     input zero,
-    output memtoreg, memwrite,
+    output memtologic, memwrite,
     output pcsrc, alusrc,
-    output regdst, regwrite,
+    output logicdst, logicwrite,
     output jump,
     output [2:0] alucontrol
 );
-    wire [1:0] aluop;
-    wire branch;
+    logic [1:0] aluop;
+    logic branch;
     
-    maindec md (op, memtoreg, memwrite, branch, alusrc, regdst, regwrite, jump, aluop);
+    maindec md (op, memtologic, memwrite, branch, alusrc, logicdst, logicwrite, jump, aluop);
     aludec ad (funct, aluop, alucontrol);
     
     assign pcsrc = branch & zero;
@@ -32,16 +32,16 @@ endmodule
 //////////////////////////////////////////////////////////////////////
 module maindec(
     input [5:0] op,
-    output memtoreg, memwrite,
+    output memtologic, memwrite,
     output branch, alusrc,
-    output regdst, regwrite,
+    output logicdst, logicwrite,
     output jump,
     output [1:0] aluop
 );
 
-    reg [8:0] controls;
+    logic [8:0] controls;
     
-    assign {regwrite, regdst, alusrc, branch, memwrite, memtoreg, jump, aluop} = controls;
+    assign {logicwrite, logicdst, alusrc, branch, memwrite, memtologic, jump, aluop} = controls;
 
     always @ (*)
         case(op)
@@ -62,7 +62,7 @@ endmodule
 module aludec (
     input [5:0] funct,
     input [1:0] aluop,
-    output reg [2:0] alucontrol
+    output logic [2:0] alucontrol
 );
     always @ (*)
         case (aluop)

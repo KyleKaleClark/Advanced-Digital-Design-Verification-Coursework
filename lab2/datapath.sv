@@ -16,8 +16,8 @@
 module datapath (
     input clk, reset,
     input memtoreg, pcsrc,
-    input alusrc, regdst,
-    input regwrite, jump,
+    input alusrc, logicdst,
+    input logicwrite, jump,
     input [2:0] alucontrol,
     output zero,
     output [31:0] pc,
@@ -26,11 +26,11 @@ module datapath (
     input [31:0] readdata
 );
 
-    wire [4:0] writereg;
-    wire [31:0] pcnext, pcnextbr, pcplus4, pcbranch;
-    wire [31:0] signimm, signimmsh;
-    wire [31:0] srca, srcb;
-    wire [31:0] result;
+    logic [4:0] writereg;
+    logic [31:0] pcnext, pcnextbr, pcplus4, pcbranch;
+    logic [31:0] signimm, signimmsh;
+    logic [31:0] srca, srcb;
+    logic [31:0] result;
     
     // next PC logic
     flopr #(32) pcreg(clk, reset, pcnext, pc);
@@ -40,9 +40,9 @@ module datapath (
     mux2 #(32) pcbrmux(pcplus4, pcbranch, pcsrc, pcnextbr);
     mux2 #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
 
-    // register file logic
-    regfile rf(clk, regwrite, instr[25:21], instr[20:16], writereg, result, srca, writedata);
-    mux2 #(5) wrmux(instr[20:16], instr[15:11], regdst, writereg);
+    // logicister file logic
+    logicfile rf(clk, logicwrite, instr[25:21], instr[20:16], writereg, result, srca, writedata);
+    mux2 #(5) wrmux(instr[20:16], instr[15:11], logicdst, writereg);
     mux2 #(32) resmux(aluout, readdata, memtoreg, result);
     signext se(instr[15:0], signimm);
     
@@ -53,9 +53,9 @@ endmodule
 
 
 //////////////////////////////////////////////////////////////////////
-// Register File Module
+// logicister File Module
 //////////////////////////////////////////////////////////////////////
-module regfile (
+module logicfile (
     input clk,
     input we3,
     input [4:0] ra1, ra2, wa3,
@@ -63,11 +63,11 @@ module regfile (
     output [31:0] rd1, rd2
 );
     
-    reg [31:0] rf[31:0];
-    // three ported register file
+    logic [31:0] rf[31:0];
+    // three ported logicister file
     // read two ports combinationally
     // write third port on rising edge of clock
-    // register 0 hardwired to 0
+    // logicister 0 hardwired to 0
     always @ (posedge clk)
         if (we3) rf[wa3] <= wd3;
 
@@ -82,7 +82,7 @@ module alu(
     input [31:0] a,          // First operand
     input [31:0] b,          // Second operand
     input [2:0] control,     // ALU control signal
-    output reg [31:0] result, // ALU result
+    output logic [31:0] result, // ALU result
     output zero              // Zero flag
 );
 
@@ -158,12 +158,12 @@ endmodule
 
 
 //////////////////////////////////////////////////////////////////////
-// Flop Register Module
+// Flop logicister Module
 //////////////////////////////////////////////////////////////////////
 module flopr # (parameter WIDTH = 8)(
     input clk, reset,
     input [WIDTH-1:0] d,
-    output reg [WIDTH-1:0] q
+    output logic [WIDTH-1:0] q
 );
     always @ (posedge clk, posedge reset)
         if (reset) q <= 0;

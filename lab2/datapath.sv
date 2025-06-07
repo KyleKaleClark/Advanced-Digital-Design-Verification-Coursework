@@ -14,41 +14,159 @@
 // Datapath module
 //////////////////////////////////////////////////////////////////////
 module datapath (
-    input clk, reset,
-    input memtoreg, pcsrc,
-    input alusrc, logicdst,
-    input logicwrite, jump,
-    input [2:0] alucontrol,
-    output zero,
-    output [31:0] pc,
-    input [31:0] instr,
-    output [31:0] aluout, writedata,
-    input [31:0] readdata
+    input logic clk, reset,
+    input logic memtoreg, pcsrc,
+    input logic alusrc, logicdst,
+    input logic logicwrite, jump,
+    input logic [2:0] alucontrol,
+    output logic zero,
+    output logic [31:0] pc,
+    input logic [31:0] instr,
+    output logic [31:0] aluout, writedata,
+    input logic[31:0] readdata
 );
 
-    logic [4:0] writereg;
-    logic [31:0] pcnext, pcnextbr, pcplus4, pcbranch;
-    logic [31:0] signimm, signimmsh;
-    logic [31:0] srca, srcb;
-    logic [31:0] result;
-    
-    // next PC logic
-    flopr #(32) pcreg(clk, reset, pcnext, pc);
-    adder pcadd1 (pc, 32'b100, pcplus4);
-    sl2 immsh(signimm, signimmsh);
-    adder pcadd2(pcplus4, signimmsh, pcbranch);
-    mux2 #(32) pcbrmux(pcplus4, pcbranch, pcsrc, pcnextbr);
-    mux2 #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
+logic [31:0] if_pc4_out, if_instruction_out, memwb_result, id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out;
+logic [31:0] ex_signimmsh, ex_pcbranch, ex_srcb, ex_writereg, mem_aluout;
 
-    // logicister file logic
-    logicfile rf(clk, logicwrite, instr[25:21], instr[20:16], writereg, result, srca, writedata);
-    mux2 #(5) wrmux(instr[20:16], instr[15:11], logicdst, writereg);
-    mux2 #(32) resmux(aluout, readdata, memtoreg, result);
-    signext se(instr[15:0], signimm);
-    
-    // ALU logic
-    mux2 #(32) srcbmux(writedata, signimm, alusrc, srcb);
-    alu alu(srca, srcb, alucontrol, aluout, zero);
+InstrFet IF (clk, reset, pcsrc, jump, instr, ex_pcbranch, if_pc4_out, if_instruction_out, pc);
+InstrDec ID (clk, reset, logicwrite, if_pc4_out, if_instruction_out, memwb_result, id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, writedata);
+Exec EX (clk, reset, alusrc, logicdst, alucontrol, id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, writedata, ex_signimmsh, aluout, ex_pcbranch, ex_srcb, ex_writereg, zero);
+mem MEM (clk, reset, aluout, mem_aluout);
+memwb WB (memtoreg, mem_aluout, readdata, memwb_result);
+
+endmodule
+
+//Instruction Fetch Combinational Logic
+module InstrFet (
+	input logic clk, reset, pcsrc, jump,
+	input logic [31:0] instr, ex_pcbranch,
+	output logic [31:0] if_pc4_out, if_instruction_out, pc);
+
+logic [31:0] pcnextbr, pcplus4,pcnext;
+
+mux2 #(32) pcbrmux(pcplus4, ex_pcbranch, pcsrc, pcnextbr);
+mux2 #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
+flopr #(32) pcreg(clk, reset, pcnext, pc);
+adder pcadd1 (pc, 32'b100, pcplus4);
+
+//Instruction Fetch to Instruction Decode Pipeline Registers
+
+always_ff @ (posedge clk or posedge reset)
+
+	if (reset) begin 
+		if_instruction_out <= 0;
+		if_pc4_out <= 0;
+	end
+
+	else begin
+		if_instruction_out <= instr;
+		if_pc4_out <= pcplus4;
+	end
+
+endmodule
+//Instruction Decode Combinational Logic
+module InstrDec (
+	input logic clk, reset, logicwrite,
+	input logic [31:0] if_pc4_out, if_instruction_out, result,
+	output logic [31:0] id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, id_writedata_out);
+
+logic [4:0] writereg;
+logic [31:0] srca, signimm, writedata;
+
+logicfile rf(clk, logicwrite, if_instruction_out[25:21], if_instruction_out[20:16], writereg, result, srca, writedata);
+signext se(if_instruction_out[15:0], signimm);
+
+//Instruction Decode to Execute Pipeline Registers
+always_ff @ (posedge clk or posedge reset)
+	
+	if (reset) begin
+
+		id_instruction_out <= 0;
+		id_pc4_out <= 0;
+		id_signimm_out <= 0;
+		id_srca_out <= 0;
+		id_writedata_out <= 0;
+	end
+
+	else begin
+
+		id_instruction_out <= if_instruction_out;
+		id_pc4_out <= if_pc4_out;
+		id_signimm_out <= signimm;
+		id_srca_out <= srca;
+		id_writedata_out <= writedata;
+	end
+
+endmodule
+
+//Execute Combinational Logic
+
+module Exec (
+	input logic clk, reset, alusrc, logicdst,
+	input logic [2:0] alucontrol,
+	input logic [31:0] id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, id_writedata_out,
+	output logic [31:0] ex_signimmsh, ex_aluout, ex_pcbranch, ex_srcb, ex_writereg,
+	output logic ex_zero);
+
+logic [31:0] signimmsh, pcbranch, srcb, aluout;
+logic [4:0] writereg;
+logic zero;
+
+mux2 #(32) srcbmux(id_writedata_out, id_signimm_out, alusrc, srcb);
+mux2 #(5) wrmux(id_instruction_out[20:16], id_instruction_out[15:11], logicdst, writereg);
+alu alu(id_srca_out, srcb, alucontrol, aluout, zero);
+sl2 immsh(id_signimm_out, signimmsh);
+adder pcadd2(id_pc4_out, signimmsh, pcbranch);
+
+//Execute to Memory Pipeline Registers
+
+always_ff @ (posedge clk or posedge reset)
+
+	if (reset) begin
+		ex_signimmsh <= 0;
+		ex_aluout <= 0;
+		ex_pcbranch <= 0;
+		ex_srcb <= 0;
+		ex_writereg <= 0;
+	end
+
+	else begin
+		ex_signimmsh <= signimmsh;
+		ex_aluout <= aluout;
+		ex_pcbranch <= pcbranch;
+		ex_srcb <= srcb;
+		ex_writereg <= writereg;
+	end
+
+endmodule
+
+//Memory Combinational Logic
+
+module mem (
+	input logic clk, reset,
+	input logic [31:0] ex_aluout,
+	output logic [31:0] mem_aluout);
+
+//Memory to Memory Writeback Pipeline Register
+
+always_ff @ (posedge clk or posedge reset)
+	if (reset) 
+		mem_aluout <= 0;
+	else
+		mem_aluout <= ex_aluout;
+endmodule
+
+//Memory Writeback Combinational Logic
+
+module memwb (
+	input logic memtoreg,
+	input logic [31:0] mem_aluout, readdata,
+	output logic [31:0] memwb_result);
+
+
+mux2 #(32) resmux(mem_aluout, readdata, memtoreg, memwb_result);
+
 endmodule
 
 

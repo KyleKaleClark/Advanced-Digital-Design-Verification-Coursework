@@ -14,43 +14,118 @@
 // Datapath module
 //////////////////////////////////////////////////////////////////////
 module datapath (
-    input logic clk, reset,
+    input logic clk, reset, branch, memwrite,
     input logic memtoreg, pcsrc,
-    input logic alusrc, logicdst,
-    input logic logicwrite, jump,
+    input logic alusrc, regdst,
+    input logic regwrite, jump,
     input logic [2:0] alucontrol,
-    output logic zero,
+    output logic ex_zero_out,
     output logic [31:0] pc,
     input logic [31:0] instr,
-    output logic [31:0] aluout, writedata,
+    output logic [31:0] ex_aluout, ex_writedata_out,
     input logic[31:0] readdata
 );
 
-logic [31:0] if_pc4_out, if_instruction_out, memwb_result, id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out;
-logic [31:0] ex_signimmsh, ex_pcbranch, ex_srcb, ex_writereg, mem_aluout;
+//IF to ID pipeline logic
+logic [31:0] if_pc4_out, if_instruction_out;
+//ID to EX pipeline logic
+logic [31:0] id_pc4_out, id_instruction_out, id_srca_out, id_writedata_out, id_signimm_out;
+logic id_regwrite_out, id_memtoreg_out, id_memwrite_out, id_branch_out, id_alusrc_out, id_regdst_out;
+logic [2:0] id_alucontrol_out;
+logic [4:0] id_rt_out, id_rd_out;
+//EX to MEM pipeline logic
+logic [31:0] ex_instruction_out, ex_pcbranch_out;
+logic ex_regwrite_out, ex_memtoreg_out, ex_memwrite_out, ex_branch_out;
+logic [4:0] ex_writereg_out;
+//MEM to WB pipeline logic
+logic [31:0] mem_instruction_out, mem_aluout, mem_readdata_out;
+logic mem_regwrite_out, mem_memtoreg_out;
+logic [4:0] mem_writereg_out;
 
-InstrFet IF (clk, reset, pcsrc, jump, instr, ex_pcbranch, if_pc4_out, if_instruction_out, pc);
-InstrDec ID (clk, reset, logicwrite, if_pc4_out, if_instruction_out, memwb_result, id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, writedata);
-Exec EX (clk, reset, alusrc, logicdst, alucontrol, id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, writedata, ex_signimmsh, aluout, ex_pcbranch, ex_srcb, ex_writereg, zero);
-mem MEM (clk, reset, aluout, mem_aluout);
-memwb WB (memtoreg, mem_aluout, readdata, memwb_result);
+
+
+//Instruction Fetch Combinational Logic
+
+logic [31:0] pcnextbr, pcplus4, pcnext;
+
+adder pcadd1 (pc, 32'b100, pcplus4);
+
+mux2_dontcare #(32) pcbrmux(pcplus4, ex_pcbranch_out, pcsrc, pcnextbr);
+mux2_dontcare #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
+
+flopr #(32) pcreg(clk, reset, pcnext, pc);
+
+//Instruction Fetch to Instruction Decode Pipeline Registers
+
+
+IF_ID IF_ID (clk, reset, instr, pcplus4, if_instruction_out, if_pc4_out);
+
+//Instruction Decode Combinational Logic
+
+logic [31:0] srca, signimm, id_writedata, memwb_result, writedata;
+
+logicfile rf(clk, mem_regwrite_out, if_instruction_out[25:21], if_instruction_out[20:16], mem_writereg_out, memwb_result, srca, writedata);
+signext se(if_instruction_out[15:0], signimm);
+
+//Instruction Decode to Execute Pipeline Registers
+
+ID_EX ID_EX (clk, reset, branch, regwrite, memtoreg, memwrite, alusrc, regdst, if_instruction_out, if_pc4_out, srca, writedata, signimm, if_instruction_out[20:16], if_instruction_out[15:11], alucontrol,
+	id_regwrite_out, id_memwrite_out, id_memtoreg_out, id_branch_out, id_alusrc_out, id_regdst_out, id_instruction_out, id_srca_out, id_writedata_out, id_signimm_out,
+	id_pc4_out, id_rt_out, id_rd_out, id_alucontrol_out);
+
+//Execute Combinational Logic
+
+logic [31:0] signimmsh, pcbranch, srcb, aluout;
+logic [4:0] writereg;
+logic zero;
+
+mux2 #(32) srcbmux(id_writedata_out, id_signimm_out, id_alusrc_out, srcb);
+
+mux2 #(5) wrmux(id_instruction_out[20:16], id_instruction_out[15:11], regdst, writereg);
+
+alu alu(id_srca_out, srcb, alucontrol, aluout, zero);
+
+sl2 immsh(id_signimm_out, signimmsh);
+adder pcadd2(id_pc4_out, signimmsh, pcbranch);
+
+//Execute to Memory Pipeline Registers
+
+EX_MEM EX_MEM (clk, reset, id_regwrite_out, id_memtoreg_out, id_memwrite_out, id_branch_out, zero, id_instruction_out, id_writedata_out, aluout, pcbranch, writereg,
+	ex_regwrite_out, ex_memtoreg_out, ex_memwrite_out, ex_branch_out, ex_zero_out, ex_aluout, ex_writedata_out, ex_pcbranch_out,
+	ex_instruction_out, ex_writereg_out);
+
+
+//Memory Combinational Logic
+
+
+//Memory to Memory Writeback Pipeline Registers
+
+MEM_WB MEM_WB (clk, reset, ex_regwrite_out, ex_memtoreg_out, ex_instruction_out, ex_aluout, readdata, ex_writereg_out, mem_regwrite_out, mem_memtoreg_out, mem_instruction_out,
+	mem_aluout, mem_readdata_out, mem_writereg_out);
+
+
+//Memory Writeback Combinational Logic
+
+
+
+mux2 #(32) resmux(mem_aluout, mem_readdata_out, mem_memtoreg_out, memwb_result);
+
+
 
 endmodule
 
-//Instruction Fetch Combinational Logic
-module InstrFet (
-	input logic clk, reset, pcsrc, jump,
-	input logic [31:0] instr, ex_pcbranch,
-	output logic [31:0] if_pc4_out, if_instruction_out, pc);
 
-logic [31:0] pcnextbr, pcplus4,pcnext;
 
-mux2 #(32) pcbrmux(pcplus4, ex_pcbranch, pcsrc, pcnextbr);
-mux2 #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
-flopr #(32) pcreg(clk, reset, pcnext, pc);
-adder pcadd1 (pc, 32'b100, pcplus4);
 
-//Instruction Fetch to Instruction Decode Pipeline Registers
+
+
+//Instruction fetch to instruction decode register module
+
+module IF_ID (
+	input logic clk, reset, 
+	input logic [31:0] instruction, pcplus4,
+	output logic [31:0] if_instruction_out, if_pc4_out
+	);
 
 always_ff @ (posedge clk or posedge reset)
 
@@ -60,115 +135,141 @@ always_ff @ (posedge clk or posedge reset)
 	end
 
 	else begin
-		if_instruction_out <= instr;
+		if_instruction_out <= instruction;
 		if_pc4_out <= pcplus4;
 	end
 
 endmodule
-//Instruction Decode Combinational Logic
-module InstrDec (
-	input logic clk, reset, logicwrite,
-	input logic [31:0] if_pc4_out, if_instruction_out, result,
-	output logic [31:0] id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, id_writedata_out);
 
-logic [4:0] writereg;
-logic [31:0] srca, signimm, writedata;
+//Instruction decode to execution register module
 
-logicfile rf(clk, logicwrite, if_instruction_out[25:21], if_instruction_out[20:16], writereg, result, srca, writedata);
-signext se(if_instruction_out[15:0], signimm);
+module ID_EX (
 
-//Instruction Decode to Execute Pipeline Registers
+	input logic clk, reset, branch, regwrite, memtoreg, memwrite, alusrc, regdst,
+	input logic [31:0] if_instruction_out, if_pc4_out, srca, writedata, sigimm,
+	input logic [4:0] rt, rd,
+	input logic [2:0] alucontrol,
+	output logic id_regwrite_out, id_memwrite_out, id_memtoreg_out, id_branch_out, id_alusrc_out, id_regdst_out,
+	output logic [31:0] id_instruction_out, id_srca_out, id_writedata_out, id_sigimm_out, id_pc4_out,
+	output logic [4:0] id_rt_out, id_rd_out,
+	output logic [2:0] id_alucontrol_out
+);
+
 always_ff @ (posedge clk or posedge reset)
 	
 	if (reset) begin
 
+		id_regwrite_out <= 0;
+		id_memwrite_out <= 0;
+		id_branch_out <= 0;
+		id_alusrc_out <= 0;
+		id_regdst_out <=0;
+		id_memtoreg_out <=0;
 		id_instruction_out <= 0;
-		id_pc4_out <= 0;
-		id_signimm_out <= 0;
 		id_srca_out <= 0;
 		id_writedata_out <= 0;
+		id_sigimm_out <= 0;
+		id_pc4_out <= 0;
+		id_rt_out <= 0;
+		id_rd_out <= 0;
+		id_alucontrol_out <= 0;
 	end
 
 	else begin
-
+		
+		id_regwrite_out <= regwrite;
+		id_memwrite_out <= memwrite;
+		id_branch_out <= branch;
+		id_alusrc_out <= alusrc;
+		id_regdst_out <= regdst;
+		id_memtoreg_out <= memtoreg;
 		id_instruction_out <= if_instruction_out;
-		id_pc4_out <= if_pc4_out;
-		id_signimm_out <= signimm;
 		id_srca_out <= srca;
 		id_writedata_out <= writedata;
+		id_sigimm_out <= sigimm;
+		id_pc4_out <= if_pc4_out;
+		id_rt_out <= rt;
+		id_rd_out <= rd;
+		id_alucontrol_out <= alucontrol;
+		
 	end
 
 endmodule
 
-//Execute Combinational Logic
+//Execution to memory register module
 
-module Exec (
-	input logic clk, reset, alusrc, logicdst,
-	input logic [2:0] alucontrol,
-	input logic [31:0] id_instruction_out, id_pc4_out, id_signimm_out, id_srca_out, id_writedata_out,
-	output logic [31:0] ex_signimmsh, ex_aluout, ex_pcbranch, ex_srcb, ex_writereg,
-	output logic ex_zero);
-
-logic [31:0] signimmsh, pcbranch, srcb, aluout;
-logic [4:0] writereg;
-logic zero;
-
-mux2 #(32) srcbmux(id_writedata_out, id_signimm_out, alusrc, srcb);
-mux2 #(5) wrmux(id_instruction_out[20:16], id_instruction_out[15:11], logicdst, writereg);
-alu alu(id_srca_out, srcb, alucontrol, aluout, zero);
-sl2 immsh(id_signimm_out, signimmsh);
-adder pcadd2(id_pc4_out, signimmsh, pcbranch);
-
-//Execute to Memory Pipeline Registers
+module EX_MEM (
+	input logic clk, reset, id_regwrite_out, id_memtoreg_out, id_memwrite_out, id_branch_out, zero, 
+	input logic [31:0] id_instruction_out, id_writedata_out, aluout, pcbranch,
+	input logic [4:0] writereg,
+	output logic ex_regwrite_out, ex_memtoreg_out, ex_memwrite_out, ex_branch_out, ex_zero_out,
+	output logic [31:0] ex_aluout, ex_writedata_out, ex_pcbranch_out, ex_instruction_out,
+	output logic [4:0] ex_writereg_out);
 
 always_ff @ (posedge clk or posedge reset)
 
 	if (reset) begin
-		ex_signimmsh <= 0;
+		
+		ex_regwrite_out <= 0;
+		ex_memtoreg_out <= 0;
+		ex_memwrite_out <= 0;
+		ex_branch_out <= 0;
+		ex_zero_out <= 0;
 		ex_aluout <= 0;
-		ex_pcbranch <= 0;
-		ex_srcb <= 0;
-		ex_writereg <= 0;
+		ex_writedata_out <= 0;
+		ex_pcbranch_out <= 0;
+		ex_writereg_out <= 0;
+		ex_instruction_out <= 0;
+
 	end
 
 	else begin
-		ex_signimmsh <= signimmsh;
+
+		ex_regwrite_out <= id_regwrite_out;
+		ex_memtoreg_out <= id_memtoreg_out;
+		ex_memwrite_out <= id_memwrite_out;
+		ex_branch_out <= id_branch_out;
+		ex_zero_out <= zero;
 		ex_aluout <= aluout;
-		ex_pcbranch <= pcbranch;
-		ex_srcb <= srcb;
-		ex_writereg <= writereg;
+		ex_writedata_out <= id_writedata_out;
+		ex_pcbranch_out <= pcbranch;
+		ex_writereg_out <= writereg;
+		ex_instruction_out <= id_instruction_out;
 	end
 
 endmodule
 
-//Memory Combinational Logic
+//Memory to writeback register module
 
-module mem (
-	input logic clk, reset,
-	input logic [31:0] ex_aluout,
-	output logic [31:0] mem_aluout);
-
-//Memory to Memory Writeback Pipeline Register
+module MEM_WB (
+	input logic clk, reset, ex_regwrite_out, ex_memtoreg_out,
+	input logic[31:0] ex_instruction_out, ex_aluout, readdata,
+	input logic[4:0] ex_writereg_out,
+	output logic mem_regwrite_out, mem_memtoreg_out,
+	output logic [31:0] mem_instruction_out, mem_aluout, mem_readdata_out,
+	output logic [4:0] mem_writereg_out);
 
 always_ff @ (posedge clk or posedge reset)
-	if (reset) 
+	if (reset) begin 
+		mem_regwrite_out <= 0;
+		mem_memtoreg_out <= 0;
+		mem_instruction_out <= 0;
 		mem_aluout <= 0;
-	else
+		mem_readdata_out <= 0;
+		mem_writereg_out <= 0;
+	
+	end
+
+	else begin
+		mem_regwrite_out <= ex_regwrite_out;
+		mem_memtoreg_out <= ex_memtoreg_out;
+		mem_instruction_out <= ex_instruction_out;
 		mem_aluout <= ex_aluout;
-endmodule
-
-//Memory Writeback Combinational Logic
-
-module memwb (
-	input logic memtoreg,
-	input logic [31:0] mem_aluout, readdata,
-	output logic [31:0] memwb_result);
-
-
-mux2 #(32) resmux(mem_aluout, readdata, memtoreg, memwb_result);
+		mem_readdata_out <= readdata;
+		mem_writereg_out <= ex_writereg_out;
+	end
 
 endmodule
-
 
 //////////////////////////////////////////////////////////////////////
 // logicister File Module
@@ -239,6 +340,48 @@ module adder (
     assign y = a + b;
 endmodule
 
+//////////////////////////////////////////////////////////////////////
+// 2-to-1 Multiplexer Module with dont care
+//////////////////////////////////////////////////////////////////////
+module mux2_dontcare # (parameter WIDTH = 8) (
+	input logic[WIDTH-1:0] d0, d1,
+	input logic s,
+	output logic[WIDTH-1:0] y);
+
+  always_ff @(*)
+
+  begin
+
+	case(s)
+		1'b0 : y<=d0;
+		1'bx : y<=d0;
+		1'b1 : y<=d1;
+
+	endcase
+  end
+
+endmodule
+
+//////////////////////////////////////////////////////////////////////
+// 3-to-1 Multiplexer Module with dont care
+//////////////////////////////////////////////////////////////////////
+module mux3_dontcare # (parameter WIDTH = 8) (
+    input logic[WIDTH-1:0] d0, d1, d2,
+    input logic [1:0] s,
+    output logic [WIDTH-1:0] y
+);
+  always_ff @(*)
+
+  begin
+	case(s)
+		2'bxx : y<=d0;
+		2'b00 : y<=d0;
+		2'b01 : y<=d1;
+		2'b10 : y<=d2; 
+	endcase
+  end
+
+endmodule
 
 //////////////////////////////////////////////////////////////////////
 // 2-to-1 Multiplexer Module

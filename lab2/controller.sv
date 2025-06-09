@@ -14,11 +14,11 @@ module controller (
     output memtologic, memwrite,
     output pcsrc, alusrc,
     output logicdst, logicwrite,
-    output jump,
+    output jump, branch,
     output [2:0] alucontrol
 );
     logic [1:0] aluop;
-    logic branch;
+    
     
     maindec md (op, memtologic, memwrite, branch, alusrc, logicdst, logicwrite, jump, aluop);
     aludec ad (funct, aluop, alucontrol);

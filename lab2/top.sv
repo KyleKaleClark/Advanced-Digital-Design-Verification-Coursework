@@ -39,9 +39,9 @@ module mips (
     logic memtoreg, branch, alusrc, logicdst, logicwrite, jump;
     logic [2:0] alucontrol;
 
-    controller c(instr[31:26], instr[5:0], zero, memtoreg, memwrite, pcsrc, alusrc, logicdst, logicwrite, jump, alucontrol);
+    controller c(instr[31:26], instr[5:0], zero, memtoreg, memwrite, pcsrc, alusrc, logicdst, logicwrite, jump, branch, alucontrol);
 
-    datapath dp(clk, reset, memtoreg, pcsrc, alusrc, logicdst, logicwrite, jump,alucontrol, zero, pc, instr, aluout, writedata, readdata);
+    datapath dp(clk, reset, branch, memwrite, memtoreg, pcsrc, alusrc, logicdst, logicwrite, jump,alucontrol, zero, pc, instr, aluout, writedata, readdata);
 endmodule
 
 

@@ -1,0 +1,165 @@
+                         Chronologic VCS (TM)
+      Version T-2022.06-SP2-1_Full64 -- Tue Jun 10 23:55:09 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS Release Notes
+
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 9 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+Parsing design file '../mips_tb.sv'
+Parsing design file '../top.sv'
+Parsing design file '../controller.sv'
+Parsing design file '../datapath.sv'
+
+Warning-[IPDASP] Identifier in ANSI port declaration
+../datapath.sv, 55
+  Redeclaration of ANSI ports not allowed for 'ID_instr', this will be an 
+  error in a future release
+
+
+Warning-[IPDASP] Identifier in ANSI port declaration
+../datapath.sv, 101
+  Redeclaration of ANSI ports not allowed for 'MEM_aluout', this will be an 
+  error in a future release
+
+
+Warning-[IPDASP] Identifier in ANSI port declaration
+../datapath.sv, 101
+  Redeclaration of ANSI ports not allowed for 'MEM_writedata', this will be an
+  error in a future release
+
+
+Warning-[IPDASP] Identifier in ANSI port declaration
+../datapath.sv, 107
+  Redeclaration of ANSI ports not allowed for 'MEM_memwrite', this will be an 
+  error in a future release
+
+Top Level Modules:
+       MIPS_Testbench
+No TimeScale specified
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 36
+"expected_data[2]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 37
+"expected_addr[2]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 39
+"expected_data[3]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 40
+"expected_addr[3]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 42
+"expected_data[4]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 43
+"expected_addr[4]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 45
+"expected_data[5]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 46
+"expected_addr[5]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 48
+"expected_data[6]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 49
+"expected_addr[6]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 51
+"expected_data[7]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+
+Warning-[SIOB] Select index out of bounds
+../mips_tb.sv, 52
+"expected_addr[7]"
+  The select index is out of declared bounds : [1:1].
+  In module : MIPS_Testbench.
+
+Starting vcs inline pass...
+
+1 module and 0 UDP read.
+	However, due to incremental compilation, no re-compilation is necessary.
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 9 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+make[1]: Entering directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
+make[1]: Leaving directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 167168 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+make[1]: Entering directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _166995_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
+CPU time: .299 seconds to compile + .229 seconds to elab + .238 seconds to link
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)

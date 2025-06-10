@@ -1,0 +1,4 @@
+../controller.sv
+../datapath.sv
+../mips_tb.sv
+../top.sv

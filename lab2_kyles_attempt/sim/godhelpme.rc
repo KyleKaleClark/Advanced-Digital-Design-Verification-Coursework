@@ -1,0 +1,78 @@
+Magic 271485
+Revision Verdi_T-2022.06-SP2-1
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 25 1548 522 303 65
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/novas.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 0.000000 101.000000
+cursor 35.000000
+marker 0.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 0
+; marker line index
+markerPos 1
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+addGroup "G1"
+activeDirFile "" "/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/novas.fsdb"
+addSignal -h 15 /MIPS_Testbench/dut/mips/dp/idex/ID_alucontrol
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/alu/control[2:0]
+addSignal -h 15 /MIPS_Testbench/dut/mips/dp/exmem/clk
+addSignal -h 15 -holdScope reset
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/instr[31:0]
+addGroup "G2"
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/EX_instr[31:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope EX_srca[31:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope EX_srcb[31:0]
+addGroup "G3" -e FALSE
+addSignal -h 15 /MIPS_Testbench/dut/mips/dp/EX_regwrite
+addSignal -h 15 -holdScope EX_regdst
+addSignal -h 15 -holdScope EX_alusrc
+addSignal -h 15 -holdScope EX_branch
+addSignal -h 15 -holdScope EX_memwrite
+addSignal -h 15 -holdScope EX_memtoreg
+addSignal -h 15 /MIPS_Testbench/dut/mips/c/jump
+addGroup "G4"
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/alu/a[31:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope b[31:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope result[31:0]
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/exmem/EX_aluout[31:0]
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/MEM_aluout[31:0]
+addSignal -h 15 -UNSIGNED -HEX -holdScope MEM_writedata[31:0]
+addGroup "G5"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+

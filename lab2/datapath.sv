@@ -19,80 +19,89 @@ module datapath (
     input logic alusrc, regdst,
     input logic regwrite, jump,
     input logic [2:0] alucontrol,
-    output logic ex_zero_out,
+    output logic zeroM,
     output logic [31:0] pc,
     input logic [31:0] instr,
-    output logic [31:0] ex_aluout, ex_writedata_out,
+    output logic [31:0] aluoutM, writedataM,
     input logic[31:0] readdata
 );
 
 //IF to ID pipeline logic
-logic [31:0] if_pc4_out, if_instruction_out;
+logic [31:0] pcplus4D, instrD;
+logic stallF, stallD;
 //ID to EX pipeline logic
-logic [31:0] id_pc4_out, id_instruction_out, id_srca_out, id_writedata_out, id_signimm_out;
-logic id_regwrite_out, id_memtoreg_out, id_memwrite_out, id_branch_out, id_alusrc_out, id_regdst_out;
-logic [2:0] id_alucontrol_out;
-logic [4:0] id_rt_out, id_rd_out;
+logic [31:0] instrE, pcplus4E, signimmE, srcaE, srcbE, writedataE;
+logic regwriteE, memtoregE, memwriteE, branchE, alusrcE, regdstE;
+logic [2:0] alucontrolE;
+logic [4:0] rtE, rdE, rsE, writeregE;
+logic flushE;
 //EX to MEM pipeline logic
-logic [31:0] ex_instruction_out, ex_pcbranch_out;
-logic ex_regwrite_out, ex_memtoreg_out, ex_memwrite_out, ex_branch_out;
-logic [4:0] ex_writereg_out;
+logic [31:0] instrM, pcbranchM;
+logic regwriteM, memtoregM, memwriteM, branchM;
+logic [4:0] writeregM;
 //MEM to WB pipeline logic
-logic [31:0] mem_instruction_out, mem_aluout, mem_readdata_out;
-logic mem_regwrite_out, mem_memtoreg_out;
-logic [4:0] mem_writereg_out;
+logic [31:0] instrW, aluoutW, readdataW;
+logic regwriteW, memtoregW;
+logic [4:0] writeregW;
 
 
+//Hazard unit for stalling only on lw instructions. ID_EX register will have
+//all input control signals to zero for stall
+logic[1:0] forwardAE, forwardBE;
 
-//Instruction Fetch Combinational Logic
 
+hazardunit hazardunit(memtoregE, instrD[25:21], instrD[20:16], regwriteM, regwriteW, rsE, rtE, writeregM, writeregW, 
+			forwardAE, forwardBE, stallF, stallD, flushE);
+
+//Instruction Fetch Combinational Logic:
 logic [31:0] pcnextbr, pcplus4, pcnext;
 
 adder pcadd1 (pc, 32'b100, pcplus4);
 
-mux2_dontcare #(32) pcbrmux(pcplus4, ex_pcbranch_out, pcsrc, pcnextbr);
+mux2_dontcare #(32) pcbrmux(pcplus4, pcbranchM, pcsrc, pcnextbr);
 mux2_dontcare #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext);
 
-flopr #(32) pcreg(clk, reset, pcnext, pc);
+flopr #(32) pcreg(stallF, clk, reset, pcnext, pc);
 
 //Instruction Fetch to Instruction Decode Pipeline Registers
 
 
-IF_ID IF_ID (clk, reset, instr, pcplus4, if_instruction_out, if_pc4_out);
+IF_ID IF_ID (stallD, clk, reset, instr, pcplus4, instrD, pcplus4D);
 
 //Instruction Decode Combinational Logic
 
-logic [31:0] srca, signimm, id_writedata, memwb_result, writedata;
+logic [31:0] srca, signimmD,result, writedata;
 
-logicfile rf(clk, mem_regwrite_out, if_instruction_out[25:21], if_instruction_out[20:16], mem_writereg_out, memwb_result, srca, writedata);
-signext se(if_instruction_out[15:0], signimm);
+logicfile rf(clk, regwriteW, instrD[25:21], instrD[20:16], writeregW, result, srca, writedata);
+signext se(instrD[15:0], signimmD);
 
 //Instruction Decode to Execute Pipeline Registers
 
-ID_EX ID_EX (clk, reset, branch, regwrite, memtoreg, memwrite, alusrc, regdst, if_instruction_out, if_pc4_out, srca, writedata, signimm, if_instruction_out[20:16], if_instruction_out[15:11], alucontrol,
-	id_regwrite_out, id_memwrite_out, id_memtoreg_out, id_branch_out, id_alusrc_out, id_regdst_out, id_instruction_out, id_srca_out, id_writedata_out, id_signimm_out,
-	id_pc4_out, id_rt_out, id_rd_out, id_alucontrol_out);
+ID_EX ID_EX (flushE, clk, reset, branch, regwrite, memtoreg, memwrite, alusrc, regdst, instrD, pcplus4D, srca, writedata, signimmD, instrD[20:16], instrD[15:11], instrD[25:21], alucontrol,
+	regwriteE, memwriteE, memtoregE, branchE, alusrcE, regdstE, instrE, srcaE, writedataE, signimmE,
+	pcplus4E, rtE, rdE, rsE, alucontrolE);
 
 //Execute Combinational Logic
 
 logic [31:0] signimmsh, pcbranch, srcb, aluout;
-logic [4:0] writereg;
 logic zero;
 
-mux2 #(32) srcbmux(id_writedata_out, id_signimm_out, id_alusrc_out, srcb);
+mux2 #(32) srcbmux(writedataE, signimmE, alusrcE, srcbE);
 
-mux2 #(5) wrmux(id_instruction_out[20:16], id_instruction_out[15:11], regdst, writereg);
+mux2 #(5) wrmux(rtE, rdE, regdstE, writeregE);
 
-alu alu(id_srca_out, srcb, alucontrol, aluout, zero);
+alu alu(srcaE, srcbE, alucontrolE, aluout, zero);
 
-sl2 immsh(id_signimm_out, signimmsh);
-adder pcadd2(id_pc4_out, signimmsh, pcbranch);
+sl2 immsh(signimmE, signimmsh);
+adder pcadd2(pcplus4E, signimmsh, pcbranch);
+
+
 
 //Execute to Memory Pipeline Registers
 
-EX_MEM EX_MEM (clk, reset, id_regwrite_out, id_memtoreg_out, id_memwrite_out, id_branch_out, zero, id_instruction_out, id_writedata_out, aluout, pcbranch, writereg,
-	ex_regwrite_out, ex_memtoreg_out, ex_memwrite_out, ex_branch_out, ex_zero_out, ex_aluout, ex_writedata_out, ex_pcbranch_out,
-	ex_instruction_out, ex_writereg_out);
+EX_MEM EX_MEM (clk, reset, regwriteE, memtoregE, memwriteE, branchE, zero, instrE, writedataE, aluout, pcbranch, writeregE,
+	regwriteM, memtoregM, memwriteM, branchM, zeroM, aluoutM, writedataM, pcbranchM,
+	instrM, writeregM);
 
 
 //Memory Combinational Logic
@@ -100,15 +109,15 @@ EX_MEM EX_MEM (clk, reset, id_regwrite_out, id_memtoreg_out, id_memwrite_out, id
 
 //Memory to Memory Writeback Pipeline Registers
 
-MEM_WB MEM_WB (clk, reset, ex_regwrite_out, ex_memtoreg_out, ex_instruction_out, ex_aluout, readdata, ex_writereg_out, mem_regwrite_out, mem_memtoreg_out, mem_instruction_out,
-	mem_aluout, mem_readdata_out, mem_writereg_out);
+MEM_WB MEM_WB (clk, reset, regwriteM, memtoregM, instrM, aluoutM, readdata, writeregM, regwriteW, memtoregW, instrW,
+	aluoutW, readdataW, writeregW);
 
 
 //Memory Writeback Combinational Logic
 
 
 
-mux2 #(32) resmux(mem_aluout, mem_readdata_out, mem_memtoreg_out, memwb_result);
+mux2 #(32) resmux(aluoutW, readdataW, memtoregW, result);
 
 
 
@@ -122,22 +131,41 @@ endmodule
 //Instruction fetch to instruction decode register module
 
 module IF_ID (
+	input logic stallD,
 	input logic clk, reset, 
-	input logic [31:0] instruction, pcplus4,
-	output logic [31:0] if_instruction_out, if_pc4_out
+	input logic [31:0] instr, pcplus4,
+	output logic [31:0] instrD, pcplus4D
 	);
 
 always_ff @ (posedge clk or posedge reset)
 
-	if (reset) begin 
-		if_instruction_out <= 0;
-		if_pc4_out <= 0;
-	end
+	case(reset)
 
-	else begin
-		if_instruction_out <= instruction;
-		if_pc4_out <= pcplus4;
-	end
+		1 : 
+		begin
+			instrD <= 0;
+			pcplus4D <= 0;
+		end
+
+		0 :
+		begin
+			case(stallD)
+
+				1'bx :
+				begin
+					instrD <= instr;
+					pcplus4D <= pcplus4;
+				end
+				1'b0 :
+				begin
+					instrD <= instr;
+					pcplus4D <= pcplus4;
+				end
+			endcase
+		end
+	endcase
+
+	
 
 endmodule
 
@@ -145,52 +173,54 @@ endmodule
 
 module ID_EX (
 
-	input logic clk, reset, branch, regwrite, memtoreg, memwrite, alusrc, regdst,
-	input logic [31:0] if_instruction_out, if_pc4_out, srca, writedata, sigimm,
-	input logic [4:0] rt, rd,
+	input logic flushE, clk, reset, branch, regwrite, memtoreg, memwrite, alusrc, regdst,
+	input logic [31:0] instrD, pcplus4D, srca, writedata, signimm,
+	input logic [4:0] rt, rd, rsD,
 	input logic [2:0] alucontrol,
-	output logic id_regwrite_out, id_memwrite_out, id_memtoreg_out, id_branch_out, id_alusrc_out, id_regdst_out,
-	output logic [31:0] id_instruction_out, id_srca_out, id_writedata_out, id_sigimm_out, id_pc4_out,
-	output logic [4:0] id_rt_out, id_rd_out,
-	output logic [2:0] id_alucontrol_out
+	output logic regwriteE, memwriteE, memtoregE, branchE, alusrcE, regdstE,
+	output logic [31:0] instrE, srcaE, writedataE, signimmE, pcplus4E,
+	output logic [4:0] rtE, rdE, rsE,
+	output logic [2:0] alucontrolE
 );
 
 always_ff @ (posedge clk or posedge reset)
 	
-	if (reset) begin
+	if (reset || flushE == 1'b1) begin
 
-		id_regwrite_out <= 0;
-		id_memwrite_out <= 0;
-		id_branch_out <= 0;
-		id_alusrc_out <= 0;
-		id_regdst_out <=0;
-		id_memtoreg_out <=0;
-		id_instruction_out <= 0;
-		id_srca_out <= 0;
-		id_writedata_out <= 0;
-		id_sigimm_out <= 0;
-		id_pc4_out <= 0;
-		id_rt_out <= 0;
-		id_rd_out <= 0;
-		id_alucontrol_out <= 0;
+		regwriteE <= 0;
+		memwriteE <= 0;
+		branchE <= 0;
+		alusrcE <= 0;
+		regdstE <=0;
+		memtoregE <=0;
+		instrE <= 0;
+		srcaE <= 0;
+		writedataE <= 0;
+		signimmE <= 0;
+		pcplus4E <= 0;
+		rtE <= 0;
+		rdE <= 0;
+		rsE <= 0;
+		alucontrolE <= 0;
 	end
 
 	else begin
 		
-		id_regwrite_out <= regwrite;
-		id_memwrite_out <= memwrite;
-		id_branch_out <= branch;
-		id_alusrc_out <= alusrc;
-		id_regdst_out <= regdst;
-		id_memtoreg_out <= memtoreg;
-		id_instruction_out <= if_instruction_out;
-		id_srca_out <= srca;
-		id_writedata_out <= writedata;
-		id_sigimm_out <= sigimm;
-		id_pc4_out <= if_pc4_out;
-		id_rt_out <= rt;
-		id_rd_out <= rd;
-		id_alucontrol_out <= alucontrol;
+		regwriteE <= regwrite;
+		memwriteE <= memwrite;
+		branchE <= branch;
+		alusrcE <= alusrc;
+		regdstE <= regdst;
+		memtoregE <= memtoreg;
+		instrE <= instrD;
+		srcaE <= srca;
+		writedataE <= writedata;
+		signimmE <= signimm;
+		pcplus4E <= pcplus4D;
+		rtE <= rt;
+		rdE <= rd;
+		rsE <= rsD;
+		alucontrolE <= alucontrol;
 		
 	end
 
@@ -199,42 +229,42 @@ endmodule
 //Execution to memory register module
 
 module EX_MEM (
-	input logic clk, reset, id_regwrite_out, id_memtoreg_out, id_memwrite_out, id_branch_out, zero, 
-	input logic [31:0] id_instruction_out, id_writedata_out, aluout, pcbranch,
+	input logic clk, reset, regwriteE, memtoregE, memwriteE, branchE, zero, 
+	input logic [31:0] instrE, writedataE, aluout, pcbranchE,
 	input logic [4:0] writereg,
-	output logic ex_regwrite_out, ex_memtoreg_out, ex_memwrite_out, ex_branch_out, ex_zero_out,
-	output logic [31:0] ex_aluout, ex_writedata_out, ex_pcbranch_out, ex_instruction_out,
-	output logic [4:0] ex_writereg_out);
+	output logic regwriteM, memtoregM, memwriteM, branchM, zeroM,
+	output logic [31:0] aluoutM, writedataM, pcbranchM, instrM,
+	output logic [4:0] writeregM);
 
 always_ff @ (posedge clk or posedge reset)
 
 	if (reset) begin
 		
-		ex_regwrite_out <= 0;
-		ex_memtoreg_out <= 0;
-		ex_memwrite_out <= 0;
-		ex_branch_out <= 0;
-		ex_zero_out <= 0;
-		ex_aluout <= 0;
-		ex_writedata_out <= 0;
-		ex_pcbranch_out <= 0;
-		ex_writereg_out <= 0;
-		ex_instruction_out <= 0;
+		regwriteM <= 0;
+		memtoregM <= 0;
+		memwriteM <= 0;
+		branchM <= 0;
+		zeroM <= 0;
+		aluoutM <= 0;
+		writedataM <= 0;
+		pcbranchM <= 0;
+		writeregM <= 0;
+		instrM <= 0;
 
 	end
 
 	else begin
 
-		ex_regwrite_out <= id_regwrite_out;
-		ex_memtoreg_out <= id_memtoreg_out;
-		ex_memwrite_out <= id_memwrite_out;
-		ex_branch_out <= id_branch_out;
-		ex_zero_out <= zero;
-		ex_aluout <= aluout;
-		ex_writedata_out <= id_writedata_out;
-		ex_pcbranch_out <= pcbranch;
-		ex_writereg_out <= writereg;
-		ex_instruction_out <= id_instruction_out;
+		regwriteM <= regwriteE;
+		memtoregM <= memtoregE;
+		memwriteM <= memwriteE;
+		branchM <= branchE;
+		zeroM <= zero;
+		aluoutM <= aluout;
+		writedataM <= writedataE;
+		pcbranchM <= pcbranchE;
+		writeregM <= writereg;
+		instrM <= instrE;
 	end
 
 endmodule
@@ -242,34 +272,66 @@ endmodule
 //Memory to writeback register module
 
 module MEM_WB (
-	input logic clk, reset, ex_regwrite_out, ex_memtoreg_out,
-	input logic[31:0] ex_instruction_out, ex_aluout, readdata,
-	input logic[4:0] ex_writereg_out,
-	output logic mem_regwrite_out, mem_memtoreg_out,
-	output logic [31:0] mem_instruction_out, mem_aluout, mem_readdata_out,
-	output logic [4:0] mem_writereg_out);
+	input logic clk, reset, regwriteM, memtoregM,
+	input logic[31:0] instrM, aluoutM, readdata,
+	input logic[4:0] writeregM,
+	output logic regwriteW, memtoregW,
+	output logic [31:0] instrW, aluoutW, readdataW,
+	output logic [4:0] writeregW);
 
 always_ff @ (posedge clk or posedge reset)
 	if (reset) begin 
-		mem_regwrite_out <= 0;
-		mem_memtoreg_out <= 0;
-		mem_instruction_out <= 0;
-		mem_aluout <= 0;
-		mem_readdata_out <= 0;
-		mem_writereg_out <= 0;
+		regwriteW <= 0;
+		memtoregW <= 0;
+		instrW <= 0;
+		aluoutW <= 0;
+		readdataW <= 0;
+		writeregW <= 0;
 	
 	end
 
 	else begin
-		mem_regwrite_out <= ex_regwrite_out;
-		mem_memtoreg_out <= ex_memtoreg_out;
-		mem_instruction_out <= ex_instruction_out;
-		mem_aluout <= ex_aluout;
-		mem_readdata_out <= readdata;
-		mem_writereg_out <= ex_writereg_out;
+		regwriteW <= regwriteM;
+		memtoregW <= memtoregM;
+		instrW <= instrM;
+		aluoutW <= aluoutM;
+		readdataW <= readdata;
+		writeregW <= writeregM;
 	end
 
 endmodule
+
+module hazardunit(input memtoregE,
+						input logic [4:0] rsD, rtD,
+						input logic regwriteM, regwriteW,
+						input logic [4:0] rsE, rtE, 
+						input logic [4:0] writeregM, writeregW,
+						output logic [1:0] forwardAE, forwardBE,
+						output logic stallF, stallD, flushE);
+		logic lwstall;
+		
+		
+		
+		always_comb
+		begin
+			//This is for stalling when data hazard occurs
+		
+			lwstall = ((rsD==rtE)||(rtD==rtE))&&memtoregE;
+			stallF = lwstall;
+			stallD = lwstall;
+			flushE = lwstall;
+		
+		end
+		
+		always_ff @(lwstall)
+		begin
+				case(lwstall)
+					1'b1: $display("lwstall=%b", lwstall);
+				endcase
+		end
+						
+endmodule
+
 
 //////////////////////////////////////////////////////////////////////
 // logicister File Module
@@ -422,11 +484,17 @@ endmodule
 // Flop logicister Module
 //////////////////////////////////////////////////////////////////////
 module flopr # (parameter WIDTH = 8)(
-    input clk, reset,
+    input logic stallF,clk, reset,
     input [WIDTH-1:0] d,
     output logic [WIDTH-1:0] q
 );
     always @ (posedge clk, posedge reset)
         if (reset) q <= 0;
-        else q <= d;
+        else
+	begin
+		case (stallF)
+		1'b0 :	q <= d;
+		1'bx : q <= d;
+		endcase
+	end
 endmodule

@@ -37,6 +37,9 @@ module datapath (
     logic [31:0] result;
 
 
+
+   
+
    
 //   logic 	 branch, memwrite;
 //   logic 	 memwrite;
@@ -64,16 +67,18 @@ module datapath (
 
 
    assign ID_memwrite = memwrite;
-   always_ff @(posedge clk or posedge reset) begin
-      if (reset) begin
+   assign IF_instr = instr;
+   
+//   always_ff @(posedge clk or posedge reset) begin
+//      if (reset) begin
 //	 ID_memwrite <= '0;
-	 IF_instr <= '0;
-      end
-      else begin
+//	 IF_instr <= '0;
+//      end
+//      else begin
 //	 ID_memwrite <= memwrite;
-	 IF_instr <= instr;
-      end
-   end
+//	 IF_instr <= instr;
+//      end
+//   end
    
    assign ID_memtoreg = memtoreg;
    assign ID_regwrite = regwrite;
@@ -85,9 +90,9 @@ module datapath (
 //execute signals
    //data signals
    logic [31:0]  EX_instr, EX_srca, EX_srcb_premux, EX_srcb, EX_pc4, EX_signimm, EX_signimmsh, EX_pcbranch, EX_aluout, EX_writedata;
-   assign EX_writedata = EX_srcb_premux;
+//   assign EX_writedata = EX_srcb_premux;
    
-   logic [4:0] 	 EX_rte, EX_rde, EX_writereg;
+   logic [4:0] 	 EX_rte, EX_rde, EX_rse, EX_writereg;
    logic 	 EX_zero;
    
    //control signals
@@ -118,14 +123,10 @@ module datapath (
    
 
    
-   IF_ID ifid(clk, reset, IF_instr, IF_pc4, ID_instr, ID_pc4);
+   IF_ID ifid(ID_stall, clk, reset, IF_instr, IF_pc4, ID_instr, ID_pc4);
 
-//   ID_EX idex(clk, reset, ID_instr, ID_srca, ID_srcb, ID_signimm, ID_pc4, ID_rte, ID_rde, ID_memwrite, ID_memtoreg, ID_regwrite,
-//	      ID_branch, ID_alucontrol, ID_alusrc, ID_regdst, EX_instr, EX_srca, EX_srcb_premux, EX_signimm, EX_pc4, EX_rte, EX_rde,
-//	      EX_memwrite, EX_memtoreg, EX_regwrite, EX_branch, EX_alucontrol, EX_alusrc, EX_regdst);
-
-   ID_EX idex(clk, reset, ID_instr, ID_srca, ID_srcb, ID_signimm, ID_pc4, ID_rte, ID_rde, ID_memwrite, ID_memtoreg, ID_regwrite, ID_branch, ID_alusrc,
-	      ID_regdst, ID_alucontrol, EX_instr, EX_srca, EX_srcb_premux, EX_signimm, EX_pc4, EX_rte, EX_rde, EX_memwrite, EX_memtoreg, EX_regwrite,
+   ID_EX idex(EX_flush, ID_instr[25:21], clk, reset, ID_instr, ID_srca, ID_srcb, ID_signimm, ID_pc4, ID_rte, ID_rde, ID_memwrite, ID_memtoreg, ID_regwrite, ID_branch, ID_alusrc,
+	      ID_regdst, ID_alucontrol, EX_instr, EX_srca, EX_srcb_premux, EX_signimm, EX_pc4, EX_rte, EX_rde, EX_rse, EX_memwrite, EX_memtoreg, EX_regwrite,
 	      EX_branch, EX_alusrc, EX_regdst, EX_alucontrol);
       
    EX_MEM exmem(clk, reset, EX_instr, EX_aluout, EX_writedata, EX_pcbranch, EX_writereg, EX_zero, EX_memwrite, EX_memtoreg, EX_regwrite,
@@ -136,11 +137,12 @@ module datapath (
 		WB_readdata, WB_writereg, WB_regwrite, WB_memtoreg);
    
 
-
-
-
-
-
+   //haz stuff
+   logic [1:0] 	 EX_forwardA, EX_forwardB;
+   logic 	 IF_stall, ID_stall, EX_flush;
+   
+   hazardunit hz(EX_memtoreg, ID_instr[25:21], ID_instr[20:16], MEM_regwrite, WB_regwrite, EX_rse, EX_rte, MEM_writereg, WB_writereg, EX_forwardA, EX_forwardB, IF_stall, ID_stall, EX_flush);
+   
    
 
    logic [31:0]  cnt;    //count, either the PC counter or Cycle counter
@@ -149,29 +151,37 @@ module datapath (
     perfmon pf(clk, reset, instr[25], pc, cnt); //use nonopcode MSB  as the flag for it, and count it as an ALUop
    
     // next PC logic
-    flopr #(32) pcreg(clk, reset, pcnext, pc); //this is fine its preflops stuff anyways
+    flopr #(32) pcreg(IF_stall, clk, reset, pcnext, pc); //this is fine its preflops stuff anyways
     adder pcadd1 (pc, 32'b100, pcplus4); //good this gets flip flopped
-
     sl2 immsh(EX_signimm, EX_signimmsh); //good!
     adder pcadd2(EX_pc4, EX_signimmsh, pcbranch); //good!
-    mux2 #(32) pcbrmux(pcplus4, MEM_pcbranch, MEM_pcsrc, pcnextbr);
-    mux2 #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext); //im unsure....i think its fine
+
+   
+    mux_dontcare #(32) pcbrmux(pcplus4, MEM_pcbranch, MEM_pcsrc, pcnextbr);
+    mux_dontcare #(32) pcmux(pcnextbr, {pcplus4[31:28], instr[25:0], 2'b00}, jump, pcnext); //im unsure....i think its fine
 
     // logicister file logic
                                      //rs            //rt          //rd add rd dat                  //muladd
-    logicfile rf(clk, WB_regwrite, ID_instr[25:21], ID_instr[20:16], WB_writereg, WB_result, ID_srca, ID_srcb, wb_dat);
-//    logicfile rf(clk, WB_regwrite, ID_instr[25:21], ID_instr[20:16], WB_writereg, WB_result, ID_srca, writedata, wb_dat); <- write data is srcb
-
+    logicfile rf(clk, ID_regwrite, ID_instr[25:21], ID_instr[20:16], WB_writereg, WB_result, ID_srca, ID_srcb, wb_dat);
     mux2 #(5) wrmux(EX_rte, EX_rde, EX_regdst, EX_writereg);
     mux2 #(32) resmux(WB_aluout, WB_readdata, WB_memtoreg, WB_result);
     signext se(ID_instr[15:0], ID_signimm);
     
     // ALU logic
-    mux2 #(32) srcbmux(EX_srcb_premux, EX_signimm, EX_alusrc, EX_srcb); //write data <- srcb_premux
+    logic [31:0]  EX_srca2;   
+    mux_dontcare3 muxsrca(EX_srca, WB_result, MEM_aluout, EX_forwardA, EX_srca2);
+
+    logic [31:0]  EX_writedata;
+    mux_dontcare3 muxwritedata(EX_srcb_premux, WB_result, MEM_aluout, EX_forwardB, EX_writedata);
+   
+
+    mux2 #(32) srcbmux(EX_writedata, EX_signimm, EX_alusrc, EX_srcb); //write data <- srcb_premux
                                                   //pf //muladd
-    alu alu(EX_srca, EX_srcb, EX_alucontrol, EX_aluout, EX_zero, cnt, wb_dat); //good
+    alu alu(EX_srca2, EX_srcb, EX_alucontrol, EX_aluout, EX_zero, cnt, wb_dat); //good
 
    assign MEM_pcsrc = MEM_branch & MEM_zero;
+
+
    
    
 endmodule
@@ -294,13 +304,20 @@ endmodule
 // Flop logicister Module
 //////////////////////////////////////////////////////////////////////
 module flopr # (parameter WIDTH = 8)(
-    input clk, reset,
-    input [WIDTH-1:0] d,
+    input logic              IF_stall,				     
+    input 		     clk, reset,
+    input [WIDTH-1:0] 	     d,
     output logic [WIDTH-1:0] q
 );
     always @ (posedge clk, posedge reset)
         if (reset) q <= 0;
-        else q <= d;
+        else begin
+	   case(IF_stall)
+	     1'b0: q<=d;
+	     1'bx: q<=d;
+	   endcase // case (IF_stall)
+	end
+   
 endmodule
 
 
@@ -351,39 +368,47 @@ endmodule // perfmon
 
 
 module IF_ID(
-     input clk, reset,
+     input ID_stall, clk, reset,
      input [31:0] IF_instr, IF_pc4,
      output logic [31:0] ID_instr, ID_pc4
      );
    
-   always_ff @(posedge clk or posedge reset) begin
-   if(reset) begin
-      ID_instr <= '0;
-      ID_pc4 <= '0;
-   end
-   else begin
-      ID_instr <= IF_instr;
-      ID_pc4 <= IF_pc4;
-   end
+   always_ff @(posedge clk) begin
+      case(ID_stall)
+	1'bx:
+	  begin
+	     ID_instr <= IF_instr;
+	     ID_pc4 <= IF_pc4;
+	  end
+	1'b0:
+	  begin
+	     ID_instr <= IF_instr;
+	     ID_pc4 <= IF_pc4;
+	  end
+	
+      endcase // case (ID_stall)
+      
    end
    
 endmodule
  
   
 module ID_EX(
+     input logic 	 EX_flush,
+     input logic [4:0]   ID_rse,
      input 		 clk, reset,
      input [31:0] 	 ID_instr, ID_srca, ID_srcb, ID_signimm, ID_pc4,
      input [4:0] 	 ID_rte, ID_rde,
      input 		 ID_memwrite, ID_memtoreg, ID_regwrite, ID_branch, ID_alusrc, ID_regdst,
      input [2:0] 	 ID_alucontrol,
      output logic [31:0] EX_instr, EX_srca, EX_srcb_premux, EX_signimm, EX_pc4,
-     output logic [4:0]  EX_rte, EX_rde,
+     output logic [4:0]  EX_rte, EX_rde, EX_rse,
      output logic 	 EX_memwrite, EX_memtoreg, EX_regwrite, EX_branch, EX_alusrc, EX_regdst,
      output logic [2:0]  EX_alucontrol
      );
    
-   always_ff @(posedge clk or posedge reset) begin
-   if(reset) begin
+   always_ff @(posedge clk) begin
+   if(EX_flush == 1'b1) begin
       EX_instr <= '0;
       EX_srca <= '0;
       EX_srcb_premux <= '0;
@@ -398,6 +423,7 @@ module ID_EX(
       EX_alucontrol <= '0;
       EX_alusrc <= '0;
       EX_regdst <= '0;
+      EX_rse <= '0;
    end
    else begin
       EX_instr <= ID_instr;
@@ -413,7 +439,8 @@ module ID_EX(
       EX_branch <= ID_branch;
       EX_alucontrol <= ID_alucontrol;
       EX_alusrc <= ID_alusrc;
-      EX_regdst <= ID_regdst;      
+      EX_regdst <= ID_regdst;
+      EX_rse <= ID_rse;
    end // else: !if(reset)
    end
 
@@ -431,20 +458,8 @@ module EX_MEM(
      output logic 	 MEM_memwrite, MEM_memtoreg, MEM_regwrite, MEM_branch
      );
    
-   always_ff @(posedge clk or posedge reset) begin
-   if(reset) begin
-      MEM_instr <= '0;
-      MEM_aluout <= '0;
-      MEM_writedata <= '0;
-      MEM_pcbranch <= '0;
-      MEM_writereg <= '0;
-      MEM_zero <= '0;
-      MEM_memwrite <= '0;
-      MEM_memtoreg <= '0;
-      MEM_regwrite <= '0;
-      MEM_branch <= '0;
-   end
-   else begin
+   always_ff @(posedge clk) begin
+   begin
       MEM_instr <= EX_instr;
       MEM_aluout <= EX_aluout;
       MEM_writedata <= EX_writedata;
@@ -455,7 +470,7 @@ module EX_MEM(
       MEM_memtoreg <= EX_memtoreg;
       MEM_regwrite <= EX_regwrite;
       MEM_branch <= EX_branch;
-   end // else: !if(reset)
+   end 
    end
       
 endmodule
@@ -470,23 +485,83 @@ module MEM_WB(
      output logic 	 WB_regwrite, WB_memtoreg
      );
    
-   always_ff @(posedge clk or posedge reset) begin
-   if(reset) begin
-      WB_instr <= '0;
-      WB_aluout <= '0;
-      WB_readdata <= '0;
-      WB_writereg <= '0;
-      WB_regwrite <= '0;
-      WB_memtoreg <= '0;      
-   end
-   else begin
+   always_ff @(posedge clk) begin
+   begin
       WB_instr <= MEM_instr;
       WB_aluout <= MEM_aluout;
       WB_readdata <= MEM_readdata;
       WB_writereg <= MEM_writereg;
       WB_regwrite <= MEM_regwrite;
       WB_memtoreg <= MEM_memtoreg;            
-   end // else: !if(reset)
+   end 
    end
       
 endmodule
+
+
+
+//hazard unit
+module hazardunit(
+    input logic        EX_memtoreg,
+    input logic [4:0]  ID_rse, ID_rte,
+    input logic        MEM_regwrite, WB_regwrite,
+    input logic [4:0]  EX_rse, EX_rte,
+    input logic [4:0]  MEM_writereg, WB_writereg,
+    output logic [1:0] EX_forwardA, EX_forwardB,
+    output logic       IF_stall, ID_stall, EX_flush
+		  );
+   logic 	       lwstall;
+
+   always_comb begin
+      
+      if ((EX_rse!=5'b00000)&&(EX_rse==MEM_writereg)&&MEM_regwrite) EX_forwardA = 2'b10;
+      else if ((EX_rse!=5'b00000)&&(EX_rse==WB_writereg)&&WB_regwrite) EX_forwardA = 2'b01;
+      else EX_forwardA = 2'b00;
+
+      if ((EX_rte!=5'b00000)&&(EX_rte==MEM_writereg)&&MEM_regwrite) EX_forwardB = 2'b10;
+      else if ((EX_rte!=5'b00000)&&(EX_rte==WB_writereg)&&WB_regwrite) EX_forwardB = 2'b01;
+      else EX_forwardB = 2'b00;     
+      
+   
+      lwstall = ((ID_rse==EX_rte)||(ID_rte==EX_rte))&&EX_memtoreg;
+      IF_stall = lwstall;
+      ID_stall = lwstall;
+      EX_flush = lwstall;
+      
+   end // always_comb
+
+
+endmodule // hazardunit
+
+  
+
+module mux_dontcare(input logic [31:0] d0, d1, input logic s, output logic [31:0] y);
+
+   always_ff @(*)
+     begin
+	case(s)
+	  1'b0: y <= d0;
+	  1'bx: y <= d0;
+	  1'b1: y <= d1;
+	endcase // case (s)
+     end
+endmodule // mux_dontcare
+
+
+module mux_dontcare3(input logic [31:0] d0, d1, d2, input logic [1:0] s, output logic [31:0] y);
+
+   always_ff @(*) begin
+      case(s)
+	2'bxx: y<=d0;
+	2'b00: y<=d0;
+	2'b01: y<=d1;
+	2'b10: y<=d2;
+      endcase // case (s)
+      
+   end
+   
+   
+endmodule // mux_dontcare3
+
+
+

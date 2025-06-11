@@ -2,7 +2,7 @@ Magic 271485
 Revision Verdi_T-2022.06-SP2-1
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 25 1236 517 209 65
+viewPort 0 25 1178 517 209 65
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
@@ -16,16 +16,16 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 0.000000 60.600000
-cursor 35.000000
+zoom 0.000000 85.000000
+cursor 135.000000
 marker 0.000000
 
 ; user define markers
 ; userMarker time_pos marker_name color linestyle
 ; visible top row signal index
-top 8
+top 0
 ; marker line index
-markerPos 21
+markerPos 3
 
 ; event list
 ; addEvent event_name event_expression
@@ -47,37 +47,10 @@ curSTATUS ByChange
 
 addGroup "G1"
 activeDirFile "" "/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/novas.fsdb"
-addSignal -h 15 /MIPS_Testbench/clk
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/instr[31:0]
-addSignal -h 15 /MIPS_Testbench/memwrite
-addSignal -h 15 -UNSIGNED -HEX -holdScope dataadr[31:0]
+addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/instr[31:0]
 addSignal -h 15 -UNSIGNED -HEX -holdScope writedata[31:0]
-addGroup "mem stage"
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/MEM_instr[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope MEM_writedata[31:0]
-addGroup "writebackstage"
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/WB_instr[31:0]
-addGroup "dmem"
-addSignal -h 15 /MIPS_Testbench/dut/dmem/we
-addSignal -h 15 -UNSIGNED -HEX -holdScope a[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope wd[31:0]
-addGroup "G5" -e FALSE
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/idex/ID_srcb[31:0]
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/EX_srcb_premux[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope EX_writedata[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope MEM_writedata[31:0]
-addGroup "decode"
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/idex/ID_instr[31:0]
-addSignal -h 15 /MIPS_Testbench/dut/mips/dp/EX_regwrite
-addSignal -h 15 -UNSIGNED -HEX -holdScope ID_instr[25:21]
-addSignal -h 15 -UNSIGNED -HEX -holdScope ID_instr[20:16]
-addSignal -h 15 -UNSIGNED -HEX -holdScope WB_writereg[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope WB_result[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope ID_srca[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope ID_srcb[31:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope wb_dat[31:0]
-addSignal -h 15 -UNSIGNED -HEX /MIPS_Testbench/dut/mips/dp/idex/ID_srcb[31:0]
-addGroup "G7"
+addSignal -h 15 -UNSIGNED -HEX -holdScope dataadr[31:0]
+addGroup "G2"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm

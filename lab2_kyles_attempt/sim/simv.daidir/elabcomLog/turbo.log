@@ -1,3 +1,3 @@
 Command Line: /usr/local2/synopsys/vcs_2022.06/linux64/bin/elabcom -logdir simv.daidir/elabcomLog -simvdaidir simv.daidir -lib simv.daidir/work -saveLevel -elab simv.daidir/kdb -simflow -simdir simv.daidir/kdb_libs -topfile simv.daidir/.elabcomTopFile -ssv -ssy -Lf work +disable_message+C00380+C00381 +disable_message+C00388+C00389
 uname(Linux nc-asu6-l02.apporto.com 4.18.0-372.19.1.el8_6.x86_64 #1 SMP Mon Jul 18 11:14:02 EDT 2022 x86_64)
-au time 0.059301 0.009174 0.013798 delta 90460160 90460160 total 288043008 288043008
+au time 0.052600 0.008041 0.012717 delta 90476544 90476544 total 288059392 288059392

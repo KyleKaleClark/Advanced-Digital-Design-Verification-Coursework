@@ -188,20 +188,20 @@ MAKEFLAGS=
 MFLAGS=
 MAIL=/var/spool/mail/a21164_asu
 PULSE_SCRIPT=/etc/xrdp/pulse/default.pa
-MAKE_TERMOUT=/dev/pts/4
+MAKE_TERMOUT=/dev/pts/8
 BASH_FUNC_which%%=() {  ( alias;
  eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
 }
 XRDP_SESSION=1
 XRDP_SOCKET_PATH=/run/xrdp
 GJS_DEBUG_TOPICS=JS ERROR;JS LOG
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/87e92a7e_2ed9_4645_a393_d4a6853a02a1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/d3d6968b_99f8_4873_a864_bde130fcfc90
 GNOME_TERMINAL_SERVICE=:1.74
 HISTSIZE=1000
 GROUP=a21164_asu
 HOSTTYPE=x86_64-linux
 GJS_DEBUG_OUTPUT=stderr
-MAKE_TERMERR=/dev/pts/4
+MAKE_TERMERR=/dev/pts/8
 LANG=en_US.UTF-8
 TERM=xterm-256color
 HOST=nc-asu6-l02.apporto.com
@@ -216,8 +216,8 @@ FLEXLM_BORROWFILE=/home/a21164_asu/.nc-asu6-l02.apporto.com-borrow.txt
 Runtime command line arguments:
 argv[0]=./simv
 215 profile - 100
-          CPU/Mem usage: 0.040 sys,  0.160 user,  306.32M mem
-216 Elapsed time:    0:00:01    Tue Jun 10 23:55:13 2025
+          CPU/Mem usage: 0.020 sys,  0.140 user,  306.33M mem
+216 Elapsed time:    0:00:01    Wed Jun 11 03:59:15 2025
 217 User CPU time used: 0 seconds
 218 System CPU time used: 0 seconds
 219 pliAppInit
@@ -242,55 +242,55 @@ argv[0]=./simv
 238 *Verdi* : Begin traversing the scopes, layer (0).
 239 *Verdi* : End of traversing.
 240 pliAppHDL_DumpVarComplete traverse var: profile - 
-          CPU/Mem usage: 0.040 sys,  0.160 user,  405.39M mem
-                   incr: 0.000 sys,  0.000 user,  7.88M mem
-                   accu: 0.000 sys,  0.000 user,  7.88M mem
-              accu incr: 0.000 sys,  0.000 user,  7.88M mem
+          CPU/Mem usage: 0.030 sys,  0.150 user,  405.29M mem
+                   incr: 0.000 sys,  0.000 user,  7.77M mem
+                   accu: 0.000 sys,  0.000 user,  7.77M mem
+              accu incr: 0.000 sys,  0.000 user,  7.77M mem
 
-          Count usage: 280 var,  251 idcode,  58 callback
-                 incr: 280 var,  251 idcode,  58 callback
-                 accu: 280 var,  251 idcode,  58 callback
-            accu incr: 280 var,  251 idcode,  58 callback
-241 Elapsed time:    0:00:01    Tue Jun 10 23:55:13 2025
+          Count usage: 317 var,  286 idcode,  61 callback
+                 incr: 317 var,  286 idcode,  61 callback
+                 accu: 317 var,  286 idcode,  61 callback
+            accu incr: 317 var,  286 idcode,  61 callback
+241 Elapsed time:    0:00:01    Wed Jun 11 03:59:15 2025
 242 User CPU time used: 0 seconds
 243 System CPU time used: 0 seconds
 244 pliAppHDL_DumpVarComplete: profile - 
-          CPU/Mem usage: 0.040 sys,  0.160 user,  406.23M mem
-                   incr: 0.000 sys,  0.000 user,  0.85M mem
-                   accu: 0.000 sys,  0.000 user,  8.72M mem
-              accu incr: 0.000 sys,  0.000 user,  0.85M mem
+          CPU/Mem usage: 0.030 sys,  0.150 user,  406.27M mem
+                   incr: 0.000 sys,  0.000 user,  0.98M mem
+                   accu: 0.000 sys,  0.000 user,  8.75M mem
+              accu incr: 0.000 sys,  0.000 user,  0.98M mem
 
-          Count usage: 280 var,  251 idcode,  58 callback
+          Count usage: 317 var,  286 idcode,  61 callback
                  incr: 0 var,  0 idcode,  0 callback
-                 accu: 280 var,  251 idcode,  58 callback
+                 accu: 317 var,  286 idcode,  61 callback
             accu incr: 0 var,  0 idcode,  0 callback
-245 Elapsed time:    0:00:01    Tue Jun 10 23:55:13 2025
+245 Elapsed time:    0:00:01    Wed Jun 11 03:59:15 2025
 246 User CPU time used: 0 seconds
 247 System CPU time used: 0 seconds
-248 End of simulation at 60
-249 Memory usage: 406.233 M
+248 End of simulation at 170
+249 Memory usage: 406.274 M
 250 Maximum resident set size: 119 MB
 251 Hard page faults: 0
-252 Soft page faults: 12908
-253 Elapsed time:    0:00:01    Tue Jun 10 23:55:13 2025
+252 Soft page faults: 12900
+253 Elapsed time:    0:00:01    Wed Jun 11 03:59:15 2025
 254 User CPU time used: 0 seconds
 255 System CPU time used: 0 seconds
 256 Begin FSDB profile info:
-257 FSDB Writer : bc1(57) bcn(146) mtf/stf(0/0)
-FSDB Writer elapsed time : flush(0.001829) io wait(0.000000) theadpool wait(0.000000)
+257 FSDB Writer : bc1(106) bcn(462) mtf/stf(0/0)
+FSDB Writer elapsed time : flush(0.001878) io wait(0.000000) theadpool wait(0.000000)
 FSDB Writer cpu time : MT Compression : 0
 258 End FSDB profile info
-259 FSDB closed. Name: novas.fsdb Size: 15624
+259 FSDB closed. Name: novas.fsdb Size: 17000
 260 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
-261                      - BlockUsed:1 Acquire:157 BufferUsed:2225
+261                      - BlockUsed:1 Acquire:541 BufferUsed:8026
 262                      - Flush:2 Expand:0 ProducerWait:0 ConsumerWait:0
-263                      - MainProducerTime:0.218623672 TotalConsumerTime:0.000000000
-264                      - ElapsedTime:0.027599000
-265 Producer   0 profile - BlockUsed:1 Acquire:157 BufferUsed:2225
+263                      - MainProducerTime:0.189058336 TotalConsumerTime:0.000000000
+264                      - ElapsedTime:0.027052000
+265 Producer   0 profile - BlockUsed:1 Acquire:541 BufferUsed:8026
 266 Consumer   0 profile - Affinity:-1 CPUTime:0.000000000 LifeTime:0.000000000 (-nan%)
-267                      - BlockUsed:1 Acquire:157 BufferUsed:2225
+267                      - BlockUsed:1 Acquire:541 BufferUsed:8026
 268 SimExit
-269 Elapsed time:    0:00:01    Tue Jun 10 23:55:13 2025
+269 Elapsed time:    0:00:01    Wed Jun 11 03:59:15 2025
 270 User CPU time used: 0 seconds
 271 System CPU time used: 0 seconds
 272 Sim process exit

@@ -26,15 +26,15 @@ fdb_campaign =
 fdb_tool = 
 [hb]
 postSimFile = /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/novas.fsdb
-syncTime = 35
-viewport = 36 61 1236 1133 0 0 502 1217
-activeNode = "MIPS_Testbench.dut.mips.dp"
-activeScope = "MIPS_Testbench.dut.mips.dp"
-activeFile = "../datapath.sv"
+syncTime = 135
+viewport = 466 51 1178 1133 0 0 491 1176
+activeNode = "MIPS_Testbench.dut"
+activeScope = "MIPS_Testbench.dut"
+activeFile = "../top.sv"
 interactiveMode = False
 viewType = Source
 simulatorMode = False
-sourceBeginLine = 156
+sourceBeginLine = 12
 baMode = False
 srcLineNum = True
 AutoWrap = True
@@ -51,28 +51,24 @@ DnDtraceCrossHierOnly = True
 leadingZero = False
 signalPane = False
 SourceVerticalScrollLines = 5
-Scope1 = "MIPS_Testbench.dut.mips.dp"
-Scope2 = "MIPS_Testbench.dut.mips.dp.idex"
-Scope3 = "MIPS_Testbench.dut.dmem"
-Scope4 = "MIPS_Testbench"
-Scope5 = "MIPS_Testbench.dut.mips"
-Scope6 = "MIPS_Testbench.dut"
-multipleSelection = 1 161 3 0 0
+Scope1 = "MIPS_Testbench.dut"
+Scope2 = "MIPS_Testbench"
+multipleSelection = 1 15 3 0 0
 sdfCheckUndef = FALSE
 simFlow = FALSE
 [hb.design]
 importCmd = "-dbdir" "./simv.daidir" 
 invokeDir = /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim
 [hb.sourceTab.1]
-scope = MIPS_Testbench.dut.mips.dp
-File = /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/datapath.sv
-Line = 157
+scope = MIPS_Testbench.dut
+File = /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/top.sv
+Line = 13
 [nMemoryManager]
 WaveformFile = /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/novas.fsdb
 UserActionNum = 0
 nMemWindowNum = 0
 [wave.0]
-viewPort = 0 25 1236 517 209 65
+viewPort = 0 25 1178 517 209 65
 primaryWindow = TRUE
 SessionFile = /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/verdiLog/novas_autosave.ses.wave.0
 displayGrid = FALSE

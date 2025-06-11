@@ -79,8 +79,8 @@ OVA_UUM=0
 OS_LDFLAGS=
 OSTYPE=linux
 MFLAGS=
-MAKE_TERMOUT=/dev/pts/4
-MAKE_TERMERR=/dev/pts/4
+MAKE_TERMOUT=/dev/pts/8
+MAKE_TERMERR=/dev/pts/8
 MAKELEVEL=1
 MAKEFLAGS=
 LESSOPEN=||/usr/bin/lesspipe.sh %s
@@ -90,7 +90,7 @@ HOSTTYPE=x86_64-linux
 HISTCONTROL=ignoreboth
 GROUP=a21164_asu
 GNOME_TERMINAL_SERVICE=:1.74
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/87e92a7e_2ed9_4645_a393_d4a6853a02a1
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/d3d6968b_99f8_4873_a864_bde130fcfc90
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
 GJS_DEBUG_TOPICS=JS ERROR;JS LOG
 GJS_DEBUG_OUTPUT=stderr
@@ -100,7 +100,7 @@ BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty
 0
 0
 6
-1749599680 ../datapath.sv
+1749613827 ../datapath.sv
 1749542276 ../controller.sv
 1749594127 ../top.sv
 1749595800 ../mips_tb.sv
@@ -111,5 +111,5 @@ BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty
 1674707009 /usr/local2/synopsys/vcs_2022.06/linux64/lib/liberrorinf.so
 1674706922 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libsnpsmalloc.so
 1674707006 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvfs.so
-1749599711 simv.daidir
+1749614354 simv.daidir
 -1 partitionlib

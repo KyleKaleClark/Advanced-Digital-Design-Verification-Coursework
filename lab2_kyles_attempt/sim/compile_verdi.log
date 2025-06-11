@@ -1,5 +1,5 @@
                          Chronologic VCS (TM)
-      Version T-2022.06-SP2-1_Full64 -- Tue Jun 10 23:55:09 2025
+      Version T-2022.06-SP2-1_Full64 -- Wed Jun 11 03:59:12 2025
 
                     Copyright (c) 1991 - 2023 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -23,7 +23,7 @@ Warning-[LCA_FEATURES_ENABLED] Usage warning
   information regarding list of LCA features please refer to Chapter "LCA 
   features" in the VCS Release Notes
 
-Warning : License for product VCS-BASE-COMPILE(946) will expire within 9 days, on: 18-jun-2025.
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 8 days, on: 18-jun-2025.
 
 If you would like to temporarily disable this message, set 
  the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
@@ -34,30 +34,64 @@ Parsing design file '../controller.sv'
 Parsing design file '../datapath.sv'
 
 Warning-[IPDASP] Identifier in ANSI port declaration
-../datapath.sv, 55
+../datapath.sv, 58
   Redeclaration of ANSI ports not allowed for 'ID_instr', this will be an 
   error in a future release
 
 
 Warning-[IPDASP] Identifier in ANSI port declaration
-../datapath.sv, 101
+../datapath.sv, 106
   Redeclaration of ANSI ports not allowed for 'MEM_aluout', this will be an 
   error in a future release
 
 
 Warning-[IPDASP] Identifier in ANSI port declaration
-../datapath.sv, 101
+../datapath.sv, 106
   Redeclaration of ANSI ports not allowed for 'MEM_writedata', this will be an
   error in a future release
 
 
 Warning-[IPDASP] Identifier in ANSI port declaration
-../datapath.sv, 107
+../datapath.sv, 112
   Redeclaration of ANSI ports not allowed for 'MEM_memwrite', this will be an 
   error in a future release
 
+
+Warning-[IPDW] Identifier previously declared
+../datapath.sv, 142
+  Second declaration for identifier 'ID_stall' ignored
+  Identifier 'ID_stall' previously declared as wire. [../datapath.sv, 126]
+
+
+Warning-[IPDW] Identifier previously declared
+../datapath.sv, 142
+  Second declaration for identifier 'EX_flush' ignored
+  Identifier 'EX_flush' previously declared as wire. [../datapath.sv, 128]
+
+
+Warning-[IPDW] Identifier previously declared
+../datapath.sv, 174
+  Second declaration for identifier 'EX_writedata' ignored
+  Identifier 'EX_writedata' previously declared as logic. [../datapath.sv, 92]
+
 Top Level Modules:
        MIPS_Testbench
+
+Warning-[TMPO] Too many parameter overrides
+../datapath.sv, 160
+  The extra parameter overrides will be ignored.
+  Source info: mux_dontcare #(32) pcbrmux(pcplus4, MEM_pcbranch, MEM_pcsrc, 
+  pcnextbr);
+  
+
+
+Warning-[TMPO] Too many parameter overrides
+../datapath.sv, 161
+  The extra parameter overrides will be ignored.
+  Source info: mux_dontcare #(32) pcmux(pcnextbr, {pcplus4[31:28], 
+  instr[25:0], 2'b0}, jump, pcnext);
+  
+
 No TimeScale specified
 
 Warning-[SIOB] Select index out of bounds
@@ -147,19 +181,25 @@ Starting vcs inline pass...
 
 1 module and 0 UDP read.
 	However, due to incremental compilation, no re-compilation is necessary.
-Warning : License for product VCS-BASE-COMPILE(946) will expire within 9 days, on: 18-jun-2025.
+
+Warning-[KDB-ELAB-W] Verdi KDB elaboration with warning
+  Verdi KDB elaboration finished with 0 error(s) and 2 warning(s).
+  Please look at this Verdi elaboration log file for details. 
+  /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/simv.daidir/elabcomLog/compiler.log
+
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 8 days, on: 18-jun-2025.
 
 If you would like to temporarily disable this message, set 
  the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
 before expiration that you want this message to start (the minimum is 0).
 make[1]: Entering directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
 make[1]: Leaving directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
-/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 167168 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 280894 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
 make[1]: Entering directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
 rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
 if [ -x ../simv ]; then chmod a-x ../simv; fi
-g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _166995_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _280721_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
 ../simv up to date
 make[1]: Leaving directory '/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/csrc'
-CPU time: .299 seconds to compile + .229 seconds to elab + .238 seconds to link
-Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)
+CPU time: .267 seconds to compile + .197 seconds to elab + .203 seconds to link
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 2 warning(s)

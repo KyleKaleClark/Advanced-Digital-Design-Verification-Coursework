@@ -1,0 +1,5 @@
+{"vcs1":{"timestamp_begin":1749613849.976354257, "rt":0.77, "ut":0.04, "st":0.02}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1749613849.735951077}
+{"VCS_COMP_START_TIME": 1749613849.735951077}
+{"VCS_COMP_END_TIME": 1749613850.780690828}
+{"VCS_USER_OPTIONS": "-full64 -sverilog ../mips_tb.sv ../top.sv ../controller.sv ../datapath.sv -debug_access+all"}

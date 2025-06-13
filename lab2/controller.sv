@@ -11,16 +11,19 @@
 module controller (
     input [5:0] op, funct,
     input zero,
-    output memtologic, memwrite,
+    output memtoreg, memwrite,
     output pcsrc, alusrc,
-    output logicdst, logicwrite,
-    output jump, branch,
-    output [2:0] alucontrol
+    output regdst, regwrite,
+    output jump,
+    output [2:0] alucontrol,
+    output branch,
+    input [31:26] preop,
+    output prejump
 );
     logic [1:0] aluop;
+//    logic branch;
     
-    
-    maindec md (op, memtologic, memwrite, branch, alusrc, logicdst, logicwrite, jump, aluop);
+    maindec md (op, memtoreg, memwrite, branch, alusrc, regdst, regwrite, jump, aluop, preop, prejump);
     aludec ad (funct, aluop, alucontrol);
     
     assign pcsrc = branch & zero;
@@ -32,22 +35,27 @@ endmodule
 //////////////////////////////////////////////////////////////////////
 module maindec(
     input [5:0] op,
-    output memtologic, memwrite,
+    output memtoreg, memwrite,
     output branch, alusrc,
-    output logicdst, logicwrite,
+    output regdst, regwrite,
     output jump,
-    output [1:0] aluop
+    output [1:0] aluop,
+    input [5:0] preop,
+    output prejump
 );
 
     logic [8:0] controls;
     
-    assign {logicwrite, logicdst, alusrc, branch, memwrite, memtologic, jump, aluop} = controls;
+    assign {regwrite, regdst, alusrc, branch, memwrite, memtoreg, jump, aluop} = controls;
 
+    assign prejump = (preop == 6'b000010) ? 1:0;
+   
+   
     always @ (*)
         case(op)
             6'b000000: controls <= 9'b110000010; //Rtyp
             6'b100011: controls <= 9'b101001000; //LW
-            6'b101011: controls <= 9'b001010000; //SW
+            6'b101011: controls <= 9'b001010000; //SW - alusrc, memwrite
             6'b000100: controls <= 9'b000100001; //BEQ
             6'b001000: controls <= 9'b101000000; //ADDI
             6'b000010: controls <= 9'b000000100; //J
@@ -69,10 +77,13 @@ module aludec (
             2'b00: alucontrol <= 3'b010; // add
             2'b01: alucontrol <= 3'b110; // sub
             default: case(funct) // RTYPE
-                6'b100000: alucontrol <= 3'b010; // ADD
-                6'b100010: alucontrol <= 3'b110; // SUB
                 6'b100100: alucontrol <= 3'b000; // AND
                 6'b100101: alucontrol <= 3'b001; // OR
+		6'b100000: alucontrol <= 3'b010; // ADD
+       	        6'b000000: alucontrol <= 3'b011; // PERFMON
+                6'b100001: alucontrol <= 3'b100; // MULADD
+				       //3'b101
+                6'b100010: alucontrol <= 3'b110; // SUB
                 6'b101010: alucontrol <= 3'b111; // SLT
                 default: alucontrol <= 3'bxxx; // ???
             endcase

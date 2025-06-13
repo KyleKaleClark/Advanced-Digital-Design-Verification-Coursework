@@ -15,7 +15,7 @@ module MIPS_Testbench ();
     integer j;
 
     // expected memory writes
-    parameter N = 2; 
+    parameter N = 5; 
     logic [31:0] expected_data[N:1];
     logic [31:0] expected_addr[N:1]; 
     
@@ -31,10 +31,21 @@ module MIPS_Testbench ();
     // Initialize expected data and addresses
     initial begin
         expected_data[1] = 32'h7;
-        expected_addr[1] = 32'h50;
+        expected_addr[1] = 32'h50; //std test
 
         expected_data[2] = 32'h7;
-        expected_addr[2] = 32'h54;
+        expected_addr[2] = 32'h54; //std test
+
+        expected_data[3] = 32'h32;
+        expected_addr[3] = 32'h58; //muladd
+
+        expected_data[4] = 32'h17;
+        expected_addr[4] = 32'h5c; //perfmon
+
+        expected_data[5] = 32'h19;
+        expected_addr[5] = 32'h60;  //perfmon
+
+       
     end
 
     // Clock generation
@@ -69,10 +80,14 @@ module MIPS_Testbench ();
         $display("TEST COMPLETE");
         $finish;
     end // always
-  
+
    initial begin
       $fsdbDumpvars();
+      #1_000;
+      $display("ERROR ERROR timeout....");
+      $finish;
+      
+      
    end
-  
    
 endmodule

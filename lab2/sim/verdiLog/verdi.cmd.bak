@@ -1,0 +1,247 @@
+simSetSimulator "-vcssv" -exec "./simv" -args
+debImport "-dbdir" "./simv.daidir"
+debLoadSimResult /home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/novas.fsdb
+wvCreateWindow
+verdiWindowResize -win $_Verdi_1 "820" "281" "900" "700"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+verdiWindowResize -win $_Verdi_1 "494" "184" "1800" "901"
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "MIPS_Testbench.dut" -win $_nTrace1
+srcSetScope "MIPS_Testbench.dut" -delim "." -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut" -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut.mips" -win $_nTrace1
+srcSetScope "MIPS_Testbench.dut.mips" -delim "." -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut.mips" -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut.mips.dp" -win $_nTrace1
+srcSetScope "MIPS_Testbench.dut.mips.dp" -delim "." -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut.mips.dp" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -inst "rf" -line 165 -pos 1 -win $_nTrace1
+srcAction -pos 164 3 0 -win $_nTrace1 -name "rf" -ctrlKey off
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcBackwardHistory -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut.mips.dp" -win $_nTrace1
+verdiWindowResize -win $_Verdi_1 "311" "43" "1800" "1068"
+verdiSetActWin -win $_nWave2
+wvRestoreSignal -win $_nWave2 \
+           "/home/a21164_asu/ADDV_FUDGE/lab2_singlecycle/sim/muladd.rc" \
+           -overWriteAutoAlias on -appendSignals on
+wvZoomOut -win $_nWave2
+wvZoomIn -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "alu" 6 )} 
+wvSelectSignal -win $_nWave2 {( "alu" 5 )} 
+wvSetPosition -win $_nWave2 {("alu" 5)}
+wvSetPosition -win $_nWave2 {("alu" 4)}
+wvSetPosition -win $_nWave2 {("alu" 3)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("alu" 3)}
+wvSetPosition -win $_nWave2 {("alu" 4)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "ID_instr\[25:21\]" -line 120 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "IF_instr" -line 49 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("alu" 0)}
+wvSetPosition -win $_nWave2 {("G4" 0)}
+wvSetPosition -win $_nWave2 {("alu" 7)}
+wvSetPosition -win $_nWave2 {("alu" 5)}
+wvSetPosition -win $_nWave2 {("alu" 2)}
+wvSetPosition -win $_nWave2 {("alu" 1)}
+wvSetPosition -win $_nWave2 {("alu" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/dut/mips/dp/IF_instr\[31:0\]"
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "ID_instr" -line 55 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/dut/mips/dp/ID_instr\[31:0\]"
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "MEM_instr" -line 93 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/dut/mips/dp/MEM_instr\[31:0\]"
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1" 3)}
+wvSetPosition -win $_nWave2 {("G1" 4)}
+verdiSetActWin -win $_nWave2
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 4)}
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "WB_instr" -line 104 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "WB_writereg" -line 105 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "WB_instr" -line 104 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1" 3)}
+wvSetPosition -win $_nWave2 {("G1" 4)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/dut/mips/dp/WB_instr\[31:0\]"
+wvSetPosition -win $_nWave2 {("G1" 4)}
+wvSetPosition -win $_nWave2 {("G1" 5)}
+verdiSetActWin -win $_nWave2
+srcHBSelect "MIPS_Testbench" -win $_nTrace1
+srcHBSelect "MIPS_Testbench" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcSetScope "MIPS_Testbench" -delim "." -win $_nTrace1
+srcHBSelect "MIPS_Testbench" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "writedata" -line 11 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/writedata\[31:0\]"
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+verdiSetActWin -win $_nWave2
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSelectSignal -win $_nWave2 {( "G4" 5 )} 
+wvSelectGroup -win $_nWave2 {G5}
+wvSetPosition -win $_nWave2 {("G5" 0)}
+wvSetPosition -win $_nWave2 {("G4" 5)}
+wvSetPosition -win $_nWave2 {("G4" 4)}
+wvSetPosition -win $_nWave2 {("G4" 1)}
+wvSetPosition -win $_nWave2 {("alu" 3)}
+wvSetPosition -win $_nWave2 {("alu" 2)}
+wvSetPosition -win $_nWave2 {("alu" 0)}
+wvSetPosition -win $_nWave2 {("G1" 5)}
+wvSetPosition -win $_nWave2 {("G1" 3)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G4" 5)}
+wvSetPosition -win $_nWave2 {("G4" 5)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSelectSignal -win $_nWave2 {( "G1" 2 )} 
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "dataadr" -line 11 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/dataadr\[31:0\]"
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "memwrite" -line 12 -pos 1 -win $_nTrace1
+srcSelect -win $_nTrace1 -range {12 12 4 4 3 4}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("G1" 4)}
+wvSetPosition -win $_nWave2 {("G1" 5)}
+wvSetPosition -win $_nWave2 {("G1" 4)}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/memwrite"
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1" 3)}
+srcDeselectAll -win $_nTrace1
+srcSelect -win $_nTrace1 -range {14 15 1 1 1 1} -backward
+srcDeselectAll -win $_nTrace1
+verdiWindowResize -win $_Verdi_1 "180" "43" "1931" "1068"
+verdiWindowResize -win $_Verdi_1 "180" "43" "2164" "1068"
+verdiSetActWin -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "G1" 7 )} 
+wvCollapseGroup -win $_nWave2 "G4"
+wvSelectSignal -win $_nWave2 {( "G1" 7 )} 
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("alu" 2)}
+wvSetPosition -win $_nWave2 {("alu" 3)}
+wvSetPosition -win $_nWave2 {("G5" 0)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvExpandBus -win $_nWave2
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvScrollUp -win $_nWave2 11
+wvSelectGroup -win $_nWave2 {G1}
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvCollapseBus -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 2)}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("G1" 4)}
+wvSetPosition -win $_nWave2 {("G1" 6)}
+wvSetPosition -win $_nWave2 {("G1" 8)}
+wvSetPosition -win $_nWave2 {("alu" 1)}
+wvSetPosition -win $_nWave2 {("alu" 3)}
+wvSetPosition -win $_nWave2 {("alu" 5)}
+wvSetPosition -win $_nWave2 {("alu" 6)}
+wvSetPosition -win $_nWave2 {("G4" 0)}
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvSetPosition -win $_nWave2 {("G6" 0)}
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G5" 2)}
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("G1" 6)}
+wvSetPosition -win $_nWave2 {("alu" 3)}
+wvSetPosition -win $_nWave2 {("alu" 4)}
+wvSetPosition -win $_nWave2 {("alu" 6)}
+wvSetPosition -win $_nWave2 {("G4" 0)}
+wvSetPosition -win $_nWave2 {("G5" 0)}
+wvSetPosition -win $_nWave2 {("G5" 1)}
+wvSetPosition -win $_nWave2 {("G5" 2)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G5" 3)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "clk" -line 9 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvAddSignal -win $_nWave2 "/MIPS_Testbench/clk"
+wvSetPosition -win $_nWave2 {("G1/G5" 0)}
+wvSetPosition -win $_nWave2 {("G1/G5" 1)}
+wvSelectSignal -win $_nWave2 {( "G1" 6 )} 
+verdiSetActWin -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "G1" 5 )} 
+srcHBSelect "MIPS_Testbench.dut.mips.dp.hz" -win $_nTrace1
+srcSetScope "MIPS_Testbench.dut.mips.dp.hz" -delim "." -win $_nTrace1
+srcHBSelect "MIPS_Testbench.dut.mips.dp.hz" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetCursor -win $_nWave2 64.247526 -snap {("alu" 5)}
+verdiSetActWin -win $_nWave2
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "ID_rse" -line 534 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcSelect -win $_nTrace1 -range {534 539 8 1 4 1}
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "ID_rse" -line 534 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "EX_rte" -line 534 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "ID_rte" -line 534 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "EX_rte" -line 534 -pos 2 -win $_nTrace1

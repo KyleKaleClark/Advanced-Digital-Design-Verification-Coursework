@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1749525439.796799822, "rt":0.96, "ut":0.11, "st":0.06}}
+{"vcselab":{"timestamp_begin":1749525440.806841417, "rt":0.86, "ut":0.14, "st":0.05}}
+{"link":{"timestamp_begin":1749525441.710523842, "rt":0.17, "ut":0.08, "st":0.04}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1749525439.548316726}
+{"VCS_COMP_START_TIME": 1749525439.548316726}
+{"VCS_COMP_END_TIME": 1749525442.181427764}
+{"VCS_USER_OPTIONS": "-full64 -sverilog ../mips_tb.sv ../top.sv ../controller.sv ../datapath.sv -debug_access+all"}
+{"vcs1": {"peak_mem": 370512}}
+{"stitch_vcselab": {"peak_mem": 263356}}

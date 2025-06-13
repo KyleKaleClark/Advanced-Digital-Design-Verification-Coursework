@@ -1,0 +1,59 @@
+Loading db file '/usr/local2/cadence/NCSU/SRC/FreePDK45/osu_soc/lib/files/gscl45nm.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : top
+Version: V-2023.12-SP5-1
+Date   : Thu Jun 12 06:48:47 2025
+****************************************
+
+
+Library(s) Used:
+
+    gscl45nm (File: /usr/local2/cadence/NCSU/SRC/FreePDK45/osu_soc/lib/files/gscl45nm.db)
+
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+Attributes
+----------
+i - Including register clock pin internal power
+
+
+  Cell Internal Power  =  30.1665 mW    (5%)
+  Net Switching Power  = 605.9328 mW   (95%)
+                         ---------
+Total Dynamic Power    = 636.0993 mW  (100%)
+
+Cell Leakage Power     = 150.6874 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network     30.1671          605.9335        3.4917e+04          636.1354  (  99.98%)  i
+register           0.0000            0.0000        1.1259e+05            0.1126  (   0.02%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      0.0000            0.0000        3.1767e+03        3.1767e-03  (   0.00%)
+--------------------------------------------------------------------------------------------------
+Total             30.1671 mW       605.9335 mW     1.5069e+05 nW       636.2512 mW
+1

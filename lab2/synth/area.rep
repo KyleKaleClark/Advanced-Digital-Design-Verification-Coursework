@@ -1,0 +1,33 @@
+Warning: Design 'top' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : top
+Version: V-2023.12-SP5-1
+Date   : Thu Jun 12 06:48:47 2025
+****************************************
+
+Library(s) Used:
+
+    gscl45nm (File: /usr/local2/cadence/NCSU/SRC/FreePDK45/osu_soc/lib/files/gscl45nm.db)
+
+Number of ports:                           67
+Number of nets:                         10565
+Number of cells:                        10475
+Number of combinational cells:           8423
+Number of sequential cells:              2050
+Number of macros/black boxes:               0
+Number of buf/inv:                       2066
+Number of references:                      14
+
+Combinational area:              18525.617270
+Buf/Inv area:                     2910.598550
+Noncombinational area:           16339.148438
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 34864.765707
+Total area:                 undefined
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1

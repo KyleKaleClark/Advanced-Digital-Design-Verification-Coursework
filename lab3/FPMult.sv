@@ -41,10 +41,15 @@ module FPMult(
 	FPMult_PrepModule PrepModule(a, b, Sa, Sb, Ea, Eb, Ma, Mb, InputExc) ;
 	
 	// Perform (unsigned) mantissa multiplication
-	FPMult_ExecuteModule ExecuteModule(Ma, Mb, Ea, Eb, Sa, Sb, Sp, NormM, NormE, GRS) ;
+//	FPMult_ExecuteModule ExecuteModule(Ma, Mb, Ea, Eb, Sa, Sb, Sp, NormE, NormM, GRS) ;
+	FPMult_ExecuteModule ExecuteModule(.a(Ma), .b(Mb), .Ea(Ea), .Eb(Eb), 
+					   .Sa(Sa), .Sb(Sb), .Sp(Sp), 
+					   .NormE(NormE), .NormM(NormM), .GRS(GRS)) ;
 	
 	// Normalize the result if there is overflow (MSB of mantissa set)
-	FPMult_NormalizeModule NormalizeModule(NormM, NormE, RoundE, RoundEP, RoundM, RoundMP) ;
+//	FPMult_NormalizeModule NormalizeModule(NormM, NormE, RoundE, RoundEP, RoundM, RoundMP) ;
+	FPMult_NormalizeModule NormalizeModule(.NormM(NormM), .NormE(NormE), .RoundE(RoundE), 
+					       .RoundEP(RoundEP), .RoundM(RoundM), .RoundMP(RoundMP)) ;
 	
 	// Round result and if necessary, perform a second (post-rounding) normalization step
 	FPMult_RoundModule RoundModule(RoundM, RoundMP, RoundE, RoundEP, Sp, GRS, InputExc, result, flags) ;		

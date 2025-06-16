@@ -1,0 +1,76 @@
+                         Chronologic VCS (TM)
+      Version T-2022.06-SP2-1_Full64 -- Mon Jun 16 02:07:35 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 3 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+Parsing design file '../FPMult.sv'
+Parsing design file '../FPMult_ExecuteModule.sv'
+Parsing design file '../FPMult_NormalizeModule.sv'
+Parsing design file '../FPMult_PrepModule.sv'
+Parsing design file '../FPMult_RoundModule.sv'
+Parsing design file '../FPMult_tb.sv'
+Top Level Modules:
+       FPMult_tb_fp8_no_exceptions
+TimeScale is 1 ns / 1 ps
+Starting vcs inline pass...
+
+1 module and 0 UDP read.
+recompiling module FPMult_tb_fp8_no_exceptions
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 3 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 304987 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+make[1]: Entering directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _304830_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+Chronologic VCS simulator copyright 1991-2022
+Contains Synopsys proprietary information.
+Compiler version T-2022.06-SP2-1_Full64; Runtime version T-2022.06-SP2-1_Full64;  Jun 16 02:07 2025
+Warning : License for product VCS-BASE-RUNTIME(947) will expire within 3 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+=== SystemVerilog FP8 Multiply Testbench (No Exceptions) ===
+Test 1: 1.0 * 1.0 = 1.0: a = 01000000, b = 01000000 -> result = 01011000 (expected = 01000000) ❌ FAIL
+Test 2: 1.5 * 1.5 = 2.25: a = 01001000, b = 01001000 -> result = 01111001 (expected = 01010010) ❌ FAIL
+Test 3: 1.5 * 2.0 = 3.0: a = 01001000, b = 01010000 -> result = 01011001 (expected = 01011000) ❌ FAIL
+Test 4: 0.75 * 2.0 = 1.5: a = 00111000, b = 01010000 -> result = 01011000 (expected = 01001000) ❌ FAIL
+Test 5: 3.0 * 3.0 = 9.0: a = 01011000, b = 01011000 -> result = 01111011 (expected = 01100010) ❌ FAIL
+Test 6: 0.5 * 0.5 = 0.25: a = 00110000, b = 00110000 -> result = 01010110 (expected = 00100000) ❌ FAIL
+Test 7: 1.25 * 1.25 = 1.5625: a = 01000100, b = 01000100 -> result = 01101001 (expected = 01001001) ❌ FAIL
+Test 8: 2.5 * 2.5 = 6.25: a = 01010100, b = 01010100 -> result = 01101011 (expected = 01100100) ❌ FAIL
+Test 9: -1.5 * 2.0 = -3.0: a = 11001000, b = 01010000 -> result = 11011001 (expected = 11011000) ❌ FAIL
+Test 10: -2.0 * -2.0 = 4.0: a = 11010000, b = 11010000 -> result = 01011010 (expected = 01100000) ❌ FAIL
+=== DONE ===
+$finish called from file "../FPMult_tb.sv", line 106.
+$finish at simulation time                10000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 10000 ps
+CPU Time:      0.160 seconds;       Data structure size:   0.0Mb
+Mon Jun 16 02:07:38 2025
+CPU time: .191 seconds to compile + .138 seconds to elab + .242 seconds to link + .190 seconds in simulation

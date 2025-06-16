@@ -3,8 +3,6 @@
 
 
 module FPMult(
-		clk,
-		rst,
 		a,
 		b,
 		result,
@@ -12,8 +10,6 @@ module FPMult(
     );
 	
 	// Input Ports
-	input logic clk ;							// Clock
-	input logic rst ;							// Reset signal
 	input logic [7:0] a;					// Input A, a 8-bit floating point number
 	input logic [7:0] b;					// Input B, a 8-bit floating point number
 	
@@ -29,8 +25,8 @@ module FPMult(
 	logic [2:0] Ea ;		// A's exponent
 	logic [2:0] Eb ;		// B's exponent
 	logic [2:0] Ep ;		// Product exponent
-	logic [4:0] Ma ;		// A's mantissa
-	logic [4:0] Mb ;		// B's mantissa
+	logic [3:0] Ma ;		// A's mantissa
+	logic [3:0] Mb ;		// B's mantissa
 	logic [9:0] Mp ;		// Product mantissa
 	logic [4:0] InputExc ;		// Exceptions in inputs
 	logic [3:0] NormM ;		// Normalized mantissa
@@ -42,7 +38,7 @@ module FPMult(
 	logic GRS ;								
 	
 	// Prepare the operands for alignment and check for exceptions
-	FPMult_PrepModule PrepModule(a, b, Sa, Sb, Ea, Eb, Ma, Mb, Mp, InputExc) ;
+	FPMult_PrepModule PrepModule(a, b, Sa, Sb, Ea, Eb, Ma, Mb, InputExc) ;
 	
 	// Perform (unsigned) mantissa multiplication
 	FPMult_ExecuteModule ExecuteModule(Ma, Mb, Ea, Eb, Sa, Sb, Sp, NormM, NormE, GRS) ;

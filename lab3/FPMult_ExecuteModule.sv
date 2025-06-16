@@ -37,5 +37,5 @@ module FPMult_ExecuteModule(
 	assign NormE = (Ea + Eb + Mp[9]);				// If so, increment exponent
 	
 	assign GRS = ((Mp[4]&(Mp[3]))|(|Mp[2:0])) ;
-	
+
 endmodule

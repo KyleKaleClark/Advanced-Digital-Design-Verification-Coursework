@@ -19,8 +19,8 @@ module FPMult_NormalizeModule(
 	output logic [4:0] RoundM ;
 	output logic [4:0] RoundMP ; 
 	
-	assign RoundE = NormE - 3 ;
-	assign RoundEP = NormE - 2 ;
+	assign RoundE = NormE -3;
+	assign RoundEP = NormE -2 ;
 	assign RoundM = NormM ;
 	assign RoundMP = NormM + 1 ;
 

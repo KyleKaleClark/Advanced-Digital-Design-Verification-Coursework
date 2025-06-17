@@ -1,17 +1,6 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    	16:49:15 10/16/2012 
-// Module Name:    	FPAddSub_AlignModule
-// Project Name: 	 	Floating Point Project
-// Author:			 	Fredrik Brosser
-//
-// Description:	 	The alignment module determines the larger input operand and
-//							sets the mantissas, shift and common exponent accordingly.
-//
-//////////////////////////////////////////////////////////////////////////////////
 
-module FPAddSub_AlignModule (
+module FPAddSub_Align(
 
 	// Input ports
 	input logic [6:0] A,				// Input A, a 32-bit floating point number

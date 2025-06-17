@@ -1,15 +1,5 @@
 `timescale 1ns / 1ps
 
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    11:35:05 09/05/2012 
-// Module Name:    FPAddSub_ExecutionModule 
-// Project Name: 	 Floating Point Project
-// Author:			 Fredrik Brosser
-//
-// Description:	 Module that executes the addition or subtraction on mantissas.
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_ExecutionModule(
 

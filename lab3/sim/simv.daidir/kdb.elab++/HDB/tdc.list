@@ -1,0 +1,12 @@
+../FPAddSub.sv
+../FPAddSub_AlignModule.sv
+../FPAddSub_AlignShift1.sv
+../FPAddSub_AlignShift2.sv
+../FPAddSub_ExceptionModule.sv
+../FPAddSub_ExecutionModule.sv
+../FPAddSub_NormalizeModule.sv
+../FPAddSub_NormalizeShift1.sv
+../FPAddSub_NormalizeShift2.sv
+../FPAddSub_PrealignModule.sv
+../FPAddSub_RoundModule.sv
+../FPAddSub_tb.sv

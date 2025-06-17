@@ -1,37 +1,26 @@
 `timescale 1ns / 1ps
 
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    13:00:02 16/11/2012 
-// Module Name:    FPAddSub_ExceptionModule 
-// Project Name: 	 Floating Point Project
-// Author:			 Fredrik Brosser
-//
-// Description:	 Check the final result for exception conditions and set
-//						 flags accordingly.
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_ExceptionModule(
 	 
 	// Input ports
 	input logic [7:0] Z,				// Final product
-	input logic NegE,						// Negative exponent?
-	input logic R,							// Round bit
-	input logic S,							// Sticky bit
+	input logic NegE,				// Negative exponent?
+	input logic R,					// Round bit
+	input logic S,					// Sticky bit
 	input logic [4:0] InputExc,			// Exceptions in inputs A and B
 	input logic EOF,
 	
 	// Output ports
-	output logic [7:0] P,					// Final result
-	output logic [4:0] Flags );				// Exception flags
+	output logic [7:0] P,				// Final result
+	output logic [4:0] Flags );			// Exception flags
 	
 	// Internal signals
-	logic Overflow ;					// Overflow flag
-	logic Underflow ;					// Underflow flag
+	logic Overflow ;				// Overflow flag
+	logic Underflow ;				// Underflow flag
 	logic DivideByZero ;				// Divide-by-Zero flag (always 0 in Add/Sub)
-	logic Invalid ;						// Invalid inputs or result
-	logic Inexact ;						// Result is inexact because of rounding
+	logic Invalid ;					// Invalid inputs or result
+	logic Inexact ;					// Result is inexact because of rounding
 	
 	// Exception flags
 	

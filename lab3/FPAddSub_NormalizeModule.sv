@@ -1,14 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    16:05:07 09/07/2012
-// Module Name:    FBAddSub_NormalizeModule
-// Project Name: 	 Floating Point Project
-// Author:			 Fredrik Brosser
-//
-// Description:	 Determine the normalization shift amount and perform 16-shift
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_NormalizeModule(
  
@@ -27,15 +17,15 @@ module FPAddSub_NormalizeModule(
         Mmin = Sum;
 
         // Normalize by finding first '1' from MSB and shifting left
-        if (Sum[8]) begin Shift = 0;  Mmin = Sum; end
-        else if (Sum[7]) begin Shift = 3'd1;  Mmin = Sum << 1; end
-        else if (Sum[6]) begin Shift = 3'd2;  Mmin = Sum << 2; end
-        else if (Sum[5]) begin Shift = 3'd3;  Mmin = Sum << 3; end
-        else if (Sum[4]) begin Shift = 3'd4;  Mmin = Sum << 4; end
-        else if (Sum[3]) begin Shift = 3'd5;  Mmin = Sum << 5; end
-        else if (Sum[2]) begin Shift = 3'd6;  Mmin = Sum << 6; end
-        else if (Sum[1]) begin Shift = 3'd7;  Mmin = Sum << 7; end
-        else begin Shift = 3'd8;  Mmin = Sum << 8; end
-    end	
+        if (Sum[8])  Shift = 0;
+	else if (Sum[7]) Shift = 3'd1;       
+      	else if (Sum[6]) Shift = 3'd2;        
+       	else if (Sum[5]) Shift = 3'd3;       
+      	else if (Sum[4]) Shift = 3'd4;       
+      	else if (Sum[3]) Shift = 3'd5;       
+      	else if (Sum[2]) Shift = 3'd6;         
+	else if (Sum[1]) Shift = 3'd7;         
+	else Shift = 3'd8;   
+end	
 
 endmodule

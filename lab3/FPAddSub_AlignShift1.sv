@@ -1,27 +1,13 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    16:49:36 10/16/2012 
-// Module Name:    FPAddSub_AlignShift1
-// Project Name: 	 Floating Point Project
-// Author:			 Fredrik Brosser
-//
-// Description:	 Alignment shift stage 1, performs 16|12|8|4 shift
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_AlignShift1(
-		MminP,
-		Shift,
-		Mmin
-	);
 	
 	// Input portsi
-	input logic [2:0] MminP ;						// Smaller mantissa after 16|12|8|4 shift
-	input logic [2:0] Shift ;						// Shift amount
+	input logic [3:0] MminP,						
+	input logic [2:0] Shift,						// Shift amount
 	
 	// Output ports
-	output logic [3:0] Mmin ;						// The smaller mantissa
+	output logic [4:0] Mmin );						// The smaller mantissa
 	
 	assign Mmin = ({1'b1, MminP, 3'b000} >> Shift);
 endmodule

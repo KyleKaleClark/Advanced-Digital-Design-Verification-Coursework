@@ -1,0 +1,108 @@
+                         Chronologic VCS (TM)
+      Version T-2022.06-SP2-1_Full64 -- Tue Jun 17 23:19:19 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS Release Notes
+
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 2 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+Parsing design file '../FPAddSub.sv'
+Parsing design file '../FPAddSub_AlignModule.sv'
+Parsing design file '../FPAddSub_AlignShift1.sv'
+Parsing design file '../FPAddSub_AlignShift2.sv'
+Parsing design file '../FPAddSub_ExceptionModule.sv'
+Parsing design file '../FPAddSub_ExecutionModule.sv'
+Parsing design file '../FPAddSub_NormalizeModule.sv'
+
+Warning-[DCTTSW] Decimal constant truncated
+  Constant '8' is truncated to 3 bits: 0.
+  "../FPAddSub_NormalizeModule.sv", 28
+  Source info: 	else Shift = 3'd8;   
+
+Parsing design file '../FPAddSub_NormalizeShift1.sv'
+Parsing design file '../FPAddSub_NormalizeShift2.sv'
+Parsing design file '../FPAddSub_PrealignModule.sv'
+Parsing design file '../FPAddSub_RoundModule.sv'
+Parsing design file '../FPAddSub_tb.sv'
+Top Level Modules:
+       FPAddSub_AlignShift2
+       FPAddSub_NormalizeShift1
+       FPMult_tb_fp8_no_exceptions
+TimeScale is 1 ns / 1 ps
+Starting vcs inline pass...
+
+3 modules and 0 UDP read.
+recompiling module FPAddSub_AlignShift2
+recompiling module FPAddSub_NormalizeShift1
+recompiling module FPMult_tb_fp8_no_exceptions
+All of 3 modules done
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 2 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+make[1]: Entering directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+make[1]: Leaving directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 224785 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+make[1]: Entering directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _224612_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS Release Notes
+
+Chronologic VCS simulator copyright 1991-2022
+Contains Synopsys proprietary information.
+Compiler version T-2022.06-SP2-1_Full64; Runtime version T-2022.06-SP2-1_Full64;  Jun 17 23:19 2025
+Warning : License for product VCS-BASE-RUNTIME(947) will expire within 2 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+=== SystemVerilog FP8 Multiply Testbench (No Exceptions) ===
+*Verdi* Loading libsscore_vcs202206.so
+FSDB Dumper for VCS, Release Verdi_T-2022.06-SP2-1, Linux x86_64/64bit, 01/12/2023
+(C) 1996 - 2023 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'novas.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+Test 1: 1.0 + 1.0 = 2.0: a = 00110000, b = 00110000 -> result = 01001000 (expected = 01000000) ❌ FAIL
+Test 2: 1.0 - 1.0 = 0.0: a = 00111000, b = 00111000 -> result = 01001100 (expected = 00000000) ❌ FAIL
+Test 3: 1.5 + 2.0 = 3.5: a = 00111000, b = 01000000 -> result = 01011000 (expected = 01001100) ❌ FAIL
+=== DONE ===
+$finish called from file "../FPAddSub_tb.sv", line 90.
+$finish at simulation time                 3000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 3000 ps
+CPU Time:      0.190 seconds;       Data structure size:   0.0Mb
+Tue Jun 17 23:19:22 2025
+CPU time: .277 seconds to compile + .206 seconds to elab + .213 seconds to link + .221 seconds in simulation
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)

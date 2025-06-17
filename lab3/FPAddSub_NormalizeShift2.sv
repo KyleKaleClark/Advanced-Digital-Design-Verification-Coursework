@@ -1,15 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    17:34:18 10/16/2012 
-// Module Name:    FPAddSub_NormalizeShift2 
-// Project Name: 	 Floating Point Project
-// Author:			 Fredrik Brosser
-//
-// Description:	 Normalization shift stage 2, calculates post-normalization
-//						 mantissa and exponent, as well as the bits used in rounding		
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_NormalizeShift2(
 
@@ -28,22 +17,27 @@ module FPAddSub_NormalizeShift2(
 	output logic FG );
 
 	// Internal signals
-	logic MSBShift ;						// Flag indicating that a second shift is needed
+	//logic MSBShift ;						// Flag indicating that a second shift is needed
 	logic [3:0] ExpOF ;					// MSB set in sum indicates overflow
 	logic [3:0] ExpOK ;					// MSB not set, no adjustment
-	
+	logic [8:0] ShiftedSum;
+
 	// Calculate normalized exponent and mantissa, check for all-zero sum
-	assign MSBShift = PSSum[8] ;		// Check MSB in unnormalized sum
+	//
+	assign ShiftedSum = PSSum << Shift;
+
+	//assign MSBShift = PSSum[8] ;		// Check MSB in unnormalized sum
 	assign ZeroSum = ~|PSSum ;			// Check for all zero sum
+
 	assign ExpOK = CExp - Shift ;		// Adjust exponent for new normalized mantissa
 	assign NegE = NormE[3] ;			// Check for exponent overflow
-	assign ExpOF = CExp - Shift + 1'b1 ;		// If MSB set, add one to exponent(x2)
-	assign NormE = MSBShift ? ExpOF : ExpOK ;			// Check for exponent overflow
-	assign NormM = PSSum[8:5] ;		// The new, normalized mantissa
+	assign ExpOF = ExpOK + 1'b1 ;		// If MSB set, add one to exponent(x2)
+	assign NormE = ShiftedSum[8] ? ExpOF : ExpOK ;			// Check for exponent overflow
+	assign NormM = ShiftedSum[8:5] ;		// The new, normalized mantissa
 	
 	// Also need to compute sticky and round bits for the rounding stage
-	assign FG = PSSum[4] ; 
-	assign R = PSSum[3] ;
-	assign S = |PSSum[2:0] ;
+	assign FG = ShiftedSum[4] ; 
+	assign R = ShiftedSum[3] ;
+	assign S = |ShiftedSum[2:0] ;
 	
 endmodule

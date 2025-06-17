@@ -1,5 +1,5 @@
 0
-36
+45
 +itf+/usr/local2/synopsys/vcs_2022.06/linux64/lib/vcsdp_lite.tab
 +vcsd1
 +vpi
@@ -21,29 +21,38 @@
 -Mxcflags= -pipe -fPIC -I/usr/local2/synopsys/vcs_2022.06/include
 -Mxllcflags=
 -P
+-Xufe=2steps
 -Xvcs_run_simv=1
 -debug_access+all
 -fsdb
 -full64
 -gen_obj
+-kdb
+-lca
 -picarchive
 -sverilog
 /usr/local2/synopsys/vcs_2022.06/linux64/bin/vcs1
 /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/verdi.tab
-../FPMult.sv
-../FPMult_ExecuteModule.sv
-../FPMult_NormalizeModule.sv
-../FPMult_PrepModule.sv
-../FPMult_RoundModule.sv
-../FPMult_tb.sv
-58
+../FPAddSub.sv
+../FPAddSub_AlignModule.sv
+../FPAddSub_AlignShift1.sv
+../FPAddSub_AlignShift2.sv
+../FPAddSub_ExceptionModule.sv
+../FPAddSub_ExecutionModule.sv
+../FPAddSub_NormalizeModule.sv
+../FPAddSub_NormalizeShift1.sv
+../FPAddSub_NormalizeShift2.sv
+../FPAddSub_PrealignModule.sv
+../FPAddSub_RoundModule.sv
+../FPAddSub_tb.sv
+60
 which_declare=declare -f
 XRDP_SOCKET_PATH=/run/xrdp
 XRDP_SESSION=1
-XRDP_PULSE_SOURCE_SOCKET=xrdp_chansrv_audio_in_socket_11
-XRDP_PULSE_SINK_SOCKET=xrdp_chansrv_audio_out_socket_11
+XRDP_PULSE_SOURCE_SOCKET=xrdp_chansrv_audio_in_socket_12
+XRDP_PULSE_SINK_SOCKET=xrdp_chansrv_audio_out_socket_12
 XMODIFIERS=@im=ibus
-XDG_SESSION_ID=c1839
+XDG_SESSION_ID=c1089
 XDG_RUNTIME_DIR=/run/user/1715951
 XDG_MENU_PREFIX=gnome-
 XDG_DATA_DIRS=/home/a24541_asu/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
@@ -55,6 +64,7 @@ VENDOR=unknown
 VCS_PATHMAP_PRELOAD_DONE=1
 VCS_MX_HOME_INTERNAL=1
 VCS_MODE_FLAG=64
+VCS_LCAMSG_PRINT_OFF=1
 VCS_HOME=/usr/local2/synopsys/vcs_2022.06
 VCS_EXEC_DONE=1
 VCS_DEPTH=0
@@ -64,10 +74,11 @@ UNAME=/bin/uname
 TOOL_HOME=/usr/local2/synopsys/vcs_2022.06/linux64
 SSH_AUTH_SOCK=/run/user/1715951/keyring/ssh
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
-SSH_AGENT_PID=259137
+SSH_AGENT_PID=158607
+SNPS_VERDI_INTERNAL_LP_XML_NEW_FLOW=1
 SNPS_VCS_CLANG_PATH=/usr/local2/synopsys/vcs_2022.06/linux64/clang
 SNPS_INTERNAL_VCS_LINUX_OS=linux
-SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/258961,unix/unix:/tmp/.ICE-unix/258961
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/158434,unix/unix:/tmp/.ICE-unix/158434
 SCRNAME=vcs
 SCRIPT_NAME=vcs
 QT_IM_MODULE=ibus
@@ -87,8 +98,8 @@ KRB5CCNAME=FILE:/tmp/krb5cc_1715951
 HOSTTYPE=x86_64-linux
 HISTCONTROL=ignoreboth
 GROUP=a24541_asu
-GNOME_TERMINAL_SERVICE=:1.79
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/32ba88ac_791c_4ee2_b896_448020d0964f
+GNOME_TERMINAL_SERVICE=:1.81
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/fdcd8741_6ae6_40f5_84dd_3d43c549d077
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
 GJS_DEBUG_TOPICS=JS ERROR;JS LOG
 GJS_DEBUG_OUTPUT=stderr
@@ -97,13 +108,19 @@ COLORTERM=truecolor
 BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@_}
 0
 0
-8
-1750039429 ../FPMult_tb.sv
-1749963788 ../FPMult_RoundModule.sv
-1750037283 ../FPMult_PrepModule.sv
-1750038196 ../FPMult_NormalizeModule.sv
-1750039648 ../FPMult_ExecuteModule.sv
-1750037799 ../FPMult.sv
+14
+1750196892 ../FPAddSub_tb.sv
+1750198890 ../FPAddSub_RoundModule.sv
+1750178688 ../FPAddSub_PrealignModule.sv
+1750202353 ../FPAddSub_NormalizeShift2.sv
+1750198776 ../FPAddSub_NormalizeShift1.sv
+1750200574 ../FPAddSub_NormalizeModule.sv
+1750178604 ../FPAddSub_ExecutionModule.sv
+1750175588 ../FPAddSub_ExceptionModule.sv
+1750175012 ../FPAddSub_AlignShift2.sv
+1750174980 ../FPAddSub_AlignShift1.sv
+1750198273 ../FPAddSub_AlignModule.sv
+1750202323 ../FPAddSub.sv
 1673520352 /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/verdi.tab
 1674705950 /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcsdp_lite.tab
 4
@@ -111,5 +128,5 @@ BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty
 1674707009 /usr/local2/synopsys/vcs_2022.06/linux64/lib/liberrorinf.so
 1674706922 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libsnpsmalloc.so
 1674707006 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvfs.so
-1750039658 simv.daidir
+1750202362 simv.daidir
 -1 partitionlib

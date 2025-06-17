@@ -1,16 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    11:33:28 09/11/2012 
-// Module Name:    FPAddSub_RoundModule 
-// Project Name: 	 Floating Point Project
-// Author:			 Fredrik Brosser
-//
-// Description:	 Performs 'Round to nearest, tie to even'-rounding on the
-//						 normalized mantissa according to the G, R, S bits. Calculates
-//						 final result and checks for exponent overflow.
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_RoundModule(
 
@@ -38,7 +26,8 @@ module FPAddSub_RoundModule(
 	logic RoundUp ;						// Flag indicating that the sum should be rounded up
 	logic ExpAdd ;						// May have to add 1 to compensate for overflow 
 	logic RoundOF ;						// Rounding overflow
-	logic Fsgn
+	logic Fsgn;
+
 	// The cases where we need to round upwards (= adding one) in Round to nearest, tie to even
 	assign RoundUp = (G & ((R | S) | NormM[0])) ;
 	

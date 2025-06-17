@@ -1,43 +1,20 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-//
-// Create Date:    	16:49:15 10/16/2012 
-// Module Name:    	FPAddSub_PrealignModule
-// Project Name: 	 	Floating Point Project
-// Author:			 	Fredrik Brosser
-//
-// Description:	 	The pre-alignment module is responsible for taking the inputs
-//							apart and checking the parts for exceptions.
-//							The exponent difference is also calculated in this module.
-//
-//////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_PrealignModule(
-		A,
-		B,
-		operation,
-		Sa,
-		Sb,
-		ShiftDet,
-		InputExc,
-		Aout,
-		Bout,
-		Opout
-	);
 	
 	// Input ports
-	input logic [7:0] A ;										// Input A, a 32-bit floating point number
-	input logic [7:0] B ;										// Input B, a 32-bit floating point number
-	input logic operation ;
+	input logic [7:0] A,										// Input A, a 32-bit floating point number
+	input logic [7:0] B,										// Input B, a 32-bit floating point number
+	input logic operation,
 	
 	// Output ports
-	output logic Sa ;												// A's sign
-	output logic Sb ;												// B's sign
-	output logic [5:0] ShiftDet ;
-	output logic [4:0] InputExc ;								// Input numbers are exceptions
-	output logic [6:0] Aout ;
-	output logic [6:0] Bout ;
-	output logic Opout ;
+	output logic Sa,												// A's sign
+	output logic Sb,												// B's sign
+	output logic [5:0] ShiftDet,
+	output logic [4:0] InputExc,								// Input numbers are exceptions
+	output logic [6:0] Aout,
+	output logic [6:0] Bout,
+	output logic Opout );
 	
 	// Internal signals									// If signal is high...
 	logic ANaN ;												// A is a NaN (Not-a-Number)

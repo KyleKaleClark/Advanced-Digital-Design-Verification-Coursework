@@ -29,125 +29,117 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub(
-		a,
-		b,
-		operation,
-		result,
-		flags
-	);
-	
-	// Clock and reset
 	
 	// Input ports
-	input logic [7:0] a ;								// Input A, a 32-bit floating point number
-	input logic [7:0] b ;								// Input B, a 32-bit floating point number
-	input logic operation ;								// Operation select signal
+	input logic [7:0] a, 					// Input A, a 8-bit floating point number
+	input logic [7:0] b,					// Input B, a 8-bit floating point number
+	input logic operation,					// Operation select signal
 	
 	// Output ports
-	output logic [7:0] result ;						// Result of the operation
-	output logic [4:0] flags ;							// Flags indicating exceptions according to IEEE754
+	output logic [7:0] result,				// Result of the operation
+	output logic [4:0] flags );				// Flags indicating exceptions according to IEEE754
 	
 	
-	// Internal wires between modules
-	logic [6:0] Aout_0 ;							// A - sign
-	logic [6:0] Bout_0 ;							// B - sign
-	logic Opout_0 ;									// A's sign
-	logic Sa_0 ;										// A's sign
-	logic Sb_0 ;										// B's sign
-	logic MaxAB_1 ;									// Indicates the larger of A and B(0/A, 1/B)
-	logic [2:0] CExp_1 ;							// Common Exponent
-	wire [4:0] Shift_1 ;							// Number of steps to smaller mantissa shift right (align)
-	wire [22:0] Mmax_1 ;							// Larger mantissa
-	wire [4:0] InputExc_0 ;						// Input numbers are exceptions
-	wire [9:0] ShiftDet_0 ;
-	wire [22:0] MminS_1 ;						// Smaller mantissa after 0/16 shift
-	wire [23:0] MminS_2 ;						// Smaller mantissa after 0/4/8/12 shift
-	wire [23:0] Mmin_3 ;							// Smaller mantissa after 0/1/2/3 shift
-	wire [32:0] Sum_4 ;
-	wire PSgn_4 ;
-	wire Opr_4 ;
-	wire [4:0] Shift_5 ;							// Number of steps to shift sum left (normalize)
-	wire [32:0] SumS_5 ;							// Sum after 0/16 shift
-	wire [32:0] SumS_6 ;							// Sum after 0/16 shift
-	wire [32:0] SumS_7 ;							// Sum after 0/16 shift
-	wire [22:0] NormM_8 ;						// Normalized mantissa
-	wire [8:0] NormE_8;							// Adjusted exponent
-	wire ZeroSum_8 ;								// Zero flag
-	wire NegE_8 ;									// Flag indicating negative exponent
-	wire R_8 ;										// Round bit
-	wire S_8 ;										// Final sticky bit
-	wire FG_8 ;										// Final sticky bit
-	wire [31:0] P_int ;
-	wire EOF ;
+	// Internal logics between modules
+	logic [6:0] Aout ;					// A - sign
+	logic [6:0] Bout ;					// B - sign
+	logic Opout ;						// Operation 
+	logic Sa ;						// A's sign
+	logic Sb ;						// B's sign
+	logic MaxAB ;						// Indicates the larger of A and B(0/A, 1/B)
+	logic [2:0] CExp ;					// Common Exponent
+	logic [2:0] Shift_1 ;					// Number of steps to smaller mantissa shift right (align)
+	logic [3:0] Mmax ;					// Larger mantissa
+	logic [4:0] InputExc ;					// Input numbers are exceptions
+	logic [5:0] ShiftDet ;
+	logic [3:0] Mmin;					// Smaller mantissa
+	logic [4:0] Mmin2 ;					
+	logic [4:0] Mmin3 ;					
+	logic [8:0] Mmin4 ;					
+	logic [8:0] Mmin5;
+	logic [8:0] Sum ;
+	logic PSgn ;
+	logic Opr ;
+	logic [2:0] Shift_2 ;					// Number of steps to shift sum left (normalize)
+	logic [3:0] NormM ;					// Normalized mantissa
+	logic [3:0] NormE;					// Adjusted exponent
+	logic ZeroSum ;						// Zero flag
+	logic NegE ;						// Flag indicating negative exponent
+	logic R ;						// Round bit
+	logic S ;						// Final sticky bit
+	logic FG ;						// Final sticky bit
+	logic [7:0] Z ;
+	logic EOF ;
 	
 	// Prepare the operands for alignment and check for exceptions
 	FPAddSub_PrealignModule PrealignModule
 	(	// Inputs
 		a, b, operation,
 		// Outputs
-		Sa_0, Sb_0, ShiftDet_0[9:0], InputExc_0[4:0], Aout_0[30:0], Bout_0[30:0], Opout_0) ;
+		Sa, Sb, ShiftDet, InputExc, Aout, Bout, Opout) ;
 		
 	// Prepare the operands for alignment and check for exceptions
-	FPAddSub_AlignModule AlignModule
+	FPAddSub_Align AlignModule
 	(	// Inputs
-		pipe_1[78:48], pipe_1[47:17], pipe_1[14:5],
+		Aout, Bout, ShiftDet,
 		// Outputs
-		CExp_1[7:0], MaxAB_1, Shift_1[4:0], MminS_1[22:0], Mmax_1[22:0]) ;	
+		CExp, MaxAB, Shift_1, Mmin, Mmax) ;	
 
 	// Alignment Shift Stage 1
 	FPAddSub_AlignShift1 AlignShift1
 	(  // Inputs
-		pipe_2[22:0], pipe_2[55:53],
+		Mmin, Shift_1,
 		// Outputs
-		MminS_2[23:0]) ;
+		Mmin2) ;
 
-	// Alignment Shift Stage 3 and compution of guard and sticky bits
+	/* Alignment Shift Stage 3 and compution of guard and sticky bits
 	FPAddSub_AlignShift2 AlignShift2  
 	(  // Inputs
-		pipe_3[23:0], pipe_3[53:52],
+		Mmin2, Shift_1[1:0],
 		// Outputs
-		Mmin_3[23:0]) ;
-						
+		Mmin3 );
+		*/				
 	// Perform mantissa addition
 	FPAddSub_ExecutionModule ExecutionModule
 	(  // Inputs
-		pipe_4[51:29], pipe_4[23:0], pipe_4[67], pipe_4[66], pipe_4[65], pipe_4[68],
+		Mmax, Mmin2, Sa, Sb, MaxAB, Opout,
 		// Outputs
-		Sum_4[32:0], PSgn_4, Opr_4) ;
+		Sum, PSgn, Opr) ;
 	
 	// Prepare normalization of result
 	FPAddSub_NormalizeModule NormalizeModule
 	(  // Inputs
-		pipe_5[32:0], 
+		Sum, 
 		// Outputs
-		SumS_5[32:0], Shift_5[4:0]) ;
+		Mmin4, Shift_2) ;
+
 					
-	// Normalization Shift Stage 1
+	/* Normalization Shift Stage 1
 	FPAddSub_NormalizeShift1 NormalizeShift1
 	(  // Inputs
-		pipe_6[32:0], pipe_6[54:51],
+		Mmin4, Shift_2,
 		// Outputs
-		SumS_7[32:0]) ;
+		Mmin5 );*/
 		
 	// Normalization Shift Stage 3 and final guard, sticky and round bits
 	FPAddSub_NormalizeShift2 NormalizeShift2
 	(  // Inputs
-		pipe_7[32:0], pipe_7[45:38], pipe_7[55:51],
+		Sum, CExp, Shift_2,
 		// Outputs
-		NormM_8[22:0], NormE_8[8:0], ZeroSum_8, NegE_8, R_8, S_8, FG_8) ;
+		NormM, NormE, ZeroSum, NegE, R, S, FG) ;
 
 	// Round and put result together
 	FPAddSub_RoundModule RoundModule
 	(  // Inputs
-		 pipe_8[3], pipe_8[12:4], pipe_8[35:13], pipe_8[1], pipe_8[0], pipe_8[54], pipe_8[51], pipe_8[50], pipe_8[53], pipe_8[49], 
+		 ZeroSum, NormE, NormM, R, S, FG, Sa, Sb, Opr, MaxAB, 
 		// Outputs
-		P_int[31:0], EOF) ;
+		Z, EOF) ;
 	
 	// Check for exceptions
 	FPAddSub_ExceptionModule Exceptionmodule
 	(  // Inputs
-		pipe_9[40:9], pipe_9[8], pipe_9[7], pipe_9[6], pipe_9[5:1], pipe_9[0], 
+		Z, NegE, R, S, InputExc, EOF, 
 		// Outputs
-		result[31:0], flags[4:0]) ;			
+		result, flags) ;			
 	
-
+		endmodule

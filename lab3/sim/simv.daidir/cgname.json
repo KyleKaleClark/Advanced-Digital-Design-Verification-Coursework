@@ -5,6 +5,18 @@
         "module",
         1
     ],
+    "FPAddSub_AlignShift2": [
+        "FPAddSub_AlignShift2",
+        "EYGt4",
+        "module",
+        2
+    ],
+    "FPAddSub_NormalizeShift1": [
+        "FPAddSub_NormalizeShift1",
+        "GmpgY",
+        "module",
+        5
+    ],
     "FPMult_tb_fp8_no_exceptions": [
         "FPMult_tb_fp8_no_exceptions",
         "hSIS8",

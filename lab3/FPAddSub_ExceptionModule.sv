@@ -13,34 +13,25 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module FPAddSub_ExceptionModule(
-		Z,
-		NegE,
-		R,
-		S,
-		InputExc,
-		EOF,
-		P,
-		Flags
-    );
 	 
 	// Input ports
-	input [31:0] Z	;					// Final product
-	input NegE ;						// Negative exponent?
-	input R ;							// Round bit
-	input S ;							// Sticky bit
-	input [4:0] InputExc ;			// Exceptions in inputs A and B
-	input EOF ;
+	input logic [7:0] Z,				// Final product
+	input logic NegE,						// Negative exponent?
+	input logic R,							// Round bit
+	input logic S,							// Sticky bit
+	input logic [4:0] InputExc,			// Exceptions in inputs A and B
+	input logic EOF,
 	
 	// Output ports
-	output [31:0] P ;					// Final result
-	output [4:0] Flags ;				// Exception flags
+	output logic [7:0] P,					// Final result
+	output logic [4:0] Flags );				// Exception flags
 	
 	// Internal signals
-	wire Overflow ;					// Overflow flag
-	wire Underflow ;					// Underflow flag
-	wire DivideByZero ;				// Divide-by-Zero flag (always 0 in Add/Sub)
-	wire Invalid ;						// Invalid inputs or result
-	wire Inexact ;						// Result is inexact because of rounding
+	logic Overflow ;					// Overflow flag
+	logic Underflow ;					// Underflow flag
+	logic DivideByZero ;				// Divide-by-Zero flag (always 0 in Add/Sub)
+	logic Invalid ;						// Invalid inputs or result
+	logic Inexact ;						// Result is inexact because of rounding
 	
 	// Exception flags
 	
@@ -51,7 +42,7 @@ module FPAddSub_ExceptionModule(
 	assign Underflow = NegE & (R | S);
 	
 	// Infinite result computed exactly from finite operands
-	assign DivideByZero = &(Z[30:23]) & ~|(Z[30:23]) & ~InputExc[1] & ~InputExc[0];
+	assign DivideByZero = &(Z[6:4]) & ~|(Z[6:4]) & ~InputExc[1] & ~InputExc[0];
 	
 	// Invalid inputs or operation
 	assign Invalid = |(InputExc[4:2]) ;

@@ -6,14 +6,13 @@ comp_and_sim_top:
 	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../FPMult.sv ../FPMult_ExecuteModule.sv ../FPMult_NormalizeModule.sv ../FPMult_PrepModule.sv ../FPMult_RoundModule.sv ../FPMult_tb.sv -debug_access+all |& tee compile_and_sim.log
 
 # This compiles with VCS
-compile_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog  ../mips_tb.sv ../top.sv ../controller.sv ../datapath.sv -debug_access+all |& tee compile_top.log
-
+compile_apb:
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../matmul_with_ram.sv ../matmul.sv  -debug_access+all |& tee compile_top.log
 
 
 # This compiles with VCS and also generates the database for Verdi
 compile_verdi_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog  ../mips_tb.sv ../top.sv ../controller.sv ../datapath.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../FPMult.sv ../FPMult_ExecuteModule.sv ../FPMult_NormalizeModule.sv ../FPMult_PrepModule.sv ../FPMult_RoundModule.sv ../FPMult_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:

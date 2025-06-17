@@ -11,10 +11,30 @@
 `define BB_MAT_MUL_SIZE `MAT_MUL_SIZE
 `define NUM_CYCLES_IN_MAC 3
 `define MEM_ACCESS_LATENCY 1
-`define REG_DATAWIDTH 32
-`define REG_ADDRWIDTH 8
+`define REG_DATAWIDTH 16
+`define REG_ADDRWIDTH 4
 `define ADDR_STRIDE_WIDTH 8
 `define MAX_BITS_POOL 3
+
+
+
+
+//APB defines
+`define IDLE 2'b00
+`define SETUP 2'b01
+`define READ_ACCESS 2'b10
+`define WRITE_ACCESS 2'b11
+`define REG_START_ADDR 4'h0
+`define REG_DONE_ADDR 4'h1
+
+//matrix signals specifically
+`define REG_ADDR_A_ADDR 4'h2
+`define REG_ADDR_B_ADDR 4'h3
+`define REG_ADDR_C_ADDR 4'h4
+`define REG_STRIDE_A_ADDR 4'h5
+`define REG_STRIDE_B_ADDR 4'h6
+`define REG_STRIDE_C_ADDR 4'h7
+
 
 //Design with memories
 module matrix_multiplication(
@@ -22,12 +42,12 @@ module matrix_multiplication(
   clk_mem, 
   resetn, 
   pe_resetn,
-  address_mat_a,
-  address_mat_b,
-  address_mat_c,
-  address_stride_a,
-  address_stride_b,
-  address_stride_c, 
+//  address_mat_a,
+//  address_mat_b,
+//  address_mat_c,
+//  address_stride_a,
+//  address_stride_b,
+//  address_stride_c, 
   bram_addr_a_ext,
   bram_rdata_a_ext,
   bram_wdata_a_ext,
@@ -40,20 +60,29 @@ module matrix_multiplication(
   bram_rdata_c_ext,
   bram_wdata_c_ext,
   bram_we_c_ext,
-  start,  //starts the matrix multiplication operation
-  done   //asserts when the matrix multiplication operation is complete
+//  start,  //starts the matrix multiplication operation
+//  done,   //asserts when the matrix multiplication operation is complete
+//  PCLK,  //accounted for from clk
+//  PRESETn, //accounted for from reset
+  PSEL,
+  PENABLE,
+  PWRITE,
+  PADDR,
+  PWDATA,
+  PRDATA,
+  PREADY			     
 );
 
   input clk;
   input clk_mem;
   input resetn;
   input pe_resetn;
-  input [`AWIDTH-1:0] address_mat_a;
-  input [`AWIDTH-1:0] address_mat_b;
-  input [`AWIDTH-1:0] address_mat_c;
-  input [`ADDR_STRIDE_WIDTH-1:0] address_stride_a;
-  input [`ADDR_STRIDE_WIDTH-1:0] address_stride_b;
-  input [`ADDR_STRIDE_WIDTH-1:0] address_stride_c;  
+//  input [`AWIDTH-1:0] address_mat_a;
+//  input [`AWIDTH-1:0] address_mat_b;
+//  input [`AWIDTH-1:0] address_mat_c;
+//  input [`ADDR_STRIDE_WIDTH-1:0] address_stride_a;
+//  input [`ADDR_STRIDE_WIDTH-1:0] address_stride_b;
+//  input [`ADDR_STRIDE_WIDTH-1:0] address_stride_c;  
   input  [`AWIDTH-1:0] bram_addr_a_ext;
   output [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_rdata_a_ext;
   input  [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_wdata_a_ext;
@@ -66,9 +95,18 @@ module matrix_multiplication(
   output [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_rdata_c_ext;
   input  [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_wdata_c_ext;
   input  [`MASK_WIDTH-1:0] bram_we_c_ext;
-  input start;
-  output done;
+//  input start;
+//  output done;
+   input 		   PSEL;
+   input 		   PENABLE;
+   input 		   PWRITE;
+   input [3:0] 		   PADDR;
+   input [15:0] 	   PWDATA;
+   output logic [15:0] 	   PRDATA;
+   output logic		   PREADY;
+   
 
+   
 	logic [`AWIDTH-1:0] bram_addr_a;
 	logic [4*`DWIDTH-1:0] bram_rdata_a;
 	logic [4*`DWIDTH-1:0] bram_wdata_a;
@@ -87,7 +125,8 @@ module matrix_multiplication(
 	logic [`MASK_WIDTH-1:0] bram_we_c;
 	logic bram_en_c;
 
-  reg [3:0] state;
+//  reg [3:0] state;
+  reg [1:0] state; //3 slave states
 
 ////////////////////////////////////////////////////////////////
 // BRAM matrix A 
@@ -131,17 +170,17 @@ ram matrix_C (
   .q1(bram_rdata_c_ext), 
   .clk(clk_mem));
 
-reg start_mat_mul;
+logic start;
 logic done_mat_mul;
-	
-	always @( posedge clk) begin
+/*// Provided State Machine	
+   always_ff @(posedge clk) begin
       if (resetn == 1'b0) begin
         state <= 4'b0000;
-        start_mat_mul <= 1'b0;
+        start <= 1'b0;
       end else begin
         case (state)
         4'b0000: begin
-          start_mat_mul <= 1'b0;
+          start <= 1'b0;
           if (start == 1'b1) begin
             state <= 4'b0001;
           end else begin
@@ -150,14 +189,14 @@ logic done_mat_mul;
         end
         
         4'b0001: begin
-          start_mat_mul <= 1'b1;	      
+          start <= 1'b1;	      
           state <= 4'b1010;                    
         end      
         
         
         4'b1010: begin                 
           if (done_mat_mul == 1'b1) begin
-            start_mat_mul <= 1'b0;
+            start <= 1'b0;
             state <= 4'b0000;
           end
           else begin
@@ -168,7 +207,118 @@ logic done_mat_mul;
       endcase  
 	end 
   end
+*/
+   logic PCLK, PRESETn, PREADY;
+   assign PCLK = clk;
+   assign PRESETn = resetn;
+   assign PREADY = 1'b1;
 
+
+   logic [`AWIDTH-1:0] address_mat_a;
+   logic [`AWIDTH-1:0] address_mat_b;
+   logic [`AWIDTH-1:0] address_mat_c;
+   logic [`ADDR_STRIDE_WIDTH-1:0] address_stride_a;
+   logic [`ADDR_STRIDE_WIDTH-1:0] address_stride_b;
+   logic [`ADDR_STRIDE_WIDTH-1:0] address_stride_c;
+   
+   
+   
+   always_ff @ (posedge PCLK) begin
+
+      if (PRESETn == 0) begin
+	 state <= `IDLE;
+	 PRDATA <= 0;
+	 start <= 0;
+	 address_mat_a <= 0;
+	 address_mat_b <= 0;
+	 address_mat_c <= 0;
+	 address_stride_a <= 0;
+	 address_stride_b <= 0;
+	 address_stride_c <= 0;
+      end
+      else begin
+	 case(state)
+	   `IDLE: begin
+	      if (PSEL && !PENABLE) begin
+		 state <= `SETUP;
+	      end
+	   end
+
+	   `SETUP: begin
+	      if (PSEL && PENABLE) begin
+		 if (PWRITE) begin
+		    state <= `WRITE_ACCESS;
+		 end else begin
+		    state <= `READ_ACCESS;
+		 end
+	      end else begin
+		 state <= `IDLE;
+	      end
+	   end // case: `SETUP
+
+
+	   `WRITE_ACCESS: begin
+	      if (PWRITE && PENABLE) begin
+		 case (PADDR)
+		   `REG_START_ADDR: begin
+		      start <= PWDATA[0]; //cpu writes 1 to kick it
+		   end
+		   `REG_ADDR_A_ADDR: begin
+		      address_mat_a <= PWDATA[`AWIDTH-1:0];
+		   end
+		   
+		   `REG_ADDR_B_ADDR: begin
+		      address_mat_b <= PWDATA[`AWIDTH-1:0];
+		   end
+		   
+		   `REG_ADDR_C_ADDR: begin
+		      address_mat_c <= PWDATA[`AWIDTH-1:0];
+		   end
+
+		   `REG_STRIDE_A_ADDR: begin
+		      address_stride_a <= PWDATA[`ADDR_STRIDE_WIDTH-1:0];
+		   end
+		   
+		   `REG_STRIDE_B_ADDR: begin
+		      address_stride_b <= PWDATA[`ADDR_STRIDE_WIDTH-1:0];
+		   end
+		   
+		   `REG_STRIDE_C_ADDR: begin
+		      address_stride_c <= PWDATA[`ADDR_STRIDE_WIDTH-1:0];
+		   end
+		   		   
+		 endcase // case (PADDR)
+	      end
+	      state <= `IDLE;
+	   end // case: `WRITE_ACCESS
+	   
+
+	   `READ_ACCESS: begin
+	      if (!PWRITE && PENABLE) begin
+		 case (PADDR)
+		   `REG_DONE_ADDR: begin
+		      PRDATA <= {done_mat_mul, 15'b0}; //cpu reads donezo
+		   end		   
+		 endcase // case (PADDR)
+	      end
+	      state <= `IDLE;
+
+	   end // case: `READ_ACCESS
+
+	   default: begin
+	      state <= `IDLE;
+	   end
+	 endcase // case (state)
+      end // else: !if(PRESETn == 0)   
+   end // always_ff @ (posedge PCLK)
+   
+   
+   
+  
+   
+   
+
+   
 logic c_data_available;
 
 assign done = done_mat_mul;
@@ -219,7 +369,7 @@ matmul_4x4_systolic u_matmul_4x4(
   .clk(clk),
   .reset(reset),
   .pe_reset(pe_reset),
-  .start_mat_mul(start_mat_mul),
+  .start_mat_mul(start),
   .done_mat_mul(done_mat_mul),
   .address_mat_a(address_mat_a),
   .address_mat_b(address_mat_b),

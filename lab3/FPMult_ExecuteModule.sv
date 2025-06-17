@@ -28,7 +28,11 @@ module FPMult_ExecuteModule(
 	output logic GRS ;
 	
 	logic [9:0] Mp ;
-	
+
+        localparam bias = 3'b011;
+   
+
+   
 	assign Sp = (Sa ^ Sb) ;						// Equal signs give a positive product
 	
 	assign Mp =  ({1'b1, a[3:0]}*{1'b1, b[3:0]}) ;

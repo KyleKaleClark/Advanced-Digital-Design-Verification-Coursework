@@ -30,15 +30,15 @@
 	logic BNaN ;					// B is a signalling NaN
 	logic AInf ;					// A is infinity
 	logic BInf ;					// B is infinityi
-		
+	logic Zeroinput;				// A or B is zero	
 	
 	assign ANaN = &(a[6:4]) & |(a[3:0]) ;		// All one exponent and not all zero mantissa - NaN
 	assign BNaN = &(b[6:4]) & |(b[3:0]);		// All one exponent and not all zero mantissa - NaN
 	assign AInf = &(a[6:4]) & ~|(a[3:0]) ;		// All one exponent and all zero mantissa - Infinity
 	assign BInf = &(b[6:4]) & ~|(b[3:0]) ;		// All one exponent and all zero mantissa - Infinity
-	
+	assign Zeroinput = (a[6:0] == 0 || b[6:0] == 0); 
 	// Check for any exceptions and put all flags into exception vector
-	assign InputExc = {(ANaN | BNaN | AInf | BInf), ANaN, BNaN, AInf, BInf} ;
+	assign InputExc = {(Zeroinput| ANaN | BNaN | AInf | BInf), Zeroinput, ANaN, BNaN, AInf, BInf} ;
 	
 	// Take input numbers apart
 	assign Sa = a[7] ;				// A's sign

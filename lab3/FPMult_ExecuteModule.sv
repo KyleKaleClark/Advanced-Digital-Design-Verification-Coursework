@@ -35,7 +35,7 @@ module FPMult_ExecuteModule(
    
 	assign Sp = (Sa ^ Sb) ;						// Equal signs give a positive product
 	
-	assign Mp =  ({1'b1, a[3:0]}*{1'b1, b[3:0]}) ;
+	assign Mp = ({1'b1, a[3:0]}*{1'b1, b[3:0]}) ;
 	
 	assign NormM = (Mp[9] ? Mp[8:5] : Mp[7:4]);			// Check for overflow
 	assign NormE = (Ea + Eb + Mp[9]);				// If so, increment exponent

@@ -3,7 +3,7 @@
 module FPAddSub_NormalizeModule(
  
 	// Input ports
-	input logic [8:0] Sum,					// Mantissa sum including hidden 1 and GRS
+	input logic [9:0] Sum,					// Mantissa sum including hidden 1 and GRS
 	
 	// Output ports
 	output logic [8:0] Mmin,					// Mantissa after 16|0 shift

@@ -57,7 +57,7 @@ module FPAddSub(
 	logic [4:0] Mmin3 ;					
 	logic [8:0] Mmin4 ;					
 	logic [8:0] Mmin5;
-	logic [8:0] Sum ;
+	logic [9:0] Sum ;
 	logic PSgn ;
 	logic Opr ;
 	logic [2:0] Shift_2 ;					// Number of steps to shift sum left (normalize)
@@ -70,13 +70,15 @@ module FPAddSub(
 	logic FG ;						// Final sticky bit
 	logic [7:0] Z ;
 	logic EOF ;
+        logic      oneZero;
+   
 	
 	// Prepare the operands for alignment and check for exceptions
 	FPAddSub_PrealignModule PrealignModule
 	(	// Inputs
 		a, b, operation,
 		// Outputs
-		Sa, Sb, ShiftDet, InputExc, Aout, Bout, Opout) ;
+		Sa, Sb, ShiftDet, InputExc, Aout, Bout, Opout, oneZero) ;
 		
 	// Prepare the operands for alignment and check for exceptions
 	FPAddSub_Align AlignModule
@@ -88,7 +90,7 @@ module FPAddSub(
 	// Alignment Shift Stage 1
 	FPAddSub_AlignShift1 AlignShift1
 	(  // Inputs
-		Mmin, Shift_1,
+		Mmin, Shift_1, oneZero,
 		// Outputs
 		Mmin2) ;
 

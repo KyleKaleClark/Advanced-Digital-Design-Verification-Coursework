@@ -14,7 +14,8 @@ module FPAddSub_PrealignModule(
 	output logic [4:0] InputExc,								// Input numbers are exceptions
 	output logic [6:0] Aout,
 	output logic [6:0] Bout,
-	output logic Opout );
+	output logic Opout,
+	output logic oneZero);
 	
 	// Internal signals									// If signal is high...
 	logic ANaN ;												// A is a NaN (Not-a-Number)
@@ -43,5 +44,8 @@ module FPAddSub_PrealignModule(
 	assign Opout = operation ;
 	assign Aout = A[6:0] ;
 	assign Bout = B[6:0] ;
+
+        assign oneZero = (A == 8'b0 || B == 8'b0);
+   
 	
 endmodule

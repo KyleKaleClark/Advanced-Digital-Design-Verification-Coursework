@@ -12,7 +12,7 @@ module FPAddSub_ExecutionModule(
 	input logic OpMode,							// Operation to be performed (0/Add, 1/Sub)
 	
 	// Output ports
-	output logic [8:0] Sum,					// The result of the operation
+	output logic [9:0] Sum,					// The result of the operation
 	output logic PSgn,							// The sign for the result
 	output logic Opr );							// The effective (performed) operation
 

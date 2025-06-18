@@ -3,7 +3,7 @@
 module FPAddSub_NormalizeShift2(
 
 	//input ports
-	input logic [8:0] PSSum,					// The Pre-Shift-Sum
+	input logic [9:0] PSSum,					// The Pre-Shift-Sum
 	input logic[2:0] CExp,
 	input logic [2:0] Shift,					// Amount to be shifted
 
@@ -20,7 +20,7 @@ module FPAddSub_NormalizeShift2(
 	//logic MSBShift ;						// Flag indicating that a second shift is needed
 	logic [3:0] ExpOF ;					// MSB set in sum indicates overflow
 	logic [3:0] ExpOK ;					// MSB not set, no adjustment
-	logic [8:0] ShiftedSum;
+	logic [9:0] ShiftedSum;
 
 	// Calculate normalized exponent and mantissa, check for all-zero sum
 	//
@@ -32,8 +32,8 @@ module FPAddSub_NormalizeShift2(
 	assign ExpOK = CExp - Shift ;		// Adjust exponent for new normalized mantissa
 	assign NegE = NormE[3] ;			// Check for exponent overflow
 	assign ExpOF = ExpOK + 1'b1 ;		// If MSB set, add one to exponent(x2)
-	assign NormE = ShiftedSum[8] ? ExpOF : ExpOK ;			// Check for exponent overflow
-	assign NormM = ShiftedSum[8:5] ;		// The new, normalized mantissa
+	assign NormE = ShiftedSum[9] ? ExpOF : ExpOK ;			// Check for exponent overflow
+	assign NormM = ShiftedSum[9:4] ;		// The new, normalized mantissa   //kyle fix, not sure if its right
 	
 	// Also need to compute sticky and round bits for the rounding stage
 	assign FG = ShiftedSum[4] ; 

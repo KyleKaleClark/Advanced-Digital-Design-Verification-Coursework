@@ -1,0 +1,32 @@
+Warning: Design 'matmul_4x4_systolic' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : matmul_4x4_systolic
+Version: V-2023.12-SP5-1
+Date   : Thu Jun 19 03:56:06 2025
+****************************************
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: u_output_logic/c_addr_reg[7]
+              (rising edge-triggered flip-flop)
+  Endpoint: c_addr[7] (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  u_output_logic/c_addr_reg[7]/CLK (DFFPOSX1)             0.00       0.00 r
+  u_output_logic/c_addr_reg[7]/Q (DFFPOSX1)               0.13       0.13 f
+  c_addr[7] (out)                                         0.00       0.13 f
+  data arrival time                                                  0.13
+  --------------------------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

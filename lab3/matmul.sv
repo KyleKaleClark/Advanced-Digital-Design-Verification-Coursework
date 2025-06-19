@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 `define DWIDTH 8
-`define AWIDTH 11
+`define AWIDTH 10
 `define MEM_SIZE 1024
 
 `define MAT_MUL_SIZE 4
@@ -10,8 +10,8 @@
 `define BB_MAT_MUL_SIZE `MAT_MUL_SIZE
 `define NUM_CYCLES_IN_MAC 3
 `define MEM_ACCESS_LATENCY 1
-`define REG_DATAWIDTH 16
-`define REG_ADDRWIDTH 4
+`define REG_DATAWIDTH 32
+`define REG_ADDRWIDTH 8
 `define ADDR_STRIDE_WIDTH 8
 `define MAX_BITS_POOL 3
 
@@ -101,7 +101,7 @@ module matmul_4x4_systolic(
     assign clk_cnt_for_done = (cycles_for_matmul + `NUM_CYCLES_IN_MAC) ;  
 
 
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if (reset || ~start_mat_mul) 
         begin
@@ -415,7 +415,7 @@ module output_logic(
     assign condition_to_start_shifting_output = row_latch_en ;  
 
 //For larger matmuls, this logic will have more entries in the case statement
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if (reset | ~start_mat_mul) 
         begin
@@ -545,7 +545,7 @@ module systolic_data_setup(
     reg [`AWIDTH-1:0] a_addr;
     reg a_mem_access; //flag that tells whether the matmul is trying to access memory or not
     
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if ((reset || ~start_mat_mul) || (clk_cnt >= (a_loc<<`LOG2_MAT_MUL_SIZE)+final_mat_mul_size)) begin
             a_addr <= address_mat_a-address_stride_a;
@@ -562,7 +562,7 @@ module systolic_data_setup(
 // Logic to generate valid signals for data coming from BRAM A
 //////////////////////////////////////////////////////////////////////////
     reg [7:0] a_mem_access_counter;
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if (reset || ~start_mat_mul) 
             a_mem_access_counter <= 0;
@@ -597,7 +597,7 @@ module systolic_data_setup(
     reg [`DWIDTH-1:0] a3_data_delayed_2;
     reg [`DWIDTH-1:0] a3_data_delayed_3;
     
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if (reset || ~start_mat_mul || clk_cnt==0) 
         begin
@@ -625,7 +625,7 @@ module systolic_data_setup(
     reg [`AWIDTH-1:0] b_addr;
     reg b_mem_access; //flag that tells whether the matmul is trying to access memory or not
 
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if ((reset || ~start_mat_mul) || (clk_cnt >= (b_loc<<`LOG2_MAT_MUL_SIZE)+final_mat_mul_size)) 
         begin
@@ -643,7 +643,7 @@ module systolic_data_setup(
 // Logic to generate valid signals for data coming from BRAM B
 //////////////////////////////////////////////////////////////////////////
     reg [7:0] b_mem_access_counter;
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if (reset || ~start_mat_mul) 
             b_mem_access_counter <= 0;
@@ -679,7 +679,7 @@ module systolic_data_setup(
     reg [`DWIDTH-1:0] b3_data_delayed_2;
     reg [`DWIDTH-1:0] b3_data_delayed_3;
     
-    always_ff @(posedge clk) 
+    always @(posedge clk) 
     begin
         if (reset || ~start_mat_mul || clk_cnt==0) 
         begin
@@ -846,7 +846,7 @@ module processing_element(
     
     seq_mac u_mac(.a(in_a), .b(in_b), .out(out_mac), .reset(reset), .clk(clk));
 
-    always_ff @(posedge clk)
+    always @(posedge clk)
     begin
         if(reset) 
         begin
@@ -872,43 +872,39 @@ module seq_mac(a, b, out, reset, clk);
     input clk;
     output [`DWIDTH-1:0] out;
 
-    logic [`DWIDTH-1:0] out;
-    logic [`DWIDTH-1:0] a_flop, b_flop, mult;
+    reg [`DWIDTH-1:0] out;
+    reg [`DWIDTH-1:0] a_flop, b_flop, mult;
 
 
-    logic [`DWIDTH-1:0] 	mult_res, add_res;
-    logic [4:0]			add_flag, mul_flag, mac_flag;
-   
-    logic add_op;
-    assign add_op = 1'b0; //0 = addition
-   
+   logic [4:0] 	      flags, flags_mult, flags_add;
+   logic [`DWIDTH-1:0] mult_out, mult_result, out_add, add_res;
 
-		       
-    //FPAddSub fpadd(.a(a_flop), .b(b_flop), .operation(add_op),
-	//	   .result(mult_res), .flags(add_flag));
-   
-//   FPMult fpmul(.clk(clk), .rst(reset), .a(a_flop), .b(b_flop), .result(mult_res), .flags(mul_flag));
-   
 
-		   
-    
-    always_ff @(posedge clk)
+   FPMult fpmul(.a(a_flop), .b(b_flop), .result(mult_out), .flags(flags_mult));
+   FPAddSub fpadd(.a(mult_result), .b(out), .operation(1'b0), .result(add_res), .flags(flags_add));
+
+   assign flags = flags_mult & flags_add;
+//   assign out_add = out;
+   
+   
+    always @(posedge clk)
     begin
         if(reset)
         begin
             out <= 0;
             a_flop <= 0;
             b_flop <= 0;
-            mult <= 0;
+	   mult_result <= 0;
+	   
         end
         else
         begin
             a_flop <= a;
             b_flop <= b;
-
-            mult <= a_flop * b_flop;
-//            mult <= mult_res;									
-            out <= mult + out; 
+	   mult_result <= mult_out;
+	   out <= add_res;
+	   
+	   
         end
             
     end

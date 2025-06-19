@@ -35,10 +35,12 @@ module FPMult(
 	logic [4:0] RoundMP;
 	logic [3:0] RoundE;
 	logic [3:0] RoundEP;
-	logic GRS ;								
+	logic GRS ;	
+        logic      zeroFlag;
+   
 	
 	// Prepare the operands for alignment and check for exceptions
-	FPMult_PrepModule PrepModule(a, b, Sa, Sb, Ea, Eb, Ma, Mb, InputExc) ;
+	FPMult_PrepModule PrepModule(a, b, Sa, Sb, Ea, Eb, Ma, Mb, InputExc, zeroFlag) ;
 	
 	// Perform (unsigned) mantissa multiplication
 //	FPMult_ExecuteModule ExecuteModule(Ma, Mb, Ea, Eb, Sa, Sb, Sp, NormE, NormM, GRS) ;
@@ -52,7 +54,7 @@ module FPMult(
 					       .RoundEP(RoundEP), .RoundM(RoundM), .RoundMP(RoundMP)) ;
 	
 	// Round result and if necessary, perform a second (post-rounding) normalization step
-	FPMult_RoundModule RoundModule(RoundM, RoundMP, RoundE, RoundEP, Sp, GRS, InputExc, result, flags) ;		
+	FPMult_RoundModule RoundModule(zeroFlag, RoundM, RoundMP, RoundE, RoundEP, Sp, GRS, InputExc, result, flags) ;		
 			
 	
 		

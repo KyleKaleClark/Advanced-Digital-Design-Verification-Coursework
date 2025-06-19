@@ -9,7 +9,8 @@
 		Eb,
 		Ma,
 		Mb,
-		InputExc
+		InputExc,
+		zeroFlag
 	);
 	
 	// Input ports
@@ -24,6 +25,8 @@
 	output logic [3:0] Ma ;
 	output logic [3:0] Mb ;
 	output logic [4:0] InputExc ;		// Input numbers are exceptions
+        output logic 	   zeroFlag;
+   
 	
 	// Internal signals			// If signal is high...
 	logic ANaN ;					// A is a signalling NaN
@@ -36,7 +39,9 @@
 	assign BNaN = &(b[6:4]) & |(b[3:0]);		// All one exponent and not all zero mantissa - NaN
 	assign AInf = &(a[6:4]) & ~|(a[3:0]) ;		// All one exponent and all zero mantissa - Infinity
 	assign BInf = &(b[6:4]) & ~|(b[3:0]) ;		// All one exponent and all zero mantissa - Infinity
-	assign Zeroinput = (a[6:0] == 0 || b[6:0] == 0); 
+	assign Zeroinput = (a[6:0] == 0 || b[6:0] == 0);
+        assign zeroFlag = Zeroinput;
+   
 	// Check for any exceptions and put all flags into exception vector
 	assign InputExc = {(Zeroinput| ANaN | BNaN | AInf | BInf), Zeroinput, ANaN, BNaN, AInf, BInf} ;
 	

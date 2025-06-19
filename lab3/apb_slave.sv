@@ -12,9 +12,9 @@ module apb_slave(
     input                             PSEL,
     input                             PENABLE,
     input        [`REG_DATAWIDTH-1:0] PWDATA,
-    output logic   [`REG_DATAWIDTH-1:0] PRDATA,
-    output logic                        PREADY,
-    output logic start,
+    output reg   [`REG_DATAWIDTH-1:0] PRDATA,
+    output reg                        PREADY,
+    output reg start,
 	.....
     input done
 	.....

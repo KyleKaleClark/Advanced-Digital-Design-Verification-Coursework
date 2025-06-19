@@ -33,7 +33,7 @@ module FPAddSub_NormalizeShift2(
 	assign NegE = NormE[3] ;			// Check for exponent overflow
 	assign ExpOF = ExpOK + 1'b1 ;		// If MSB set, add one to exponent(x2)
 	assign NormE = ShiftedSum[9] ? ExpOF : ExpOK ;			// Check for exponent overflow
-	assign NormM = ShiftedSum[9:4] ;		// The new, normalized mantissa   //kyle fix, not sure if its right
+	assign NormM = ShiftedSum[8:5] ;		// The new, normalized mantissa   //kyle fix, not sure if its right
 	
 	// Also need to compute sticky and round bits for the rounding stage
 	assign FG = ShiftedSum[4] ; 

@@ -2,6 +2,7 @@
 
 
 module FPMult_RoundModule(
+		zeroFlag,
 		RoundM,
 		RoundMP,
 		RoundE,
@@ -14,6 +15,7 @@ module FPMult_RoundModule(
     );
 
 	// Input Ports
+        input logic zeroFlag;
 	input logic [4:0] RoundM ;									// Normalized mantissa
 	input logic [4:0] RoundMP ;									// Normalized exponent
 	input logic [3:0] RoundE ;									// Normalized mantissa + 1
@@ -38,7 +40,7 @@ module FPMult_RoundModule(
 	
 	assign FinalE = (PreShiftM[4] ? RoundEP : RoundE) ; // Increment exponent if a shift was done
 	
-	assign Z = {Sp, FinalE[2:0], FinalM[3:0]} ;   // Putting the pieces together
+	assign Z = zeroFlag ? 8'b0 : {Sp, FinalE[2:0], FinalM[3:0]} ;   // Putting the pieces together
 	assign Flags = InputExc[4:0];
 
 endmodule

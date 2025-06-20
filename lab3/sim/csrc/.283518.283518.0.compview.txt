@@ -1,0 +1,7 @@
+Command exited with non-zero status 255
+{"vcs1":{"timestamp_begin":1750211343.079159473, "rt":0.71, "ut":0.03, "st":0.02}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750211342.871810342}
+{"VCS_COMP_START_TIME": 1750211342.871810342}
+{"VCS_COMP_END_TIME": 1750211343.837621946}
+{"VCS_USER_OPTIONS": "-R -full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all"}
+{"vcs1": {"peak_mem": 352948}}

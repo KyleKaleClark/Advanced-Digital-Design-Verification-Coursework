@@ -1,0 +1,43 @@
+                         Chronologic VCS (TM)
+      Version T-2022.06-SP2-1_Full64 -- Wed Jun  4 20:52:21 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Warning : License for product VCS-BASE-COMPILE(946) will expire within 15 days, on: 18-jun-2025.
+
+If you would like to temporarily disable this message, set 
+ the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
+before expiration that you want this message to start (the minimum is 0).
+Parsing design file '../top.v'
+Parsing design file '../mips_tb.v'
+Top Level Modules:
+       MIPS_Testbench
+No TimeScale specified
+
+Error-[URMI] Unresolved modules
+../top.v, 42
+"controller c(instr[31:26], instr[5:0], zero, memtoreg, memwrite, pcsrc, alusrc, regdst, regwrite, jump, alucontrol);"
+  Module definition of above instance is not found in the design.
+
+
+Error-[URMI] Unresolved modules
+../top.v, 44
+"datapath dp(clk, reset, memtoreg, pcsrc, alusrc, regdst, regwrite, jump, alucontrol, zero, pc, instr, aluout, writedata, readdata);"
+  Module definition of above instance is not found in the design.
+
+2 errors
+CPU time: .090 seconds to compile

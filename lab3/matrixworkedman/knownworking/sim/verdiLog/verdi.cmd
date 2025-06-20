@@ -1,0 +1,10 @@
+verdiSetActWin -dock widgetDock_<Message>
+simSetSimulator "-vcssv" -exec "./simv" -args
+debImport "-dbdir" "./simv.daidir"
+debLoadSimResult /home/a21164_asu/addv/lab3_pleasegod/sim/novas.fsdb
+wvCreateWindow
+verdiWindowResize -win $_Verdi_1 "140" "127" "2277" "1215"
+wvRestoreSignal -win $_nWave2 \
+           "/home/a21164_asu/addv/lab3_pleasegod/sim/matrix.rc" \
+           -overWriteAutoAlias on -appendSignals on
+debExit

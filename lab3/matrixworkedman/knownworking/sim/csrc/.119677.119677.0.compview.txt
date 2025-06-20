@@ -1,0 +1,5 @@
+{"vcs1":{"timestamp_begin":1750287468.268249880, "rt":0.75, "ut":0.04, "st":0.02}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750287468.019625451}
+{"VCS_COMP_START_TIME": 1750287468.019625451}
+{"VCS_COMP_END_TIME": 1750287469.047303378}
+{"VCS_USER_OPTIONS": "-full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all -kdb -lca"}

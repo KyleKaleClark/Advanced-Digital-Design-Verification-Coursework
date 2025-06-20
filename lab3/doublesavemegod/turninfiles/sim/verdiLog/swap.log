@@ -1,0 +1,39 @@
+version: (200506)
+
+available memory: 64M bytes
+used memory: 90112 bytes [need 88K bytes if disable swap]
+
+used block: 4 [memory(4) file(0)]
+                 [ 8K(3) 64K(1) { total 88K bytes } ]
+overhead: (9538) bytes for (4) blocks [Average: (2384) bytes/block]
+
+write  => 0(times) 0K(bytes) [0K bytes to file]
+read   => 1(times) 25K(bytes) [4K bytes compressed data from file]
+access => 38736(times) 309M(bytes)
+          [hit ratio: 99.9974%]
+
+time: write(0) read(0)  unit: second
+
+swap file directory: (/home/a21164_asu/addv/lab3_pleasegod/turninfiles/sim/verdiLog)
+used swap file number: (1)
+
+
+
+swap file manager:
+arrSize: (256)
+idxCnt: (3)
+closeHead: (1)
+closeTail: (2)
+openCnt: (2)
+fid(2): fd(27) fileName(/home/a21164_asu/addv/lab3_pleasegod/turninfiles/sim/verdiLog/_swap_0001#279747846#381595)
+	size(0) lastModTime(0) curModTime(1750312823)
+	mode(w+b)	hot(0) cool(1) pos(0)
+fid(1): fd(1073741824) fileName(/home/a21164_asu/addv/lab3_pleasegod/turninfiles/sim/simv.daidir/kdb.elab++/work.lib++/matmul_with_ram_tb.sv.tdc)
+	size(8239) lastModTime(1750312817) curModTime(1750312817)
+	mode(rb)	hot(2) cool(0) pos(0)
+fid(0): fd(0) fileName(NULL)
+	mode(NULL)	hot(0) cool(0) pos(0)
+==================================================
+mySelf(0x1aef3810) pre(0x19983710) next((nil))
+version(200506)
+date(Dec 22 2022 02:33:38)

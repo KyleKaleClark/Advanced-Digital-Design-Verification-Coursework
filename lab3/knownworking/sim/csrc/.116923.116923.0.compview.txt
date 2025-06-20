@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1750287263.393130273, "rt":0.96, "ut":0.17, "st":0.09}}
+{"vcselab":{"timestamp_begin":1750287264.403633608, "rt":0.82, "ut":0.13, "st":0.04}}
+{"link":{"timestamp_begin":1750287265.265298349, "rt":0.15, "ut":0.08, "st":0.03}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750287263.142876053}
+{"VCS_COMP_START_TIME": 1750287263.142876053}
+{"VCS_COMP_END_TIME": 1750287265.722732966}
+{"VCS_USER_OPTIONS": "-full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all -kdb -lca"}
+{"vcs1": {"peak_mem": 529036}}
+{"stitch_vcselab": {"peak_mem": 246968}}

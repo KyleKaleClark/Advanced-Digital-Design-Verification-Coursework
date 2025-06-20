@@ -1,0 +1,86 @@
+                         Chronologic VCS (TM)
+      Version T-2022.06-SP2-1_Full64 -- Thu Jun 19 05:14:35 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS Release Notes
+
+Warning:Unable to obtain Number of Days before Expiry
+Parsing design file '../matmul.sv'
+Parsing design file '../matmul_with_ram.sv'
+Parsing design file '../matmul_with_ram_tb.sv'
+Parsing design file '../FPAddSub_AlignModule.sv'
+Parsing design file '../FPAddSub_AlignShift1.sv'
+Parsing design file '../FPAddSub_AlignShift2.sv'
+Parsing design file '../FPAddSub_ExceptionModule.sv'
+Parsing design file '../FPAddSub_ExecutionModule.sv'
+Parsing design file '../FPAddSub_NormalizeModule.sv'
+
+Warning-[DCTTSW] Decimal constant truncated
+  Constant '8' is truncated to 3 bits: 0.
+  "../FPAddSub_NormalizeModule.sv", 28
+  Source info: 	else if (Sum[1]) Shift = 3'd8;         
+
+
+Warning-[DCTTSW] Decimal constant truncated
+  Constant '9' is truncated to 3 bits: 1.
+  "../FPAddSub_NormalizeModule.sv", 29
+  Source info: 	else Shift = 3'd9;   
+
+Parsing design file '../FPAddSub_NormalizeShift1.sv'
+Parsing design file '../FPAddSub_NormalizeShift2.sv'
+Parsing design file '../FPAddSub_PrealignModule.sv'
+Parsing design file '../FPAddSub_RoundModule.sv'
+Parsing design file '../FPAddSub.sv'
+Parsing design file '../FPMult_ExecuteModule.sv'
+Parsing design file '../FPMult_NormalizeModule.sv'
+Parsing design file '../FPMult_PrepModule.sv'
+Parsing design file '../FPMult_RoundModule.sv'
+Parsing design file '../FPMult.sv'
+Top Level Modules:
+       matmul_tb
+       FPAddSub_AlignShift2
+       FPAddSub_NormalizeShift1
+TimeScale is 1 ns / 1 ps
+
+Warning-[TFIPC] Too few instance port connections
+../matmul_with_ram_tb.sv, 11
+matmul_tb, "matrix_multiplication u_matmul( .clk (clk),  .resetn (resetn),  .pe_resetn (pe_resetn),  .address_mat_a (10'b0),  .address_mat_b (10'b0),  .address_mat_c (10'b0),  .address_stride_a (8'b1),  .address_stride_b (8'b1),  .address_stride_c (8'b1),  .start (start),  .done (done));"
+  The above instance has fewer port connections than the module definition.
+  Please use '+lint=TFIPC-L' to print out detailed information of unconnected 
+  ports.
+
+Starting vcs inline pass...
+
+4 modules and 0 UDP read.
+	However, due to incremental compilation, no re-compilation is necessary.
+Warning:Unable to obtain Number of Days before Expiry
+make[1]: Entering directory '/home/a21164_asu/addv/lab3_pleasegod/matrixworkedman/sim/csrc'
+make[1]: Leaving directory '/home/a21164_asu/addv/lab3_pleasegod/matrixworkedman/sim/csrc'
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 346170 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+make[1]: Entering directory '/home/a21164_asu/addv/lab3_pleasegod/matrixworkedman/sim/csrc'
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _345996_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory '/home/a21164_asu/addv/lab3_pleasegod/matrixworkedman/sim/csrc'
+CPU time: .333 seconds to compile + .212 seconds to elab + .211 seconds to link
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)

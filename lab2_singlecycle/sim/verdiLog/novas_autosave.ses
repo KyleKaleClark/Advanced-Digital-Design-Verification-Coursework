@@ -1,0 +1,103 @@
+@verdi rc file Version 1.0
+[General]
+saveDB = TRUE
+relativePath = FALSE
+saveSingleView = FALSE
+saveNWaveWinId = 
+VerdiVersion = Verdi_T-2022.06-SP2-1
+[KeyNote]
+Line1 = Automatic Backup 0
+Line2 = Save Open Database Information: Yes
+Line3 = Path Option: Absolute Paths
+Line4 = Windows Option: All Windows
+[OneSearch]
+isExisted = TRUE
+[TestBench]
+ConstrViewShow = 0
+InherViewShow = 0
+FSDBMsgShow = 0
+AnnotationShow = 0
+Console = FALSE
+powerDumped = 0
+[fusa]
+fdb_server = 
+fdb_proj = 
+fdb_campaign = 
+fdb_tool = 
+[hb]
+postSimFile = /home/a21164_asu/addv/lab2_singlecycle/sim/novas.fsdb
+syncTime = 5
+viewport = 1279 63 1222 1129 0 0 504 1180
+activeNode = "MIPS_Testbench.dut.mips.dp.rf"
+activeScope = "MIPS_Testbench.dut.mips.dp.rf"
+activeFile = "../datapath.sv"
+interactiveMode = False
+viewType = Source
+simulatorMode = False
+sourceBeginLine = 65
+baMode = False
+srcLineNum = True
+AutoWrap = True
+IdentifyFalseLogic = False
+syncSignal = False
+traceMode = Hierarchical
+showTraceInSchema = True
+paMode = False
+funcMode = False
+powerAwareAnnot = True
+safetyAwareAnnot = True
+amsAnnot = True
+DnDtraceCrossHierOnly = True
+leadingZero = False
+signalPane = False
+SourceVerticalScrollLines = 5
+Scope1 = "MIPS_Testbench.dut.mips.dp.rf"
+Scope2 = "MIPS_Testbench.dut.mips.dp.wrmux"
+Scope3 = "MIPS_Testbench.dut.mips.dp.se"
+Scope4 = "MIPS_Testbench.dut.mips.dp.alu"
+Scope5 = "MIPS_Testbench.dut.mips.dp"
+Scope6 = "MIPS_Testbench.dut"
+Scope7 = "MIPS_Testbench.dut.mips.c"
+Scope8 = "MIPS_Testbench.dut.mips.dp.srcbmux"
+Scope9 = "MIPS_Testbench.dut.mips.c.md"
+Scope10 = "MIPS_Testbench.dut.dmem"
+multipleSelection = 1 68 15 0 0
+sdfCheckUndef = FALSE
+simFlow = FALSE
+[hb.design]
+importCmd = "-dbdir" "./simv.daidir" 
+invokeDir = /home/a21164_asu/addv/lab2_singlecycle/sim
+[hb.sourceTab.1]
+scope = MIPS_Testbench.dut.mips.dp.rf
+File = /home/a21164_asu/addv/lab2_singlecycle/datapath.sv
+Line = 66
+[nMemoryManager]
+WaveformFile = /home/a21164_asu/addv/lab2_singlecycle/sim/novas.fsdb
+UserActionNum = 0
+nMemWindowNum = 0
+[wave.0]
+viewPort = 0 25 1222 518 303 65
+primaryWindow = TRUE
+SessionFile = /home/a21164_asu/addv/lab2_singlecycle/sim/verdiLog/novas_autosave.ses.wave.0
+displayGrid = FALSE
+hierarchicalName = FALSE
+snap = TRUE
+displayLeadingZeros = FALSE
+fixDelta = FALSE
+displayCursorMarker = FALSE
+autoUpdate = FALSE
+highlightGlitchs = FALSE
+waveformSyncCursorMarker = FALSE
+waveformSyncHorizontalRange = FALSE
+waveformSyncVerticalscroll = FALSE
+displayErrors = TRUE
+displayMsgSymbols = TRUE
+showMsgDescriptions = TRUE
+autoFit = FALSE
+displayDeltaY = FALSE
+centerCursor = FALSE
+fsaRegMask = TRUE
+fsaCoreMask = TRUE
+fsaSfsmMask = TRUE
+fsaEcrMask = TRUE
+tPropMask = TRUE

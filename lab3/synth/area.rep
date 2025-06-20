@@ -1,0 +1,33 @@
+Warning: Design 'matmul_4x4_systolic' has '2' unresolved references. For more detailed information, use the "link" command. (UID-341)
+ 
+****************************************
+Report : area
+Design : matmul_4x4_systolic
+Version: V-2023.12-SP5-1
+Date   : Thu Jun 19 03:56:07 2025
+****************************************
+
+Library(s) Used:
+
+    gscl45nm (File: /usr/local2/cadence/NCSU/SRC/FreePDK45/osu_soc/lib/files/gscl45nm.db)
+
+Number of ports:                          382
+Number of nets:                          4201
+Number of cells:                         3612
+Number of combinational cells:           2481
+Number of sequential cells:              1115
+Number of macros/black boxes:               0
+Number of buf/inv:                        943
+Number of references:                      17
+
+Combinational area:               6128.119278
+Buf/Inv area:                     1585.764662
+Noncombinational area:            8640.282108
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                 14768.401386
+Total area:                 undefined
+
+Information: This design contains black box (unknown) components. (RPT-8)
+1

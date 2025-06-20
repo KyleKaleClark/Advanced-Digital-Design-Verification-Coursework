@@ -2,11 +2,11 @@ Magic 271485
 Revision Verdi_T-2022.06-SP2-1
 
 ; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
-viewPort 0 25 1251 996 203 85
+viewPort 0 25 1769 794 100 65
 
 ; File list:
 ; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
-openDirFile -d / "" "/home/a21164_asu/addv/lab3_pleasegod/sim/novas.fsdb"
+openDirFile -d / "" "/home/a24541_asu/ADDV/lab3/sim/novas.fsdb"
 
 ; file time scale:
 ; fileTimeScale ### s|ms|us|ns|ps
@@ -16,8 +16,8 @@ signalSpacing 5
 
 ; windowTimeUnit is used for zoom, cursor & marker
 ; waveform viewport range
-zoom 569857.399103 1111000.000000
-cursor 390000.000000
+zoom 4354.645702 10219.599476
+cursor 12000.000000
 marker 0.000000
 
 ; user define markers
@@ -25,7 +25,7 @@ marker 0.000000
 ; visible top row signal index
 top 0
 ; marker line index
-markerPos 5
+markerPos 6
 
 ; event list
 ; addEvent event_name event_expression
@@ -46,67 +46,31 @@ curSTATUS ByChange
 
 
 addGroup "G1"
-activeDirFile "" "/home/a21164_asu/addv/lab3_pleasegod/sim/novas.fsdb"
-addSignal -h 15 /matmul_tb/clk
-addGroup "APB Stuff"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/state[3:0]
-addSignal -h 15 -holdScope done_mat_mul
-addSignal -h 15 -holdScope start_mat_mul
-addSignal -h 15 /matmul_tb/PSEL
-addSignal -h 15 -holdScope PENABLE
-addSignal -h 15 -holdScope PWRITE
-addSignal -h 15 -UNSIGNED -HEX -holdScope PADDR[3:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope PWDATA[15:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope PRDATA[15:0]
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/address_mat_a[9:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope address_mat_b[9:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope address_mat_c[9:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope address_stride_a[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope address_stride_b[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope address_stride_c[7:0]
-addGroup "row1"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/matrixC00[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC01[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC02[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC03[7:0]
-addGroup "row2"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/matrixC10[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC11[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC12[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC13[7:0]
-addGroup "row3"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/matrixC20[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC21[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC22[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC23[7:0]
-addGroup "row4"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/matrixC30[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC31[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC32[7:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope matrixC33[7:0]
-addGroup "flags"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags[4:0]
-addSubGroup "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver"
-addSignal -h 15 -UNSIGNED -HEX /matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_00[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_01[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_02[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_03[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_10[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_11[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_12[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_13[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_20[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_21[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_22[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_23[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_30[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_31[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_32[4:0]
-addSignal -h 15 -UNSIGNED -HEX -holdScope flags_33[4:0]
-endSubGroup "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver"
-addGroup "G8"
+activeDirFile "" "/home/a24541_asu/ADDV/lab3/sim/novas.fsdb"
+addSignal -h 15 -UNSIGNED -BIN /FPMult_tb_fp8_no_exceptions/a[7:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope b[7:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope flags[4:0]
+addSignal -h 15 -UNSIGNED -BIN -holdScope result[7:0]
+addGroup "G2"
+addSignal -h 15 -UNSIGNED -BIN /FPMult_tb_fp8_no_exceptions/uut/PrepModule/InputExc[4:0]
+addGroup "G3"
 
 ; getSignalForm Scope Hierarchy Status
 ; active file of getSignalForm
+activeDirFile "" "/home/a24541_asu/ADDV/lab3/sim/novas.fsdb"
+
+GETSIGNALFORM_SCOPE_HIERARCHY_BEGIN
+getSignalForm close
+
+"/FPMult_tb_fp8_no_exceptions"
+"/FPMult_tb_fp8_no_exceptions/uut"
+"/FPMult_tb_fp8_no_exceptions/uut/PrepModule"
+
+SCOPE_LIST_BEGIN
+"/FPMult_tb_fp8_no_exceptions"
+"/FPMult_tb_fp8_no_exceptions/uut"
+SCOPE_LIST_END
+
+GETSIGNALFORM_SCOPE_HIERARCHY_END
+
 

@@ -1,0 +1,177 @@
+simSetSimulator "-vcssv" -exec "./simv" -args
+debImport "-dbdir" "./simv.daidir"
+debLoadSimResult /home/a21164_asu/addv/lab3_pleasegod/sim/novas.fsdb
+wvCreateWindow
+verdiWindowResize -win $_Verdi_1 -9 "36" "2277" "1215"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -win $_nWave2
+wvRestoreSignal -win $_nWave2 \
+           "/home/a21164_asu/addv/lab3_pleasegod/sim/matrix.rc" \
+           -overWriteAutoAlias on -appendSignals on
+wvSelectGroup -win $_nWave2 {G7}
+wvRenameGroup -win $_nWave2 {G7} {flags}
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul" -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4" -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4" -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -delim "." \
+           -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "all_flags" -line 779 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("G1" 3)}
+wvSetPosition -win $_nWave2 {("row2" 3)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("flags" 0)}
+wvAddSignal -win $_nWave2 \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags\[4:0\]"
+wvSetPosition -win $_nWave2 {("flags" 0)}
+wvSetPosition -win $_nWave2 {("flags" 1)}
+wvSetPosition -win $_nWave2 {("flags" 1)}
+verdiSetActWin -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "flags" 1 )} 
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "flags_00" -line 781 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcActiveTrace \
+           "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.flags_00\[4:0\]" \
+           -win $_nTrace1
+srcBackwardHistory -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "all_flags" -line 779 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "all_flags" -line 786 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("row4" 4)}
+wvSetPosition -win $_nWave2 {("flags" 1)}
+wvSetPosition -win $_nWave2 {("G7" 0)}
+wvSetPosition -win $_nWave2 {("flags" 1)}
+wvAddSignal -win $_nWave2 \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags\[4:0\]"
+wvSetPosition -win $_nWave2 {("flags" 1)}
+wvSetPosition -win $_nWave2 {("flags" 2)}
+srcActiveTrace \
+           "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.all_flags\[4:0\]" \
+           -win $_nTrace1
+wvSelectSignal -win $_nWave2 {( "flags" 2 )} 
+verdiSetActWin -win $_nWave2
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("G7" 0)}
+wvSetPosition -win $_nWave2 {("flags" 1)}
+wvSelectSignal -win $_nWave2 {( "flags" 1 )} 
+wvShowOneTraceSignals -win $_nWave2 -signal \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags\[4:0\]" \
+           -driver
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           5 )} 
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           1 )} 
+wvScrollDown -win $_nWave2 1
+wvScrollUp -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           17 )} 
+wvScrollDown -win $_nWave2 0
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00.u_mac" \
+           -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00.u_mac" \
+           -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00.u_mac" \
+           -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00" -win \
+           $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00" -delim \
+           "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00" -win \
+           $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00.u_mac" \
+           -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00.u_mac" \
+           -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix.pe00.u_mac" \
+           -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "flags_mult" -line 904 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("row4" 0)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("flags" 1)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 0)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 1)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 2)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 2)}
+wvAddSignal -win $_nWave2 \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/pe00/u_mac/flags_mult\[4:0\]"
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 2)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "flags_add" -line 904 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("row3" 2)}
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 1)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 2)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 4)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+wvAddSignal -win $_nWave2 \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/pe00/u_mac/flags_add\[4:0\]"
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 4)}
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           4 )} 
+verdiSetActWin -win $_nWave2
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           6 )} 
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           4 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 4)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+wvSelectSignal -win $_nWave2 \
+           {( "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" \
+           3 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 3)}
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 2)}
+wvScrollUp -win $_nWave2 3
+wvSetPosition -win $_nWave2 \
+           {("flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver" 0)}
+wvCollapseGroup -win $_nWave2 \
+           "flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000\(1ps\)#ActiveDriver"
+debExit

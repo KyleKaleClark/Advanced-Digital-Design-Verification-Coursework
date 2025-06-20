@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1750222636.008408624, "rt":0.90, "ut":0.10, "st":0.04}}
+{"vcselab":{"timestamp_begin":1750222636.953500562, "rt":0.79, "ut":0.10, "st":0.02}}
+{"link":{"timestamp_begin":1750222637.779908876, "rt":0.20, "ut":0.10, "st":0.05}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750222635.763603256}
+{"VCS_COMP_START_TIME": 1750222635.763603256}
+{"VCS_COMP_END_TIME": 1750222639.500035292}
+{"VCS_USER_OPTIONS": "-R -full64 -sverilog ../FPMult.sv ../FPMult_ExecuteModule.sv ../FPMult_NormalizeModule.sv ../FPMult_PrepModule.sv ../FPMult_RoundModule.sv ../FPMult_tb.sv -debug_access+all"}
+{"vcs1": {"peak_mem": 368716}}
+{"stitch_vcselab": {"peak_mem": 246936}}

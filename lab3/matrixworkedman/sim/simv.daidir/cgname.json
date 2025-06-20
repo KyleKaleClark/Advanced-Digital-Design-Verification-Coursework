@@ -1,0 +1,38 @@
+{
+    "std": [
+        "std",
+        "reYIK",
+        "module",
+        1
+    ],
+    "processing_element": [
+        "processing_element",
+        "f1Npa",
+        "module",
+        7
+    ],
+    "matmul_tb": [
+        "matmul_tb",
+        "cQxi1",
+        "module",
+        2
+    ],
+    "FPAddSub_AlignShift2": [
+        "FPAddSub_AlignShift2",
+        "EYGt4",
+        "module",
+        4
+    ],
+    "FPAddSub_NormalizeShift1": [
+        "FPAddSub_NormalizeShift1",
+        "GmpgY",
+        "module",
+        5
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module",
+        3
+    ]
+}

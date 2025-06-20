@@ -1,7 +1,0 @@
-Command exited with non-zero status 255
-{"vcs1":{"timestamp_begin":1750202328.933233780, "rt":0.78, "ut":0.04, "st":0.02}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750202328.582666175}
-{"VCS_COMP_START_TIME": 1750202328.582666175}
-{"VCS_COMP_END_TIME": 1750202329.754999597}
-{"VCS_USER_OPTIONS": "-R -full64 -sverilog ../FPAddSub.sv ../FPAddSub_AlignModule.sv ../FPAddSub_AlignShift1.sv ../FPAddSub_AlignShift2.sv ../FPAddSub_ExceptionModule.sv ../FPAddSub_ExecutionModule.sv ../FPAddSub_NormalizeModule.sv ../FPAddSub_NormalizeShift1.sv ../FPAddSub_NormalizeShift2.sv ../FPAddSub_PrealignModule.sv ../FPAddSub_RoundModule.sv ../FPAddSub_tb.sv -debug_access+all -kdb -lca"}
-{"vcs1": {"peak_mem": 528836}}

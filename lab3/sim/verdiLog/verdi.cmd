@@ -1,755 +1,382 @@
-simSetSimulator "-vcssv" -exec "./simv" -args "-lca"
+verdiSetActWin -dock widgetDock_<Message>
+simSetSimulator "-vcssv" -exec "./simv" -args
 debImport "-dbdir" "./simv.daidir"
-debLoadSimResult /home/a24541_asu/ADDV/lab3/sim/novas.fsdb
+debLoadSimResult /home/a21164_asu/addv/lab3_pleasegod/sim/novas.fsdb
 wvCreateWindow
-verdiWindowResize -win $_Verdi_1 "820" "277" "900" "700"
+verdiWindowResize -win $_Verdi_1 "182" "23" "1685" "1215"
 verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-wvSelectGroup -win $_nWave2 {G1}
 verdiSetActWin -win $_nWave2
-wvGetSignalOpen -win $_nWave2
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions"
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut/AlignModule"
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/PrealignModule"
-wvSetPosition -win $_nWave2 {("G1" 8)}
-wvSetPosition -win $_nWave2 {("G1" 8)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-}
-wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 )} 
-wvSetPosition -win $_nWave2 {("G1" 8)}
-wvGetSignalClose -win $_nWave2
-wvSetCursor -win $_nWave2 55.118735 -snap {("G1" 1)}
-wvSetCursor -win $_nWave2 53.435720 -snap {("G1" 1)}
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
-wvSetRadix -win $_nWave2 -format Bin
-verdiSetActWin -dock widgetDock_<Inst._Tree>
-srcHBSelect "FPMult_tb_fp8_no_exceptions.uut.PrealignModule" -win $_nTrace1
-srcSetScope "FPMult_tb_fp8_no_exceptions.uut.PrealignModule" -delim "." -win \
-           $_nTrace1
-srcHBSelect "FPMult_tb_fp8_no_exceptions.uut.PrealignModule" -win $_nTrace1
-wvSelectSignal -win $_nWave2 {( "G1" 2 )} 
-verdiSetActWin -win $_nWave2
-wvSelectSignal -win $_nWave2 {( "G1" 2 )} 
-wvSetRadix -win $_nWave2 -format Bin
-verdiWindowResize -win $_Verdi_1 "779" "111" "900" "700"
-srcHBSelect "FPMult_tb_fp8_no_exceptions" -win $_nTrace1
-verdiSetActWin -dock widgetDock_<Inst._Tree>
-srcHBSelect "FPMult_tb_fp8_no_exceptions" -win $_nTrace1
-srcSetScope "FPMult_tb_fp8_no_exceptions" -delim "." -win $_nTrace1
-srcHBSelect "FPMult_tb_fp8_no_exceptions" -win $_nTrace1
-wvSetCursor -win $_nWave2 62.692301 -snap {("G1" 7)}
-verdiSetActWin -win $_nWave2
-wvSetCursor -win $_nWave2 161.569421 -snap {("G1" 5)}
-wvSetCursor -win $_nWave2 34.081050 -snap {("G1" 5)}
-wvSetCursor -win $_nWave2 47.124414 -snap {("G1" 5)}
-wvSelectSignal -win $_nWave2 {( "G1" 5 )} 
-wvSetCursor -win $_nWave2 305.046433 -snap {("G1" 7)}
-wvSetCursor -win $_nWave2 92.565814 -snap {("G1" 8)}
-wvSetCursor -win $_nWave2 72.369637 -snap {("G1" 8)}
-wvGetSignalOpen -win $_nWave2
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions"
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut"
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/PrealignModule"
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut/AlignModule"
-wvSetPosition -win $_nWave2 {("G2" 8)}
-wvSetPosition -win $_nWave2 {("G2" 8)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-}
-wvSelectSignal -win $_nWave2 {( "G2" 1 2 3 4 5 6 7 8 )} 
-wvSetPosition -win $_nWave2 {("G2" 8)}
-wvSetCursor -win $_nWave2 111.920484 -snap {("G2" 0)}
-wvSelectSignal -win $_nWave2 {( "G2" 1 2 3 4 5 6 7 8 )} 
-wvSetRadix -win $_nWave2 -format Bin
-srcHBSelect "FPMult_tb_fp8_no_exceptions.uut.AlignModule" -win $_nTrace1
-srcSetScope "FPMult_tb_fp8_no_exceptions.uut.AlignModule" -delim "." -win \
-           $_nTrace1
-srcHBSelect "FPMult_tb_fp8_no_exceptions.uut.AlignModule" -win $_nTrace1
-verdiSetActWin -dock widgetDock_<Inst._Tree>
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut/AlignShift1"
-verdiSetActWin -win $_nWave2
-wvSetPosition -win $_nWave2 {("G2" 3)}
-wvSetPosition -win $_nWave2 {("G1" 0)}
-wvSetPosition -win $_nWave2 {("G3" 3)}
-wvSetPosition -win $_nWave2 {("G3" 3)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-}
-wvSelectSignal -win $_nWave2 {( "G3" 1 2 3 )} 
-wvSetPosition -win $_nWave2 {("G3" 3)}
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut/AlignShift2"
-wvSetPosition -win $_nWave2 {("G4" 3)}
-wvSetPosition -win $_nWave2 {("G4" 3)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/MminP\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Shift\[1:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G5" \
-}
-wvSelectSignal -win $_nWave2 {( "G4" 1 2 3 )} 
-wvSetPosition -win $_nWave2 {("G4" 3)}
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule"
-wvSetPosition -win $_nWave2 {("G5" 9)}
-wvSetPosition -win $_nWave2 {("G5" 9)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/MminP\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Shift\[1:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G5" \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/OpMode} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Opr} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/PSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G6" \
-}
-wvSelectSignal -win $_nWave2 {( "G5" 1 2 3 4 5 6 7 8 9 )} 
-wvSetPosition -win $_nWave2 {("G5" 9)}
-wvSelectSignal -win $_nWave2 {( "G5" 1 2 3 4 5 6 7 8 9 )} 
-wvSetRadix -win $_nWave2 -format Bin
-verdiSetActWin -dock widgetDock_<Inst._Tree>
-srcHBSelect "FPMult_tb_fp8_no_exceptions" -win $_nTrace1
-srcSetScope "FPMult_tb_fp8_no_exceptions" -delim "." -win $_nTrace1
-srcHBSelect "FPMult_tb_fp8_no_exceptions" -win $_nTrace1
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule"
-verdiSetActWin -win $_nWave2
-wvSetPosition -win $_nWave2 {("G6" 3)}
-wvSetPosition -win $_nWave2 {("G6" 3)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/MminP\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Shift\[1:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G5" \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/OpMode} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Opr} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/PSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G6" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G7" \
-}
-wvSelectSignal -win $_nWave2 {( "G6" 1 2 3 )} 
-wvSetPosition -win $_nWave2 {("G6" 3)}
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1"
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2"
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/PrealignModule"
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut/RoundModule"
-wvSetPosition -win $_nWave2 {("G9" 20)}
-wvSetPosition -win $_nWave2 {("G9" 20)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/MminP\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Shift\[1:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G5" \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/OpMode} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Opr} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/PSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G6" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G7" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/MminP\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G8" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ExpOF\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ExpOK\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/FG} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/MSBShift} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NegE} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NormE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NormM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/PSSum\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ZeroSum} \
-}
-wvAddSignal -win $_nWave2 -group {"G9" \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Ctrl} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/EOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/ExpAdd} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/FSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Fsgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/G} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/NormE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/NormM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundUp} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundUpM\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Z\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/ZeroSum} \
-}
-wvAddSignal -win $_nWave2 -group {"G10" \
-}
-wvSelectSignal -win $_nWave2 {( "G9" 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 \
-           18 19 20 )} 
-wvSetPosition -win $_nWave2 {("G9" 20)}
-wvGetSignalSetScope -win $_nWave2 "/FPMult_tb_fp8_no_exceptions/uut/AlignModule"
-wvGetSignalSetScope -win $_nWave2 \
-           "/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule"
-wvSetPosition -win $_nWave2 {("G10" 13)}
-wvSetPosition -win $_nWave2 {("G10" 13)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/MminP\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Shift\[1:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G5" \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/OpMode} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Opr} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/PSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G6" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G7" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/MminP\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G8" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ExpOF\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ExpOK\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/FG} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/MSBShift} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NegE} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NormE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NormM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/PSSum\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ZeroSum} \
-}
-wvAddSignal -win $_nWave2 -group {"G9" \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Ctrl} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/EOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/ExpAdd} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/FSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Fsgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/G} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/NormE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/NormM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundUp} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundUpM\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Z\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/ZeroSum} \
-}
-wvAddSignal -win $_nWave2 -group {"G10" \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/DivideByZero} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/EOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Flags\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Inexact} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/InputExc\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Invalid} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/NegE} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Overflow} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/P\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Underflow} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Z\[7:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G11" \
-}
-wvSelectSignal -win $_nWave2 {( "G10" 1 2 3 4 5 6 7 8 9 10 11 12 13 )} 
-wvSetPosition -win $_nWave2 {("G10" 13)}
-wvSetPosition -win $_nWave2 {("G10" 13)}
-wvSetPosition -win $_nWave2 {("G10" 13)}
-wvAddSignal -win $_nWave2 -clear
-wvAddSignal -win $_nWave2 -group {"G1" \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/A\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Aout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/B\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Bout\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/PrealignModule/operation} \
-}
-wvAddSignal -win $_nWave2 -group {"G2" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/A\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/B\[6:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Mmin\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/ShiftDet\[5:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignModule/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G3" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/MminP\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G4" \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/MminP\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/AlignShift2/Shift\[1:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G5" \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmax\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Mmin\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/OpMode} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Opr} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/PSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/ExecutionModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G6" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeModule/Sum\[8:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G7" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/MminP\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/Mmin\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift1/Shift\[2:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G8" \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/CExp\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ExpOF\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ExpOK\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/FG} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/MSBShift} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NegE} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NormE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/NormM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/PSSum\[8:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/Shift\[2:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/NormalizeShift2/ZeroSum} \
-}
-wvAddSignal -win $_nWave2 -group {"G9" \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Ctrl} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/EOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/ExpAdd} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/FSgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Fsgn} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/G} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/MaxAB} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/NormE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/NormM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundE\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundM\[3:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundUp} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/RoundUpM\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Sa} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Sb} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/Z\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/RoundModule/ZeroSum} \
-}
-wvAddSignal -win $_nWave2 -group {"G10" \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/DivideByZero} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/EOF} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Flags\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Inexact} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/InputExc\[4:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Invalid} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/NegE} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Overflow} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/P\[7:0\]} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/R} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/S} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Underflow} \
-{/FPMult_tb_fp8_no_exceptions/uut/Exceptionmodule/Z\[7:0\]} \
-}
-wvAddSignal -win $_nWave2 -group {"G11" \
-}
-wvSelectSignal -win $_nWave2 {( "G10" 1 2 3 4 5 6 7 8 9 10 11 12 13 )} 
-wvSetPosition -win $_nWave2 {("G10" 13)}
-wvGetSignalClose -win $_nWave2
-verdiDockWidgetMaximize -dock windowDock_nWave_2
-wvSelectSignal -win $_nWave2 {( "G9" 6 )} 
-wvScrollUp -win $_nWave2 37
+wvRestoreSignal -win $_nWave2 \
+           "/home/a21164_asu/addv/lab3_pleasegod/sim/strider.rc" \
+           -overWriteAutoAlias on -appendSignals on
+wvSelectSignal -win $_nWave2 {( "row1" 2 )} 
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWavedebExit
+rollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollUp -win $_nWave2 1
+wvScrollUp -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvSelectSignal -win $_nWave2 {( "row1" 12 )} 
 wvScrollUp -win $_nWave2 1
 wvScrollUp -win $_nWave2 1
 wvScrollUp -win $_nWave2 1
 wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
 wvScrollDown -win $_nWave2 0
 wvScrollDown -win $_nWave2 0
 wvScrollDown -win $_nWave2 0
 wvScrollDown -win $_nWave2 0
 wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvScrollDown -win $_nWave2 0
-wvSelectSignal -win $_nWave2 {( "G5" 4 )} 
-wvSelectSignal -win $_nWave2 {( "G4" 3 )} 
-wvSelectGroup -win $_nWave2 {G5}
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvSelectSignal -win $_nWave2 {( "G8" 9 )} 
-wvSelectSignal -win $_nWave2 {( "G8" 9 )} 
-wvSetRadix -win $_nWave2 -format Bin
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 4
-wvScrollDown -win $_nWave2 5
-wvScrollDown -win $_nWave2 4
-wvScrollUp -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 0
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvScrollUp -win $_nWave2 1
-wvSelectSignal -win $_nWave2 {( "G5" 5 )} 
-wvSelectSignal -win $_nWave2 {( "G7" 2 )} 
-wvSelectSignal -win $_nWave2 {( "G7" 2 )} 
-wvSetRadix -win $_nWave2 -format Bin
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 1
-wvSelectSignal -win $_nWave2 {( "G7" 2 )} 
-wvSelectGroup -win $_nWave2 {G6}
-wvSelectGroup -win $_nWave2 {G7}
-wvSelectGroup -win $_nWave2 {G7}
-wvSelectGroup -win $_nWave2 {G7}
-wvSelectGroup -win $_nWave2 {G6}
-wvSetPosition -win $_nWave2 {("G6" 0)}
-wvSetPosition -win $_nWave2 {("G6" 1)}
-wvSetPosition -win $_nWave2 {("G6" 2)}
-wvSetPosition -win $_nWave2 {("G7" 0)}
-wvSetPosition -win $_nWave2 {("G7" 3)}
-wvSetPosition -win $_nWave2 {("G8" 2)}
-wvSetPosition -win $_nWave2 {("G8" 6)}
-wvSetPosition -win $_nWave2 {("G8" 10)}
-wvSetPosition -win $_nWave2 {("G9" 2)}
-wvSetPosition -win $_nWave2 {("G9" 7)}
-wvSetPosition -win $_nWave2 {("G9" 5)}
-wvSetPosition -win $_nWave2 {("G9" 3)}
-wvSetPosition -win $_nWave2 {("G8" 12)}
-wvSetPosition -win $_nWave2 {("G8" 7)}
-wvSetPosition -win $_nWave2 {("G8" 2)}
-wvSetPosition -win $_nWave2 {("G7" 3)}
-wvSetPosition -win $_nWave2 {("G7" 1)}
-wvSetPosition -win $_nWave2 {("G6" 3)}
-wvSetPosition -win $_nWave2 {("G6" 1)}
-wvSetPosition -win $_nWave2 {("G6" 0)}
+wvSelectSignal -win $_nWave2 {( "row1" 11 )} 
+wvSetPosition -win $_nWave2 {("row1" 11)}
+wvSetPosition -win $_nWave2 {("row1" 10)}
+wvSetPosition -win $_nWave2 {("row1" 9)}
+wvSetPosition -win $_nWave2 {("row1" 8)}
+wvSetPosition -win $_nWave2 {("row1" 9)}
+wvSetPosition -win $_nWave2 {("row1" 10)}
+wvSetPosition -win $_nWave2 {("row1" 11)}
 wvMoveSelected -win $_nWave2
-wvSelectAll -win $_nWave2
-wvSelectSignal -win $_nWave2 {( "G1" 1 2 3 4 5 6 7 8 )} {( "G2" 1 2 3 4 5 6 7 \
-           8 )} {( "G3" 1 2 3 )} {( "G4" 1 2 3 )} {( "G5" 1 2 3 4 5 6 7 8 9 )} \
-           {( "G6" 1 2 3 )} {( "G7" 1 2 3 )} {( "G8" 1 2 3 4 5 6 7 8 9 10 11 \
-           12 13 )} {( "G9" 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 \
-           )} {( "G10" 1 2 3 4 5 6 7 8 9 10 11 12 13 )} 
-wvSetRadix -win $_nWave2 -format Bin
-wvSetCursor -win $_nWave2 414.757272 -snap {("G9" 0)}
-wvSelectSignal -win $_nWave2 {( "G9" 2 )} 
-wvScrollDown -win $_nWave2 2
+wvSetPosition -win $_nWave2 {("row1" 11)}
+wvSelectSignal -win $_nWave2 {( "row1" 5 6 7 8 9 10 11 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("row2" 2)}
+wvSetPosition -win $_nWave2 {("row1" 4)}
+wvSelectSignal -win $_nWave2 {( "row1" 1 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("row1" 4)}
+wvSetPosition -win $_nWave2 {("row1" 3)}
+wvSelectSignal -win $_nWave2 {( "G1" 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 \
+           19 20 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("row4" 4)}
+wvSetPosition -win $_nWave2 {("row1" 3)}
+wvSelectSignal -win $_nWave2 {( "G1" 1 )} 
+wvSelectSignal -win $_nWave2 {( "row1" 1 2 3 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("row1" 3)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSelectGroup -win $_nWave2 {G1}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("G8" 0)}
+wvAddGroup -win $_nWave2 {G8}
+wvRenameGroup -win $_nWave2 {G8} {APB Stuff}
+wvSelectGroup -win $_nWave2 {APB Stuff}
+wvSetPosition -win $_nWave2 {("row1" 4)}
+wvSetPosition -win $_nWave2 {("row1" 3)}
+wvSetPosition -win $_nWave2 {("row1" 1)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvMoveSelected -win $_nWave2
+wvSetPosition -win $_nWave2 {("G1" 1)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PSEL" -line 49 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("APB Stuff" 0)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PSEL"
+wvSetPosition -win $_nWave2 {("APB Stuff" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PENABLE" -line 50 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PENABLE"
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PWRITE" -line 51 -pos 1 -win $_nTrace1
+srcAction -pos 50 6 3 -win $_nTrace1 -name "PWRITE" -ctrlKey off
+srcBackwardHistory -win $_nTrace1
+srcHBSelect "matmul_tb" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PWRITE" -line 51 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PWRITE"
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PADDR" -line 52 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PADDR\[3:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSelectSignal -win $_nWave2 {( "APB Stuff" 3 )} 
+verdiSetActWin -win $_nWave2
+wvSelectSignal -win $_nWave2 {( "APB Stuff" 4 )} 
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PWDATA" -line 53 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PWDATA\[15:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PRDATA" -line 54 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PRDATA\[15:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "PREADY" -line 55 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvAddSignal -win $_nWave2 "/matmul_tb/PREADY"
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 7)}
+wvSelectSignal -win $_nWave2 {( "APB Stuff" 7 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+verdiSetActWin -win $_nWave2
+srcDeselectAll -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
 wvScrollDown -win $_nWave2 1
-wvScrollDown -win $_nWave2 6
-wvSelectSignal -win $_nWave2 {( "G10" 8 )} 
 wvScrollDown -win $_nWave2 0
-verdiWindowResize -win $_Verdi_1 "779" "111" "900" "700"
+wvScrollDown -win $_nWave2 0
+verdiSetActWin -win $_nWave2
+srcHBSelect "FPAddSub_NormalizeShift1" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "matmul_tb" -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul" -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "state" -line 125 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("G1" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 0)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/state\[3:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+verdiSetActWin -win $_nWave2
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_mat_a" -line 226 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 7)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/address_mat_a\[9:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 7)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 8)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_mat_b" -line 227 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 7)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 8)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/address_mat_b\[9:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 8)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 9)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_mat_c" -line 228 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("row1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 9)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/address_mat_c\[9:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 9)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 10)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_stride_a" -line 229 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 9)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 10)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/address_stride_a\[7:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 10)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 11)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_stride_b" -line 230 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 10)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 11)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/address_stride_b\[7:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 11)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 12)}
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_stride_c" -line 231 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 12)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/address_stride_c\[7:0\]"
+wvSetPosition -win $_nWave2 {("APB Stuff" 12)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 13)}
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+verdiSetActWin -win $_nWave2
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4" -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -delim "." \
+           -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul.u_matmul_4x4.u_systolic_pe_matrix" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "all_flags" -line 779 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("row4" 1)}
+wvSetPosition -win $_nWave2 {("row4" 2)}
+wvSetPosition -win $_nWave2 {("row4" 3)}
+wvSetPosition -win $_nWave2 {("row4" 4)}
+wvSetPosition -win $_nWave2 {("G7" 0)}
+wvAddSignal -win $_nWave2 \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags\[4:0\]"
+wvSetPosition -win $_nWave2 {("G7" 0)}
+wvSetPosition -win $_nWave2 {("G7" 1)}
+wvSetPosition -win $_nWave2 {("G7" 1)}
+verdiSetActWin -win $_nWave2
+wvScrollDown -win $_nWave2 1
+wvSelectGroup -win $_nWave2 {G7}
+wvRenameGroup -win $_nWave2 {G7} {flags}
+wvSelectSignal -win $_nWave2 {( "flags" 1 )} 
+wvShowOneTraceSignals -win $_nWave2 -signal \
+           "/matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags\[4:0\]" \
+           -driver
+wvSelectGroup -win $_nWave2 \
+           {flags//matmul_tb/u_matmul/u_matmul_4x4/u_systolic_pe_matrix/all_flags@10000(1ps)#ActiveDriver}
+wvScrollUp -win $_nWave2 17
+wvScrollUp -win $_nWave2 3
+verdiWindowResize -win $_Verdi_1 "489" "19" "1685" "1371"
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvSetCursor -win $_nWave2 764188.074889 -snap {("APB Stuff" 12)}
+wvSelectSignal -win $_nWave2 {( "row4" 4 )} 
+verdiWindowResize -win $_Verdi_1 "133" "19" "1192" "1371"
+verdiWindowResize -win $_Verdi_1 "133" "19" "1122" "1371"
+wvZoomOut -win $_nWave2
+verdiWindowResize -win $_Verdi_1 "819" "19" "436" "1371"
+verdiWindowResize -win $_Verdi_1 "4" "19" "1251" "1371"
+srcHBSelect "FPAddSub_NormalizeShift1" -win $_nTrace1
+srcHBSelect "matmul_tb" -win $_nTrace1
+srcSetScope "matmul_tb" -delim "." -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "matmul_tb" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "start" -line 46 -pos 1 -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "done" -line 47 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 8)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 9)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 8)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 7)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvAddSignal -win $_nWave2 "/matmul_tb/done"
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSelectSignal -win $_nWave2 {( "APB Stuff" 5 )} 
+wvCut -win $_nWave2
+wvSetPosition -win $_nWave2 {("APB Stuff" 5)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+verdiSetActWin -win $_nWave2
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul" -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "done_mat_mul" -line 173 -pos 1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 4)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/done_mat_mul"
+wvSetPosition -win $_nWave2 {("APB Stuff" 1)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+srcDeselectAll -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "start_mat_mul" -line 173 -pos 1 -win $_nTrace1
+wvSetPosition -win $_nWave2 {("G1" 0)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 6)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvAddSignal -win $_nWave2 "/matmul_tb/u_matmul/start_mat_mul"
+wvSetPosition -win $_nWave2 {("APB Stuff" 2)}
+wvSetPosition -win $_nWave2 {("APB Stuff" 3)}
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+verdiSetActWin -win $_nWave2
+wvScrollDown -win $_nWave2 1
+wvScrollDown -win $_nWave2 1
+wvScrollUp -win $_nWave2 1
+wvScrollUp -win $_nWave2 1
+wvScrollDown -win $_nWave2 0
+verdiWindowResize -win $_Verdi_1 "4" "19" "1251" "1237"
+wvScrollDown -win $_nWave2 0
+wvScrollDown -win $_nWave2 0
+wvSaveSignal -win $_nWave2 "/home/a21164_asu/addv/lab3_pleasegod/sim/allvals.rc"
+debExit

@@ -1,7 +1,7 @@
 rc file Version 1.0
 
 [Design]
-COMPILE_PATH=/home/a24541_asu/ADDV/lab3/sim
+COMPILE_PATH=/home/a21164_asu/addv/lab3_pleasegod/sim
 VCS_HOME=/usr/local2/synopsys/vcs_2022.06
 VERDI_HOME=/usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1
 SystemC=FALSE
@@ -9,7 +9,7 @@ UUM=FALSE
 KDB=TRUE
 USE_NOVAS_HOME=FALSE
 COSIM=FALSE
-TOP=FPAddSub_AlignShift2 FPAddSub_NormalizeShift1 FPMult_tb_fp8_no_exceptions 
+TOP=matmul_tb FPAddSub_AlignShift2 FPAddSub_NormalizeShift1 
 OPTION=-ssv -ssy 
 ELAB_OPTION=-ssv -ssy 
 ELAB=TRUE

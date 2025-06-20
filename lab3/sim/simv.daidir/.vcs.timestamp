@@ -1,5 +1,5 @@
 0
-45
+51
 +itf+/usr/local2/synopsys/vcs_2022.06/linux64/lib/vcsdp_lite.tab
 +vcsd1
 +vpi
@@ -22,7 +22,6 @@
 -Mxllcflags=
 -P
 -Xufe=2steps
--Xvcs_run_simv=1
 -debug_access+all
 -fsdb
 -full64
@@ -33,7 +32,9 @@
 -sverilog
 /usr/local2/synopsys/vcs_2022.06/linux64/bin/vcs1
 /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/verdi.tab
-../FPAddSub.sv
+../matmul.sv
+../matmul_with_ram.sv
+../matmul_with_ram_tb.sv
 ../FPAddSub_AlignModule.sv
 ../FPAddSub_AlignShift1.sv
 ../FPAddSub_AlignShift2.sv
@@ -44,7 +45,12 @@
 ../FPAddSub_NormalizeShift2.sv
 ../FPAddSub_PrealignModule.sv
 ../FPAddSub_RoundModule.sv
-../FPAddSub_tb.sv
+../FPAddSub.sv
+../FPMult_ExecuteModule.sv
+../FPMult_NormalizeModule.sv
+../FPMult_PrepModule.sv
+../FPMult_RoundModule.sv
+../FPMult.sv
 60
 which_declare=declare -f
 XRDP_SOCKET_PATH=/run/xrdp
@@ -52,10 +58,10 @@ XRDP_SESSION=1
 XRDP_PULSE_SOURCE_SOCKET=xrdp_chansrv_audio_in_socket_12
 XRDP_PULSE_SINK_SOCKET=xrdp_chansrv_audio_out_socket_12
 XMODIFIERS=@im=ibus
-XDG_SESSION_ID=c1089
-XDG_RUNTIME_DIR=/run/user/1715951
+XDG_SESSION_ID=c571
+XDG_RUNTIME_DIR=/run/user/1533248
 XDG_MENU_PREFIX=gnome-
-XDG_DATA_DIRS=/home/a24541_asu/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+XDG_DATA_DIRS=/home/a21164_asu/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
 XDG_CURRENT_DESKTOP=GNOME
 VTE_VERSION=5204
 VMR_MODE_FLAG=64
@@ -72,13 +78,13 @@ VCS_ARG_ADDED_FOR_TMP=1
 VCS_ARCH=linux64
 UNAME=/bin/uname
 TOOL_HOME=/usr/local2/synopsys/vcs_2022.06/linux64
-SSH_AUTH_SOCK=/run/user/1715951/keyring/ssh
+SSH_AUTH_SOCK=/run/user/1533248/keyring/ssh
 SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
-SSH_AGENT_PID=158607
+SSH_AGENT_PID=112387
 SNPS_VERDI_INTERNAL_LP_XML_NEW_FLOW=1
 SNPS_VCS_CLANG_PATH=/usr/local2/synopsys/vcs_2022.06/linux64/clang
 SNPS_INTERNAL_VCS_LINUX_OS=linux
-SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/158434,unix/unix:/tmp/.ICE-unix/158434
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/112211,unix/unix:/tmp/.ICE-unix/112211
 SCRNAME=vcs
 SCRIPT_NAME=vcs
 QT_IM_MODULE=ibus
@@ -88,39 +94,46 @@ OVA_UUM=0
 OS_LDFLAGS=
 OSTYPE=linux
 MFLAGS=
-MAKE_TERMOUT=/dev/pts/1
-MAKE_TERMERR=/dev/pts/1
+MAKE_TERMOUT=/dev/pts/2
+MAKE_TERMERR=/dev/pts/2
 MAKELEVEL=1
 MAKEFLAGS=
 LESSOPEN=||/usr/bin/lesspipe.sh %s
 LC_ALL=C
-KRB5CCNAME=FILE:/tmp/krb5cc_1715951
+KRB5CCNAME=FILE:/tmp/krb5cc_1533248
 HOSTTYPE=x86_64-linux
 HISTCONTROL=ignoreboth
-GROUP=a24541_asu
-GNOME_TERMINAL_SERVICE=:1.81
-GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/fdcd8741_6ae6_40f5_84dd_3d43c549d077
+GROUP=a21164_asu
+GNOME_TERMINAL_SERVICE=:1.75
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/76a39e7a_f17e_4f49_bca0_cd19ede83b8f
 GNOME_DESKTOP_SESSION_ID=this-is-deprecated
 GJS_DEBUG_TOPICS=JS ERROR;JS LOG
 GJS_DEBUG_OUTPUT=stderr
-DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1715951/bus
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1533248/bus
 COLORTERM=truecolor
 BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@_}
 0
 0
-14
-1750196892 ../FPAddSub_tb.sv
-1750198890 ../FPAddSub_RoundModule.sv
-1750178688 ../FPAddSub_PrealignModule.sv
-1750202353 ../FPAddSub_NormalizeShift2.sv
-1750198776 ../FPAddSub_NormalizeShift1.sv
-1750200574 ../FPAddSub_NormalizeModule.sv
-1750178604 ../FPAddSub_ExecutionModule.sv
-1750175588 ../FPAddSub_ExceptionModule.sv
-1750175012 ../FPAddSub_AlignShift2.sv
-1750174980 ../FPAddSub_AlignShift1.sv
-1750198273 ../FPAddSub_AlignModule.sv
-1750202323 ../FPAddSub.sv
+21
+1750294692 ../FPMult.sv
+1750294791 ../FPMult_RoundModule.sv
+1750294660 ../FPMult_PrepModule.sv
+1750287743 ../FPMult_NormalizeModule.sv
+1750287743 ../FPMult_ExecuteModule.sv
+1750287743 ../FPAddSub.sv
+1750287743 ../FPAddSub_RoundModule.sv
+1750287743 ../FPAddSub_PrealignModule.sv
+1750300479 ../FPAddSub_NormalizeShift2.sv
+1750287743 ../FPAddSub_NormalizeShift1.sv
+1750299813 ../FPAddSub_NormalizeModule.sv
+1750287743 ../FPAddSub_ExecutionModule.sv
+1750287743 ../FPAddSub_ExceptionModule.sv
+1750287743 ../FPAddSub_AlignShift2.sv
+1750287743 ../FPAddSub_AlignShift1.sv
+1750287743 ../FPAddSub_AlignModule.sv
+1750312095 ../matmul_with_ram_tb.sv
+1750311815 ../matmul_with_ram.sv
+1750309998 ../matmul.sv
 1673520352 /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/verdi.tab
 1674705950 /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcsdp_lite.tab
 4
@@ -128,5 +141,5 @@ BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty
 1674707009 /usr/local2/synopsys/vcs_2022.06/linux64/lib/liberrorinf.so
 1674706922 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libsnpsmalloc.so
 1674707006 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvfs.so
-1750202362 simv.daidir
+1750312109 simv.daidir
 -1 partitionlib

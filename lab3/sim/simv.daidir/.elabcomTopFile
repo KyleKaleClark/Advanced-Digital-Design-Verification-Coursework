@@ -1,1 +1,1 @@
-FPAddSub_AlignShift2 FPAddSub_NormalizeShift1 FPMult_tb_fp8_no_exceptions
+matmul_tb FPAddSub_AlignShift2 FPAddSub_NormalizeShift1

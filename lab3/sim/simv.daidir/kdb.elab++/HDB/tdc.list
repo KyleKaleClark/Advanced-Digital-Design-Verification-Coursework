@@ -9,4 +9,11 @@
 ../FPAddSub_NormalizeShift2.sv
 ../FPAddSub_PrealignModule.sv
 ../FPAddSub_RoundModule.sv
-../FPAddSub_tb.sv
+../FPMult.sv
+../FPMult_ExecuteModule.sv
+../FPMult_NormalizeModule.sv
+../FPMult_PrepModule.sv
+../FPMult_RoundModule.sv
+../matmul.sv
+../matmul_with_ram.sv
+../matmul_with_ram_tb.sv

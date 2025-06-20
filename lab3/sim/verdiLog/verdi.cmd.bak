@@ -1,6 +1,24 @@
-simSetSimulator "-vcssv" -exec "./simv" -args "-lca"
+simSetSimulator "-vcssv" -exec "./simv" -args
 debImport "-dbdir" "./simv.daidir"
-debLoadSimResult /home/a24541_asu/ADDV/lab3/sim/novas.fsdb
+debLoadSimResult /home/a21164_asu/addv/lab3_pleasegod/sim/novas.fsdb
 wvCreateWindow
-verdiWindowResize -win $_Verdi_1 "820" "277" "900" "700"
+verdiWindowResize -win $_Verdi_1 "192" "33" "1685" "1215"
 verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+verdiSetActWin -win $_nWave2
+wvRestoreSignal -win $_nWave2 \
+           "/home/a21164_asu/addv/lab3_pleasegod/sim/strider.rc" \
+           -overWriteAutoAlias on -appendSignals on
+wvScrollUp -win $_nWave2 3
+wvSetCursor -win $_nWave2 230543.559413 -snap {("G1" 1)}
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+srcHBSelect "matmul_tb" -win $_nTrace1
+srcHBSelect "matmul_tb" -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+srcSetScope "matmul_tb.u_matmul" -delim "." -win $_nTrace1
+srcHBSelect "matmul_tb.u_matmul" -win $_nTrace1
+srcDeselectAll -win $_nTrace1
+srcSelect -signal "address_stride_a" -line 229 -pos 1 -win $_nTrace1
+srcAction -pos 228 15 8 -win $_nTrace1 -name "address_stride_a" -ctrlKey off
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+srcDeselectAll -win $_nTrace1
+debExit

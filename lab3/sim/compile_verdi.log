@@ -1,5 +1,5 @@
                          Chronologic VCS (TM)
-      Version T-2022.06-SP2-1_Full64 -- Tue Jun 17 23:19:19 2025
+      Version T-2022.06-SP2-1_Full64 -- Thu Jun 19 05:48:27 2025
 
                     Copyright (c) 1991 - 2023 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -23,12 +23,10 @@ Warning-[LCA_FEATURES_ENABLED] Usage warning
   information regarding list of LCA features please refer to Chapter "LCA 
   features" in the VCS Release Notes
 
-Warning : License for product VCS-BASE-COMPILE(946) will expire within 2 days, on: 18-jun-2025.
-
-If you would like to temporarily disable this message, set 
- the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
-before expiration that you want this message to start (the minimum is 0).
-Parsing design file '../FPAddSub.sv'
+Warning:Unable to obtain Number of Days before Expiry
+Parsing design file '../matmul.sv'
+Parsing design file '../matmul_with_ram.sv'
+Parsing design file '../matmul_with_ram_tb.sv'
 Parsing design file '../FPAddSub_AlignModule.sv'
 Parsing design file '../FPAddSub_AlignShift1.sv'
 Parsing design file '../FPAddSub_AlignShift2.sv'
@@ -39,70 +37,217 @@ Parsing design file '../FPAddSub_NormalizeModule.sv'
 Warning-[DCTTSW] Decimal constant truncated
   Constant '8' is truncated to 3 bits: 0.
   "../FPAddSub_NormalizeModule.sv", 28
-  Source info: 	else Shift = 3'd8;   
+  Source info: 	else if (Sum[1]) Shift = 3'd8;         
+
+
+Warning-[DCTTSW] Decimal constant truncated
+  Constant '9' is truncated to 3 bits: 1.
+  "../FPAddSub_NormalizeModule.sv", 29
+  Source info: 	else Shift = 3'd9;   
 
 Parsing design file '../FPAddSub_NormalizeShift1.sv'
 Parsing design file '../FPAddSub_NormalizeShift2.sv'
 Parsing design file '../FPAddSub_PrealignModule.sv'
 Parsing design file '../FPAddSub_RoundModule.sv'
-Parsing design file '../FPAddSub_tb.sv'
+Parsing design file '../FPAddSub.sv'
+Parsing design file '../FPMult_ExecuteModule.sv'
+Parsing design file '../FPMult_NormalizeModule.sv'
+Parsing design file '../FPMult_PrepModule.sv'
+Parsing design file '../FPMult_RoundModule.sv'
+Parsing design file '../FPMult.sv'
 Top Level Modules:
+       matmul_tb
        FPAddSub_AlignShift2
        FPAddSub_NormalizeShift1
-       FPMult_tb_fp8_no_exceptions
 TimeScale is 1 ns / 1 ps
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 138
+  Implicit wire 'bram_addr_a_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 139
+  Implicit wire 'bram_wdata_a_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 140
+  Implicit wire 'bram_we_a_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 151
+  Implicit wire 'bram_addr_b_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 152
+  Implicit wire 'bram_wdata_b_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 153
+  Implicit wire 'bram_we_b_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 164
+  Implicit wire 'bram_addr_c_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 165
+  Implicit wire 'bram_wdata_c_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 166
+  Implicit wire 'bram_we_c_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 134
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 10-bit port "addr1" of module
+  "ram", instance "matrix_A".
+  Expression: bram_addr_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 134
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "d1" of module 
+  "ram", instance "matrix_A".
+  Expression: bram_wdata_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 134
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 4-bit port "we1" of module 
+  "ram", instance "matrix_A".
+  Expression: bram_we_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 134
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "q1" of module 
+  "ram", instance "matrix_A".
+  Expression: bram_rdata_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 147
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 10-bit port "addr1" of module
+  "ram", instance "matrix_B".
+  Expression: bram_addr_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 147
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "d1" of module 
+  "ram", instance "matrix_B".
+  Expression: bram_wdata_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 147
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 4-bit port "we1" of module 
+  "ram", instance "matrix_B".
+  Expression: bram_we_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 147
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "q1" of module 
+  "ram", instance "matrix_B".
+  Expression: bram_rdata_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 160
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 10-bit port "addr1" of module
+  "ram", instance "matrix_C".
+  Expression: bram_addr_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 160
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "d1" of module 
+  "ram", instance "matrix_C".
+  Expression: bram_wdata_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 160
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 4-bit port "we1" of module 
+  "ram", instance "matrix_C".
+  Expression: bram_we_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 160
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "q1" of module 
+  "ram", instance "matrix_C".
+  Expression: bram_rdata_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 414
+  Use +lint=PCWM for more details.
+
 Starting vcs inline pass...
 
-3 modules and 0 UDP read.
-recompiling module FPAddSub_AlignShift2
-recompiling module FPAddSub_NormalizeShift1
-recompiling module FPMult_tb_fp8_no_exceptions
-All of 3 modules done
-Warning : License for product VCS-BASE-COMPILE(946) will expire within 2 days, on: 18-jun-2025.
-
-If you would like to temporarily disable this message, set 
- the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
-before expiration that you want this message to start (the minimum is 0).
-make[1]: Entering directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
-make[1]: Leaving directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
-/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 224785 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
-make[1]: Entering directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
+4 modules and 0 UDP read.
+recompiling module matmul_tb
+	However, due to incremental compilation, only 1 module needs to be compiled. 
+Warning:Unable to obtain Number of Days before Expiry
+make[1]: Entering directory '/home/a21164_asu/addv/lab3_pleasegod/sim/csrc'
+make[1]: Leaving directory '/home/a21164_asu/addv/lab3_pleasegod/sim/csrc'
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 372851 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+make[1]: Entering directory '/home/a21164_asu/addv/lab3_pleasegod/sim/csrc'
 rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
 if [ -x ../simv ]; then chmod a-x ../simv; fi
-g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _224612_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _372678_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
 ../simv up to date
-make[1]: Leaving directory '/home/a24541_asu/ADDV/lab3/sim/csrc'
-
-Warning-[LCA_FEATURES_ENABLED] Usage warning
-  LCA features enabled by '-lca' argument on the command line.  For more 
-  information regarding list of LCA features please refer to Chapter "LCA 
-  features" in the VCS Release Notes
-
-Chronologic VCS simulator copyright 1991-2022
-Contains Synopsys proprietary information.
-Compiler version T-2022.06-SP2-1_Full64; Runtime version T-2022.06-SP2-1_Full64;  Jun 17 23:19 2025
-Warning : License for product VCS-BASE-RUNTIME(947) will expire within 2 days, on: 18-jun-2025.
-
-If you would like to temporarily disable this message, set 
- the VCS_LIC_EXPIRE_WARNING environment variable to the number of days
-before expiration that you want this message to start (the minimum is 0).
-=== SystemVerilog FP8 Multiply Testbench (No Exceptions) ===
-*Verdi* Loading libsscore_vcs202206.so
-FSDB Dumper for VCS, Release Verdi_T-2022.06-SP2-1, Linux x86_64/64bit, 01/12/2023
-(C) 1996 - 2023 by Synopsys, Inc.
-*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
-*Verdi* : Create FSDB file 'novas.fsdb'
-*Verdi* : Begin traversing the scopes, layer (0).
-*Verdi* : End of traversing.
-Test 1: 1.0 + 1.0 = 2.0: a = 00110000, b = 00110000 -> result = 01001000 (expected = 01000000) ❌ FAIL
-Test 2: 1.0 - 1.0 = 0.0: a = 00111000, b = 00111000 -> result = 01001100 (expected = 00000000) ❌ FAIL
-Test 3: 1.5 + 2.0 = 3.5: a = 00111000, b = 01000000 -> result = 01011000 (expected = 01001100) ❌ FAIL
-=== DONE ===
-$finish called from file "../FPAddSub_tb.sv", line 90.
-$finish at simulation time                 3000
-           V C S   S i m u l a t i o n   R e p o r t 
-Time: 3000 ps
-CPU Time:      0.190 seconds;       Data structure size:   0.0Mb
-Tue Jun 17 23:19:22 2025
-CPU time: .277 seconds to compile + .206 seconds to elab + .213 seconds to link + .221 seconds in simulation
+make[1]: Leaving directory '/home/a21164_asu/addv/lab3_pleasegod/sim/csrc'
+CPU time: .390 seconds to compile + .213 seconds to elab + .214 seconds to link
 Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)

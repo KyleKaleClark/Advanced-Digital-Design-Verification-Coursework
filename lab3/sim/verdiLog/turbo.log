@@ -1,2 +1,5 @@
 Command Line: /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/platform/LINUXAMD64/bin/Novas -dbdir ./simv.daidir -ssf novas.fsdb -nologo
 uname(Linux nc-asu6-l01.apporto.com 4.18.0-372.19.1.el8_6.x86_64 #1 SMP Mon Jul 18 11:14:02 EDT 2022 x86_64)
+Disabled AskUser2 Message (Response 0): Close all windows and exit verdi?
+au time 766.508404 16.208994 8.977601 delta 407109632 407109632 total 972828672 972828672
+6

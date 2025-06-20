@@ -2644,6 +2644,36 @@ static inline U asm_bsf (U in)
 #ifdef __cplusplus
 extern "C" {
 #endif
+void  hs_0_M_6_21__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_6_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_6_1__simv_daidir (UB  * pcode, scalar  val, U  I611, scalar  * I1408, U  did);
+void  hs_0_M_6_2__simv_daidir (UB  * pcode);
+void  hs_0_M_6_11__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_7_21__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_7_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_7_1__simv_daidir (UB  * pcode, scalar  val, U  I611, scalar  * I1408, U  did);
+void  hs_0_M_7_2__simv_daidir (UB  * pcode);
+void  hs_0_M_7_11__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_8_21__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_8_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_8_1__simv_daidir (UB  * pcode, scalar  val, U  I611, scalar  * I1408, U  did);
+void  hs_0_M_8_2__simv_daidir (UB  * pcode);
+void  hs_0_M_8_11__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_9_21__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_9_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_9_1__simv_daidir (UB  * pcode, scalar  val, U  I611, scalar  * I1408, U  did);
+void  hs_0_M_9_2__simv_daidir (UB  * pcode);
+void  hs_0_M_9_11__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_10_21__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_10_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_10_1__simv_daidir (UB  * pcode, scalar  val, U  I611, scalar  * I1408, U  did);
+void  hs_0_M_10_2__simv_daidir (UB  * pcode);
+void  hs_0_M_10_11__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_12_21__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_12_0__simv_daidir (UB  * pcode, scalar  val);
+void  hs_0_M_12_1__simv_daidir (UB  * pcode, scalar  val, U  I611, scalar  * I1408, U  did);
+void  hs_0_M_12_2__simv_daidir (UB  * pcode);
+void  hs_0_M_12_11__simv_daidir (UB  * pcode, scalar  val);
 void  hsG_0__0 (struct dummyq_struct * I1393, EBLK  * I1388, U  I619);
 #ifdef __cplusplus
 }

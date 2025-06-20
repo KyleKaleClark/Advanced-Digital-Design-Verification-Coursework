@@ -10,7 +10,7 @@ comp_and_sim_addsub:
 	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../FPAddSub.sv ../FPAddSub_AlignModule.sv ../FPAddSub_AlignShift1.sv ../FPAddSub_AlignShift2.sv ../FPAddSub_ExceptionModule.sv ../FPAddSub_ExecutionModule.sv ../FPAddSub_NormalizeModule.sv ../FPAddSub_NormalizeShift1.sv ../FPAddSub_NormalizeShift2.sv ../FPAddSub_PrealignModule.sv ../FPAddSub_RoundModule.sv ../FPAddSub_tb.sv -debug_access+all |& tee compile_and_sim.log
 
 comp_and_sim_matmul:
-		${VCS_HOME}/bin/vcs -R -full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all |& tee compile_and_sim.log
+		${VCS_HOME}/bin/vcs -R -full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv ../FP*.sv -debug_access+all |& tee compile_and_sim.log
 
 # This compiles with VCS
 compile_apb:
@@ -24,7 +24,8 @@ compile_verdi_addsub:
 	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../FPAddSub.sv ../FPAddSub_AlignModule.sv ../FPAddSub_AlignShift1.sv ../FPAddSub_AlignShift2.sv ../FPAddSub_ExceptionModule.sv ../FPAddSub_ExecutionModule.sv ../FPAddSub_NormalizeModule.sv ../FPAddSub_NormalizeShift1.sv ../FPAddSub_NormalizeShift2.sv ../FPAddSub_PrealignModule.sv ../FPAddSub_RoundModule.sv ../FPAddSub_tb.sv -debug_access+all -kdb -lca |& tee compile_verdi.log
 
 compile_verdi_matmul:
-	${VCS_HOME}/bin/vcs -full64 -sverilog  ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv ../FP*.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+#	${VCS_HOME}/bin/vcs -full64 -sverilog  ../matmul.sv ../matmul_with_ram.sv ../FP*.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:

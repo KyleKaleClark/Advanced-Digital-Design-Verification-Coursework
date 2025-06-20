@@ -2,31 +2,33 @@
 all: sim clean
 
 # This compiles with VCS and runs simulation
-comp_and_sim_fifo:
-	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile_and_sim.log
+comp_and_sim_mult:
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../FPMult.sv ../FPMult_ExecuteModule.sv ../FPMult_NormalizeModule.sv ../FPMult_PrepModule.sv ../FPMult_RoundModule.sv ../FPMult_tb.sv -debug_access+all |& tee compile_and_sim.log
 
-comp_and_sim_top:
-	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv -debug_access+all |& tee compile_and_sim.log
+#This compiles with VCS and runs simulation
+comp_and_sim_addsub:
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../FPAddSub.sv ../FPAddSub_AlignModule.sv ../FPAddSub_AlignShift1.sv ../FPAddSub_AlignShift2.sv ../FPAddSub_ExceptionModule.sv ../FPAddSub_ExecutionModule.sv ../FPAddSub_NormalizeModule.sv ../FPAddSub_NormalizeShift1.sv ../FPAddSub_NormalizeShift2.sv ../FPAddSub_PrealignModule.sv ../FPAddSub_RoundModule.sv ../FPAddSub_tb.sv -debug_access+all |& tee compile_and_sim.log
+
+comp_and_sim_matmul:
+		${VCS_HOME}/bin/vcs -R -full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all |& tee compile_and_sim.log
 
 # This compiles with VCS
-compile_fifo:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile.log
-
-compile_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv ../fifo.sv -debug_access+all |& tee compile_top.log
-
+compile_apb:
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../matmul_with_ram.sv ../matmul.sv  -debug_access+all |& tee compile_top.log
 
 
 # This compiles with VCS and also generates the database for Verdi
-compile_verdi_fifo:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
-
 compile_verdi_top:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv ../fifo.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../FPMult.sv ../FPMult_ExecuteModule.sv ../FPMult_NormalizeModule.sv ../FPMult_PrepModule.sv ../FPMult_RoundModule.sv ../FPMult_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+compile_verdi_addsub:
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../FPAddSub.sv ../FPAddSub_AlignModule.sv ../FPAddSub_AlignShift1.sv ../FPAddSub_AlignShift2.sv ../FPAddSub_ExceptionModule.sv ../FPAddSub_ExecutionModule.sv ../FPAddSub_NormalizeModule.sv ../FPAddSub_NormalizeShift1.sv ../FPAddSub_NormalizeShift2.sv ../FPAddSub_PrealignModule.sv ../FPAddSub_RoundModule.sv ../FPAddSub_tb.sv -debug_access+all -kdb -lca |& tee compile_verdi.log
+
+compile_verdi_matmul:
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.sv ../fifo_tb.sv -debug_access+all -ntb_opts uvm |& tee compile_uvm.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../mips_tb.sv ../top.sv ../controller.sv ../datapath.sv -debug_access+all -ntb_opts uvm |& tee compile_uvm.log
 
 
 # This runs simulation
@@ -35,7 +37,7 @@ sim:
 
 # This launches Verdi
 waves_verdi:
-	$(VERDI_HOME)/bin/verdi -dbdir ./simv.daidir -ssf novas.fsdb -nologo
+	$(VERDI_HOME)/bin/verdi -dbdir ./simv.daidir -ssf novas.fsdb -nologo &
 
 clean:
 	\rm -rf *.log *.h  csrc DVEFiles simv.daidir simv ucli.key vcdplus.svpd *.syn *.pvl *.mr *.svf command.log *.txt novas.conf  novas.rc  verdi_config_file  verdiLog novas.fsdb novas.log novas_dump.log

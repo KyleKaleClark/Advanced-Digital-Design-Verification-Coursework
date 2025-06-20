@@ -15,12 +15,35 @@
 `define ADDR_STRIDE_WIDTH 8
 `define MAX_BITS_POOL 3
 
+
+//APB defines
+`define IDLE 2'b00
+`define SETUP 2'b01
+`define READ_ACCESS 2'b10
+`define WRITE_ACCESS 2'b11
+`define REG_START_ADDR 4'h0
+`define REG_DONE_ADDR 4'h1
+
+//matrix signals specifically
+`define REG_ADDR_A_ADDR 4'h2
+`define REG_ADDR_B_ADDR 4'h3
+`define REG_ADDR_C_ADDR 4'h4
+`define REG_STRIDE_A_ADDR 4'h5
+`define REG_STRIDE_B_ADDR 4'h6
+`define REG_STRIDE_C_ADDR 4'h7
+
+
+
+
+
+
+
 //Design with memories
 module matrix_multiplication(
   clk, 
   resetn, 
   pe_resetn,
-  address_mat_a,
+/*  address_mat_a,
   address_mat_b,
   address_mat_c,
   address_stride_a,
@@ -40,12 +63,20 @@ module matrix_multiplication(
   bram_we_c_ext,
   start, //starts the matmul operation
   done  //asserts when matmul operation is complete
-);
+*/
+  PSEL,
+  PENABLE,
+  PWRITE,
+  PADDR,
+  PWDATA,
+  PRDATA,
+  PREADY	
+ );
 
 	input clk;
 	input resetn;
 	input pe_resetn;
-	input [`AWIDTH-1:0] address_mat_a;
+/*	input [`AWIDTH-1:0] address_mat_a;
 	input [`AWIDTH-1:0] address_mat_b;
 	input [`AWIDTH-1:0] address_mat_c;
 	input [`ADDR_STRIDE_WIDTH-1:0] address_stride_a;
@@ -65,7 +96,16 @@ module matrix_multiplication(
   input  [`MASK_WIDTH-1:0] bram_we_c_ext;
 	input start;
 	output done;
-  
+*/
+   input 		   PSEL;
+   input 		   PENABLE;
+   input 		   PWRITE;
+   input [3:0] 		   PADDR;
+   input [15:0] 	   PWDATA;
+   output logic [15:0] 	   PRDATA;
+   output logic		   PREADY;
+
+   
 	wire [`AWIDTH-1:0] bram_addr_a;
 	wire [4*`DWIDTH-1:0] bram_rdata_a;
 	wire [4*`DWIDTH-1:0] bram_wdata_a;
@@ -128,7 +168,12 @@ module matrix_multiplication(
                   .clk(clk));
 
 
-    reg start_mat_mul;
+    logic      start;
+   
+    logic start_mat_mul, done_mat_mul;
+    assign start_mat_mul = start; //clarity sake
+   
+/*    reg start_mat_mul;
     wire done_mat_mul;
 	
 	//fsm to start matmul
@@ -174,6 +219,119 @@ module matrix_multiplication(
             endcase  
         end 
     end
+*/
+   logic  PCLK, PRESETn;
+   assign PCLK = clk;
+   assign PRESETn = resetn;
+   logic [`AWIDTH-1:0] address_mat_a;
+   logic [`AWIDTH-1:0] address_mat_b;
+   logic [`AWIDTH-1:0] address_mat_c;
+   logic [`ADDR_STRIDE_WIDTH-1:0] address_stride_a;
+   logic [`ADDR_STRIDE_WIDTH-1:0] address_stride_b;
+   logic [`ADDR_STRIDE_WIDTH-1:0] address_stride_c;
+  
+
+   always_ff @ (posedge PCLK) begin
+
+      if (PRESETn == 0) begin
+	 state <= `IDLE;
+	 PRDATA <= 0;
+	 start <= 0;
+	 address_mat_a <= 0;
+	 address_mat_b <= 0;
+	 address_mat_c <= 0;
+	 address_stride_a <= 0;
+	 address_stride_b <= 0;
+	 address_stride_c <= 0;
+      end
+      else begin
+	 case(state)
+	   `IDLE: begin
+	      if (PSEL && !PENABLE) begin
+		 state <= `SETUP;
+	      end
+	   end
+
+	   `SETUP: begin
+	      if (PSEL && PENABLE) begin
+		 if (PWRITE) begin
+		    state <= `WRITE_ACCESS;
+		 end else begin
+		    state <= `READ_ACCESS;
+		 end
+	      end
+	   end // case: `SETUP
+
+
+	   `WRITE_ACCESS: begin
+	      if (PWRITE && PENABLE) begin
+		 case (PADDR)
+		   `REG_START_ADDR: begin
+		      start <= PWDATA[0]; //cpu writes 1 to kick it
+		   end
+		   `REG_ADDR_A_ADDR: begin
+		      address_mat_a <= PWDATA[`AWIDTH-1:0];
+		   end
+		   
+		   `REG_ADDR_B_ADDR: begin
+		      address_mat_b <= PWDATA[`AWIDTH-1:0];
+		   end
+		   
+		   `REG_ADDR_C_ADDR: begin
+		      address_mat_c <= PWDATA[`AWIDTH-1:0];
+		   end
+
+		   `REG_STRIDE_A_ADDR: begin
+		      address_stride_a <= PWDATA[`ADDR_STRIDE_WIDTH-1:0];
+		   end
+		   
+		   `REG_STRIDE_B_ADDR: begin
+		      address_stride_b <= PWDATA[`ADDR_STRIDE_WIDTH-1:0];
+		   end
+		   
+		   `REG_STRIDE_C_ADDR: begin
+		      address_stride_c <= PWDATA[`ADDR_STRIDE_WIDTH-1:0];
+		   end
+		   		   
+		 endcase // case (PADDR)
+		 state <= `IDLE;
+
+	      end
+	   end // case: `WRITE_ACCESS
+	   
+
+	   `READ_ACCESS: begin
+	      if (!PWRITE && PENABLE) begin
+		 case (PADDR)
+		   `REG_DONE_ADDR: begin
+		      PRDATA <= {done_mat_mul, 15'b0}; //cpu reads donezo
+		   end		   
+		 endcase // case (PADDR)
+ 		 state <= `IDLE;
+
+	      end
+
+	   end // case: `READ_ACCESS
+
+	   default: begin
+	      state <= `IDLE;
+	   end
+	 endcase // case (state)
+      end // else: !if(PRESETn == 0)   
+   end // always_ff @ (posedge PCLK)
+   
+   
+
+
+
+
+
+
+
+
+
+
+
 	
 	assign done = done_mat_mul;
 

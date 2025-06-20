@@ -1,9 +1,0 @@
-{"vcs1":{"timestamp_begin":1750198892.956566031, "rt":0.94, "ut":0.12, "st":0.06}}
-{"vcselab":{"timestamp_begin":1750198893.951646923, "rt":0.78, "ut":0.11, "st":0.02}}
-{"link":{"timestamp_begin":1750198894.777820651, "rt":0.23, "ut":0.12, "st":0.05}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750198892.625900479}
-{"VCS_COMP_START_TIME": 1750198892.625900479}
-{"VCS_COMP_END_TIME": 1750198896.550922135}
-{"VCS_USER_OPTIONS": "-R -full64 -sverilog ../FPAddSub.sv ../FPAddSub_AlignModule.sv ../FPAddSub_AlignShift1.sv ../FPAddSub_AlignShift2.sv ../FPAddSub_ExceptionModule.sv ../FPAddSub_ExecutionModule.sv ../FPAddSub_NormalizeModule.sv ../FPAddSub_NormalizeShift1.sv ../FPAddSub_NormalizeShift2.sv ../FPAddSub_PrealignModule.sv ../FPAddSub_RoundModule.sv ../FPAddSub_tb.sv -debug_access+all"}
-{"vcs1": {"peak_mem": 370104}}
-{"stitch_vcselab": {"peak_mem": 246940}}

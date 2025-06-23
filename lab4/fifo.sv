@@ -45,7 +45,17 @@ module fifomem #(	parameter DATASIZE = 8,
 	assign rdata = mem[raddr];
 	
 	always_ff @(posedge wclk)
-		if (wclken && !wfull) mem[waddr] <= wdata;
+	  `ifdef BUG
+	      if (wclken && !wfull && waddr%DEPTH-4 !=0 ) begin
+		 mem[waddr] <= wdata;
+	      end
+	  `else
+              if (wclken && !wfull) begin
+		 mem[waddr] <= wdata;
+	      end
+	  `endif
+   
+   
 
 endmodule
 

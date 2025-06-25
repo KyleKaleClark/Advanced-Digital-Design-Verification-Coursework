@@ -12,6 +12,9 @@ comp_and_sim_top:
 compile_fifo:
 	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.c ../fifo.sv ../fifo_tb.sv -debug_access+all |& tee compile.log
 
+compile_fifo_sb:
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../fifo.c ../fifo.sv ../fifo_tb_scoreboard.sv -debug_access+all |& tee compile.log
+
 compile_top:
 	${VCS_HOME}/bin/vcs -full64 -sverilog ../even_odd_tb.sv ../even_odd.sv ../fifo.c ../fifo.sv -debug_access+all |& tee compile_top.log
 
@@ -23,6 +26,12 @@ compile_verdi_fifo_bug:
 
 compile_verdi_fifo:
 	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.c ../fifo.sv ../fifo_tb.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+
+compile_verdi_fifo_bug_sb:
+	${VCS_HOME}/bin/vcs -full64 -sverilog +define+BUG=1 ../fifo.c ../fifo.sv ../fifo_tb_scoreboard.sv -debug_access+all -kdb -lca  |& tee compile_verdi.log
+
+compile_verdi_fifo_sb:
+	${VCS_HOME}/bin/vcs -full64 -sverilog  ../fifo.c ../fifo.sv ../fifo_tb_scoreboard.sv -debug_access+all -kdb -lca |& tee compile_verdi.log
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:

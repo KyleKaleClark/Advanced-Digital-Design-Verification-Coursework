@@ -54,8 +54,6 @@ module fifomem #(	parameter DATASIZE = 8,
 		 mem[waddr] <= wdata;
 	      end
 	  `endif
-   
-   
 
 endmodule
 

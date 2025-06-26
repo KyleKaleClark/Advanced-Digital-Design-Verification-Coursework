@@ -230,28 +230,129 @@ checker checker_inst(.wrst_n(wrst_n), .rrst_n(rrst_n), .wclk(wclk), .rclk(rclk),
 	        rinc = 1'd0; #40;	   
 	   
 	    
-		//End of second test
-		//
-		//Start of third test
-/*		wrst_n=1'd0; rrst_n=1'd0; rinc=1'd0;  #60;
-		wrst_n=1'd1; rrst_n=1'd1; #60;
-		winc=1'd1; rinc=1'd1;  wdata= 8'd1; #20;
-		wdata = 8'd2; #20;
-		wdata = 8'd3; #20;
-		wdata = 8'd4; #20;
-		wdata = 8'd5; #20;
-		wdata = 8'd6; #20;
-		wdata = 8'd7; #20;
-		wdata = 8'd8; #20;
-		wdata = 8'd9; #20;
-		wdata = 8'd10; #20;
-		wdata = 8'd11; #20;
-		wdata = 8'd12; #20;
-		wdata = 8'd13; #20;
-		wdata = 8'd14; #20;
-		wdata = 8'd15; #20;
-		//End of third test */
-	        rinc = 0;
+	   //Start of third test
+	   wrst_n=1'd0; rrst_n=1'd0; rinc=1'd0;  #100;
+	   wrst_n=1'd1; rrst_n=1'd1; #60;
+
+	   $display("TEST 2---------------------------------");
+	   
+
+	   winc = 0; #20;	                 //items in fifo
+	   winc = 1; wdata = 8'h0; #20; //0 +1
+	   winc = 0; #20;
+	   winc = 1; wdata = 8'h1; #20; //1 +1
+	   winc = 0; #20;
+	   winc = 1; wdata = 8'h2; #20; //2 +1 
+	   winc = 0; #20;
+	   winc = 1; wdata = 8'h3; #20; //3 +1 = 4
+	   winc = 0; #20;
+
+	   winc = 1; wdata = 8'h4; #20; //4 +1 -1 = 4
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'h5; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'h6; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'h7; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'h8; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'h9; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'ha; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'hb; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'hc; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'hd; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'he; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'hf; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'he; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'hd; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'hc; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'hb; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'ha; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'h9; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'h8; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'ha; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+   	   winc = 1; wdata = 8'hc; #20; 
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   winc = 1; wdata = 8'he; #20; 
+	   winc = 0; rinc = 0; #20;
+	   	   
+	   winc = 1; wdata = 8'hd; #20; //--full
+	   winc = 0; rinc = 1; #20;
+	   	   
+	   //a ton of reads so we can just empty it out lol
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   rinc = 1'd1; #40; 
+	   rinc = 1'd0; #40;	   
+	   
+
+	   
+	   wrst_n=1'd0; rrst_n=1'd0; rinc=1'd0;  #20;
+	   wrst_n=1'd1; rrst_n=1'd1; #20;
+	   
 	   
 	end
 

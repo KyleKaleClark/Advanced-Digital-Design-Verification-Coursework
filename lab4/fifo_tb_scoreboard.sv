@@ -1,13 +1,3 @@
-import "DPI-C" function int push(int wdata);
-import "DPI-C" function int pop();
-import "DPI-C" function int rst_r_ptr();
-import "DPI-C" function int rst_w_ptr();
-import "DPI-C" function int is_empty();
-import "DPI-C" function int is_full();
-import "DPI-C" function int get_r_ptr();
-import "DPI-C" function int get_w_ptr();
-
-
 
 interface fifo_write_if #(parameter DSIZE=8) (input logic wclk);
 
@@ -39,90 +29,15 @@ class transaction;
    bit 		    rinc;
    bit 		    rrst_n;
 
+   bit 		    wfull;
+   bit 		    rempty;
+   
+
    function new();
    endfunction // new
    
    
 endclass // transaction
-
-
-
-  
-module checker(input wrst_n, rrst_n, wclk, rclk, winc, rinc, wfull, rempty, input [7:0] wdata, rdata);
-
-   logic [7:0] dpi_read;
-   logic       g_empty, g_full;
-   logic [7:0] r_ptr, w_ptr;
-
-
-   //complete writes
-   always_ff @(posedge wclk) begin
-      if (winc) begin
-	 push(wdata);
-	 $display(" PUSH: %h", wdata);
-      end
-      if (wrst_n == 0)
-	rst_w_ptr();
-   end
-
-
-   //check reads
-   always_ff @(posedge rclk) begin
-      if (rinc) begin
-	 //dpi_read = pop
-	 dpi_read = pop();
-	 if (dpi_read == rdata)
-	   $display("Successful Read: Golden data: %h", dpi_read, " || DUT: %h", rdata);
-	 else
-	   $display("FAIL!! Read: Golden data: %h", dpi_read, " || DUT: %h", rdata);
-      end
-
-      if (rrst_n == 0)
-	rst_r_ptr();
-   end
-
-
-   //update pointers and flags
-   always_ff @(posedge wclk or posedge rclk) begin
-      g_empty = is_empty();
-      g_full = is_full();
-      r_ptr = get_r_ptr();
-      w_ptr = get_w_ptr();
-   end
-
-   //Display Statements
-   always_ff @(posedge wfull or posedge rempty) begin
-      $display("g_full: ", g_full, " || wfull: ", wfull);
-      $display("g_empty: ", g_empty, " || rempty: ", rempty);
-      $display("wptr:  ", w_ptr, " || rptr: ", r_ptr);	   
-
-      if (g_empty) begin
-	 if (g_empty == rempty) begin
-	    $display("Successful Empty Read!");
-	    $display("-----------------------------------------\n");
-	 end
-	 else begin
-	    $display("FAIL!! Empty mismatch");
-	    $display("-----------------------------------------\n");
-	 end
-      end // if (g_empty)
-
-      if (g_full) begin
-	 if (g_full == wfull) begin
-	    $display("Sucessful Full Read!");
-	    $display("-----------------------------------------\n");
-	 end
-	 else begin
-	    $display("FAIL!! Full mismatch");
-	    $display("-----------------------------------------\n");
-	 end
-      end     
-      $display("-----------------------------------------\n"); 
-   end
-   
-
-endmodule // checker
-
 
 class monitor;
 
@@ -142,19 +57,21 @@ class monitor;
 	 monitor_write();
 	 monitor_read();
       join_none
-   endtask // run
-
+   endtask // run   
 
    task monitor_write();
       forever begin
       @(posedge wr_vif.wclk);
-      if (wr_vif.winc && !wr_vif.wfull) begin
+      if ((wr_vif.winc && !wr_vif.wfull) || !wr_vif.wrst_n) begin
 	 txn = new();
 	 txn.wdata = wr_vif.wdata;
 	 txn.winc = wr_vif.winc;
 	 txn.wrst_n = wr_vif.wrst_n;
 	 txn.rinc = 1'b0;
 	 txn.rrst_n = rd_vif.rrst_n;
+	 
+	 txn.wfull = wr_vif.wfull;
+	 txn.rempty = rd_vif.rempty;
 
 	 //mail time
 	 txn_mail.put(txn);
@@ -166,7 +83,7 @@ class monitor;
    task monitor_read();
       forever begin
       @(posedge rd_vif.rclk);
-      if (rd_vif.rinc && !rd_vif.rempty) begin
+      if ((rd_vif.rinc && !rd_vif.rempty) || !rd_vif.rrst_n) begin
 	 txn = new();
 	 txn.rdata = rd_vif.rdata;
 	 txn.wdata = 8'h00;
@@ -174,7 +91,11 @@ class monitor;
 	 txn.wrst_n = wr_vif.wrst_n;
 	 txn.rinc = rd_vif.rinc;
 	 txn.rrst_n = rd_vif.rrst_n;
+
+	 txn.wfull = wr_vif.wfull;
+	 txn.rempty = rd_vif.rempty;
 	 
+	 //mail time	 
 	 txn_mail.put(txn);
       end
       end // forever begin
@@ -186,18 +107,57 @@ endclass // monitor
 
 class scoreboard;
 
+
+   localparam FIFO_DEPTH = 16;
+   
+   
    mailbox #(transaction) txn_mail;
    transaction txn;
 
-   bit [7:0] fifo_q[$:16];
+   bit [7:0] fifo_q[$:FIFO_DEPTH];
 
 
    function new();
    endfunction // new
    
    task run();
+      logic full;
+      logic empty;
+
       forever begin
 	 txn_mail.get(txn);
+	 //some debugs
+//	 $display("scoreboard queue: %p - size: %0d", fifo_q, fifo_q.size());
+//	 $display("resets: rrst_n:", txn.rrst_n, " || wrst_n: ", txn.wrst_n);
+	 
+	 //this seems crazy, but we have to account for the double delay that the empty signal takes for when it
+	 //gets set in the fifo
+	 empty = (fifo_q.size() < 3) ? 1 : 0;
+
+	 //we have to do the same stuff but to account for the full in the opposite way
+	 full = (fifo_q.size() > (FIFO_DEPTH-2)) ? 1 : 0;
+	 
+	 //full/empty checks
+	 if (txn.rempty) begin
+	    if (txn.rempty == empty)
+	      $display("scoreboard: Successful Empty Read, DUT rempty: ", txn.rempty, " || SB: ", empty);
+	    else
+	      $display("FAIL!! Mismatch Empty Flags - DUT rempty: ", txn.rempty, " || SB: ", empty);
+	 end
+	 
+
+	 if (txn.wfull) begin
+	    if (txn.wfull == full)
+	      $display("scoreboard: Successful Full Read, DUT wfull: ", txn.wfull, " || SB: ", full);
+	    else
+	      $display("FAIL!! Mismatch Full Flags - DUT wfull: ", txn.wfull, " || SB: ", full);
+	 end
+	 
+	 if (!txn.rrst_n && !txn.wrst_n) begin
+//	    $display("!!!queue prereset: %p (size: %0d)", fifo_q, fifo_q.size());
+	    fifo_q = {};
+//	    $display("!!!queue post: %p (size: %0d)", fifo_q, fifo_q.size());
+	 end
 	 
 	 if (txn.winc && !txn.rinc) begin
 	    fifo_q.push_back(txn.wdata);
@@ -263,13 +223,7 @@ logic wfull, rempty,wfull_a,rempty_a;
 					   .rempty_a(rd_if.rempty_a)
 					   );  
 
-//checker from pt 1
-//   checker checker_inst(.wrst_n(wr_if.wrst_n), .rrst_n(rd_if.rrst_n), .wclk(wclk), .rclk(rclk), .winc(wr_if.winc), .rinc(rd_if.rinc), .wfull(wr_if.wfull), .rempty(rd_if.rempty), .wdata(wr_if.wdata), .rdata(rd_if.rdata));
-   
-	
-	//clk logic
-	//Write clock is 4x read clock
-
+  
 
    mailbox #(transaction) txn_mail;
    monitor mon;
@@ -301,6 +255,7 @@ logic wfull, rempty,wfull_a,rempty_a;
 		repeat (1000) begin
 		#10 rclk = ~rclk; #10;
 		end
+	   
 	end
 	
 	//Set up for actual test
@@ -309,137 +264,257 @@ logic wfull, rempty,wfull_a,rempty_a;
 	//Last test enables read and write together
 	
 	initial begin
-		//First test .wr_if.
-		wr_if.wrst_n =1'd0; rd_if.rrst_n=1'd0; wr_if.wdata=8'd1; wr_if.winc=1'd0; rd_if.rinc=1'd0; #500;
-		wr_if.wrst_n = 1'd1; rd_if.rrst_n=1'd1; wr_if.winc=1'd1;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd2;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd3;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd4;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd5;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd6;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd7;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd8;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd9;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd10;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd11;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd12;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd13;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd14;
-		#20;
-	        wr_if.winc = 0;
-	        #20;
-                wr_if.winc = 1;	   
-		wr_if.wdata = 8'd15;
-		#40;
-		//End of first test
-	        wr_if.winc=1'd0; rd_if.rinc=1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
-	        rd_if.rinc = 1'd1; #40;
-	        rd_if.rinc = 1'd0; #40;	   
+	   //First test .wr_if.
+	   wr_if.wrst_n =1'd0; rd_if.rrst_n=1'd0; wr_if.wdata=8'd1; wr_if.winc=1'd0; rd_if.rinc=1'd0; #100;
+	   wr_if.wrst_n = 1'd1; rd_if.rrst_n=1'd1; wr_if.winc=1'd1;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd2;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd3;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd4;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd5;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd6;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd7;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd8;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd9;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd10;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd11;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd12;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd13;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd14;
+	   #20;
+	   wr_if.winc = 0;
+	   #20;
+           wr_if.winc = 1;	   
+	   wr_if.wdata = 8'd15;
+	   #40;
+	   //End of first test
+	   wr_if.winc=1'd0; rd_if.rinc=1'd1; #40;
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //0
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; // 2
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; // 4
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; // 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //6
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //8
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //10
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; // 12
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //14
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; //15
+	   rd_if.rinc = 1'd0; #40;	   
 	   
-	    
-		//End of second test
-		//
-		//Start of third test
-/*		wr_if.wrst_n=1'd0; rd_if.rrst_n=1'd0; rd_if.rinc=1'd0;  #60;
-		wr_if.wrst_n=1'd1; rd_if.rrst_n=1'd1; #60;
-		wr_if.winc=1'd1; rd_if.rinc=1'd1;  wr_if.wdata= 8'd1; #20;
-		wr_if.wdata = 8'd2; #20;
-		wr_if.wdata = 8'd3; #20;
-		wr_if.wdata = 8'd4; #20;
-		wr_if.wdata = 8'd5; #20;
-		wr_if.wdata = 8'd6; #20;
-		wr_if.wdata = 8'd7; #20;
-		wr_if.wdata = 8'd8; #20;
-		wr_if.wdata = 8'd9; #20;
-		wr_if.wdata = 8'd10; #20;
-		wr_if.wdata = 8'd11; #20;
-		wr_if.wdata = 8'd12; #20;
-		wr_if.wdata = 8'd13; #20;
-		wr_if.wdata = 8'd14; #20;
-		wr_if.wdata = 8'd15; #20;
-		//End of third test */
-	        rd_if.rinc = 0;
+	   
+	   //End of second test
+	   //
+
+	   //Start of third test
+	   wr_if.wrst_n=1'd0; rd_if.rrst_n=1'd0; rd_if.rinc=1'd0;  #100;
+	   wr_if.wrst_n=1'd1; rd_if.rrst_n=1'd1; #60;
+
+	   $display("TEST 2---------------------------------");
+	   
+
+	   wr_if.winc = 0; #20;	                 //items in fifo
+	   wr_if.winc = 1; wr_if.wdata = 8'h0; #20; //0 +1
+	   wr_if.winc = 0; #20;
+	   wr_if.winc = 1; wr_if.wdata = 8'h1; #20; //1 +1
+	   wr_if.winc = 0; #20;
+	   wr_if.winc = 1; wr_if.wdata = 8'h2; #20; //2 +1 
+	   wr_if.winc = 0; #20;
+	   wr_if.winc = 1; wr_if.wdata = 8'h3; #20; //3 +1 = 4
+	   wr_if.winc = 0; #20;
+
+	   wr_if.winc = 1; wr_if.wdata = 8'h4; #20; //4 +1 -1 = 4
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h5; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h6; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h7; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h8; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h9; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'ha; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hb; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hc; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hd; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'he; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hf; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'he; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hd; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hc; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hb; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'ha; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h9; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'h8; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'ha; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+   	   wr_if.winc = 1; wr_if.wdata = 8'hc; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'he; #20; 
+	   wr_if.winc = 0; rd_if.rinc = 0; #20;
+	   	   
+	   wr_if.winc = 1; wr_if.wdata = 8'hd; #20; //--full
+	   wr_if.winc = 0; rd_if.rinc = 1; #20;
+	   	   
+	   //a ton of reads so we can just empty it out lol
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+	   rd_if.rinc = 1'd1; #40; 
+	   rd_if.rinc = 1'd0; #40;	   
+
+	   
+	   wr_if.wrst_n=1'd0; rd_if.rrst_n=1'd0; rd_if.rinc=1'd0;  #20;
+	   wr_if.wrst_n=1'd1; rd_if.rrst_n=1'd1; #20;
 	   
 	end
 

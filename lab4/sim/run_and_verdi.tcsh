@@ -33,6 +33,6 @@ echo "compiled verdi"
 make sim
 echo "made sim"
 echo "making verdi!"
-#make waves_verdi
+make waves_verdi &
 
 echo "exited verdi"

@@ -1,0 +1,21 @@
+Pipelined MIPS
+Kyle Clark & Kendall Welsh
+
+Enter sim/ directory
+
+Shortcut:
+To compile, run, and open verdi for the MIPS testbench:
+	tcsh run_and_verdi.tcsh 
+
+
+
+These breakdown to these:
+
+To Compile:
+	MIPS: 	make compile_top
+	
+Compile & Sim:
+	MIPS:	make comp_and_sim_top
+	
+Open Verdi:
+	make waves_verdi

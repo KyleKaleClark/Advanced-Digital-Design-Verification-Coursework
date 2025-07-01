@@ -3,7 +3,7 @@ all: sim clean
 
 # This compiles with VCS and runs simulation
 comp_and_sim_top:
-	${VCS_HOME}/bin/vcs -R -full64 -sverilog ../mips_tb.sv ../top.sv ../controller.sv ../datapath.sv -debug_access+all |& tee compile_and_sim.log
+	${VCS_HOME}/bin/vcs -R -full64 -sverilog -ntb_opts uvm ../instr_gen.sv -debug_access+all |& tee compile_and_sim.log
 
 # This compiles with VCS
 compile_top:

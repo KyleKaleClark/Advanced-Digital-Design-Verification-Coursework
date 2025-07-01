@@ -1,3 +1,5 @@
+`include "uvm_macros.svh"
+import uvm_pkg::*;
 
 //Add -ntb_opts uvm to the VCS command line
 
@@ -5,7 +7,7 @@ class instruction extends uvm_transaction;
   rand bit [4:0] reg_a, reg_b, reg_c;
   rand bit [5:0] opcode, funct;
   rand bit [15:0] mem_addr;
-  ...
+ 
 
   constraint unique_regs { 
   	reg_a inside {[1:4]};
@@ -15,17 +17,18 @@ class instruction extends uvm_transaction;
 
   			 	//Rtpe      LW          SW          BEQ
   constraint valid_opcode {
-	  	opcode inside {6'b000000, 6'b100011, 6'b101011, 6'b000100}
+	  	opcode inside {6'b000000, 6'b100011, 6'b101011, 6'b000100};
   }
   
   				//And	     Or
-  constraint valid funct {
-	  	funct inside {6'b100100, 6'b100000}
+  constraint valid_funct {
+	  	funct inside {6'b100100, 6'b100000};
   }
 
-  constraint valid mem {
-	  	mem_addr inside {16'd4, 16'd8, 16'd12, 16'd16}
+  constraint valid_mem {
+	  	mem_addr inside {16'd4, 16'd8, 16'd12, 16'd16};
   }
+
 
  
 
@@ -45,35 +48,49 @@ endfunction
 endclass
 
 class instruction_generator;
+
+  //Dynamic array to hold individual instructions	
   instruction instr_list[];
   bit [31:0] machine_code_list[];
-
+  
+  //Need to add anything here? To ensure we reach all coverage?
+  //Feels like it's too "loose" to generate all cases unless we generate a lot
+  //of instructions
   function void generate_individual();
-      ...
-      assert(instr_list[i].randomize());
-      ...
+	instr_list = new[15];
+
+	  for (int i = 0; i <15; i++) begin
+		  instr_list[i] = new();
+		  assert(instr_list[i].randomize());
+     		  instr_list[i].print_me();
+		  end
+
   endfunction
 
+  //Do we need to create the txn?
+  /*
   function instruction generate_pairs();
-    ...
+
     txn1.randomize() with { reg_a = 1; };
     txn2.randomize() with { reg_a = 1; };
   endfunction
 
+  //Insert gaps of 1,2,3,4 instructions between generated pairs
   function void insert_gaps();
   endfunction
+
+  //Need to generate 1,2,3,4 offset for branch instructions
+ 
 
   function void generate_sequence();
   endfunction
 
   function void generate_machine_code();
-  ...
   $writememh (...);
-  ..
   endfunction
 
   function void display_all();
-  endfunction
+  endfunction*/
 endclass
 
 module testbench;
@@ -81,8 +98,8 @@ module testbench;
 
   initial begin
     gen = new();
-    gen.generate_machine_code();
-    gen.display_all();
+    gen.generate_individual();
+    //gen.display_all();
 
     //Copy memory from gen to the instr mem
     //OR: Call $readmemh on that file you wrote using $writememh

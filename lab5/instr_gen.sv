@@ -93,6 +93,7 @@ rand bit [2:0] gap;
 //Function to generate dependent instruction pairs
 //Also creates 1 to 4 instructions between the pair
 function instruction generate_pairs();
+
 	assert(randomize(gap));
 	pair_list = new[gap + 2];
 	pair_list[0] = new();
@@ -105,7 +106,11 @@ function instruction generate_pairs();
 		assert(pair_list[i].randomize() with {reg_b != 1; reg_a != 1;});
 	end
 
-	assert(pair_list[gap+1].randomize() with {reg_b==1;});
+	if (pair_list[0].opcode == 6'b000000)
+
+		assert(pair_list[gap+1].randomize() with {reg_b==1;});
+	else
+		assert(pair_list[gap+1].randomize() with {reg_b==pair_list[0].reg_b;});
 
 	$display("--- generate_pairs() produced %0d additional instructions ---", gap);
   	foreach (pair_list[i]) begin

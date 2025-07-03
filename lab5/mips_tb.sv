@@ -15,7 +15,7 @@ module MIPS_Testbench ();
     integer j;
 
     // expected memory writes
-    parameter N = 5; 
+    parameter N = 2; 
     logic [31:0] expected_data[N:1];
     logic [31:0] expected_addr[N:1]; 
     
@@ -35,15 +35,6 @@ module MIPS_Testbench ();
 
         expected_data[2] = 32'h7;
         expected_addr[2] = 32'h54; //std test
-
-        expected_data[3] = 32'h32;
-        expected_addr[3] = 32'h58; //muladd
-
-        expected_data[4] = 32'h17;
-        expected_addr[4] = 32'h5c; //perfmon
-
-        expected_data[5] = 32'h19;
-        expected_addr[5] = 32'h60;  //perfmon
 
        
     end

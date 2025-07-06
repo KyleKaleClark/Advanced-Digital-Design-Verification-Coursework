@@ -1,7 +1,0 @@
-To just run everything and have waveforms appear please
-
-- source env.cshrc
-- cd sim/
-- tcsh run_and_verdi.tcsh
-
-easy as pi

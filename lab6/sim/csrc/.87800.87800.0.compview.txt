@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1751779287.121374594, "rt":1.12, "ut":0.27, "st":0.09}}
+{"vcselab":{"timestamp_begin":1751779288.288189244, "rt":0.83, "ut":0.13, "st":0.05}}
+{"link":{"timestamp_begin":1751779289.164172310, "rt":0.17, "ut":0.09, "st":0.03}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1751779286.682223466}
+{"VCS_COMP_START_TIME": 1751779286.682223466}
+{"VCS_COMP_END_TIME": 1751779289.656429190}
+{"VCS_USER_OPTIONS": "-full64 -sverilog ../matmul.sv ../matmul_with_ram.sv ../matmul_with_ram_tb.sv ../fp/FPAddSub_AlignModule.sv ../fp/FPAddSub_AlignShift1.sv ../fp/FPAddSub_AlignShift2.sv ../fp/FPAddSub_ExceptionModule.sv ../fp/FPAddSub_ExecutionModule.sv ../fp/FPAddSub_NormalizeModule.sv ../fp/FPAddSub_NormalizeShift1.sv ../fp/FPAddSub_NormalizeShift2.sv ../fp/FPAddSub_PrealignModule.sv ../fp/FPAddSub_RoundModule.sv ../fp/FPAddSub.sv ../fp/FPMult_ExecuteModule.sv ../fp/FPMult_NormalizeModule.sv ../fp/FPMult_PrepModule.sv ../fp/FPMult_RoundModule.sv ../fp/FPMult.sv -debug_access+all -kdb -lca"}
+{"vcs1": {"peak_mem": 533864}}
+{"stitch_vcselab": {"peak_mem": 255180}}

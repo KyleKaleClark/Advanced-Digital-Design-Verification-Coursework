@@ -1,3 +1,0 @@
-Command Line: /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/platform/LINUXAMD64/bin/Novas -dbdir ./simv.daidir -ssf novas.fsdb -nologo
-uname(Linux nc-asu6-l01.apporto.com 4.18.0-372.19.1.el8_6.x86_64 #1 SMP Mon Jul 18 11:14:02 EDT 2022 x86_64)
-au time 25.703351 3.336269 0.657986 delta 354742272 354742272 total 920461312 920461312

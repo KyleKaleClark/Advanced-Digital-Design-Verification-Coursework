@@ -1,4 +1,3 @@
-`timescale 1ns/1ns
 `define DWIDTH 8
 `define AWIDTH 10
 `define MEM_SIZE 1024

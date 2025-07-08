@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 
 module FPMult_NormalizeModule(
 	input [3:0] NormM,			// Normalized mantissa

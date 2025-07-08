@@ -15,6 +15,10 @@
 `ifndef _APB_BASE_SEQ_ITEM_
 `define _APB_BASE_SEQ_ITEM_
 
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
+
 class apb_base_seq_item extends uvm_sequence_item;
 	`uvm_object_utils(apb_base_seq_item)
 	

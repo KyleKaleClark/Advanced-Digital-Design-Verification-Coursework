@@ -36,7 +36,8 @@ class apb_test extends uvm_test;
 	
 	virtual apb_if vif;
 		
-	apb_master_seq master_seq;
+//	apb_master_seq master_seq;  //original one
+	apb_custom_test_seq master_seq;  //ours
 	apb_slave_seq  slave_seq;	
   
 	//--------------------------------------------------------------------
@@ -45,8 +46,6 @@ class apb_test extends uvm_test;
 	extern function new(string name = "apb_test", uvm_component parent = null );
 	extern virtual function void build_phase(uvm_phase phase);
 	extern virtual task run_phase(uvm_phase phase);  
-
-
 endclass
 
 // Function: new
@@ -70,7 +69,11 @@ function void apb_test::build_phase(uvm_phase phase);
 	
 	if (!uvm_config_db#(virtual apb_if)::get(this, "", "apb_vif", vif)) begin
 		`uvm_fatal(get_full_name(), "No virtual interface specified for this test instance")
-	end 
+	end
+
+   m_apb_master_config.vif = vif;
+   m_apb_slave_config.vif = vif;
+   
 endfunction
 
 // Task: run_phase
@@ -78,18 +81,19 @@ endfunction
 task apb_test::run_phase( uvm_phase phase );
 	super.run_phase(phase);
 	
-	master_seq = apb_master_seq::type_id::create("master_seq");
+//	master_seq = apb_master_seq::type_id::create("master_seq");//og
+	master_seq = apb_custom_test_seq::type_id::create("master_seq"); //our custy
 	slave_seq = apb_slave_seq::type_id::create("slave_seq");
 		
 	phase.raise_objection( this, "Starting apb_test run phase" );
 	
-	repeat(10) begin
-		this.randomize();
-		fork
-			master_seq.start(env.master_agent.m_sequencer);
-			slave_seq.start(env.slave_agent.m_sequencer);	
-		join
-	end
+//	repeat(10) begin  //we just like erm, only run once
+//   this.randomize(); //dont need
+   fork
+      master_seq.start(env.master_agent.m_sequencer);
+      slave_seq.start(env.slave_agent.m_sequencer);	
+   join
+   //	end
 	
 	#100ns;
 	phase.drop_objection( this , "Finished apb_test in run phase" );

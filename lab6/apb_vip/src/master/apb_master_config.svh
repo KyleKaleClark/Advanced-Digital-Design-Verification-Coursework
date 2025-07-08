@@ -24,7 +24,10 @@ class apb_master_config extends uvm_object;
 	uvm_active_passive_enum is_active = UVM_ACTIVE;
 	bit has_coverage = 0;
 	bit has_scoreboard = 0;	
-	
+
+
+   virtual  apb_if vif;
+
 	//--------------------------------------------------------------------
 	//	Methods
 	//--------------------------------------------------------------------

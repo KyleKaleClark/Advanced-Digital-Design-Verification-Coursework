@@ -39,12 +39,24 @@ class apb_test extends uvm_test;
 //	apb_master_seq master_seq;  //original one
 	apb_custom_test_seq master_seq;  //ours
 	apb_slave_seq  slave_seq;	
-  
+
+
+   
+
+
+
+
+
+
+   
 	//--------------------------------------------------------------------
 	//	Methods
 	//--------------------------------------------------------------------
 	extern function new(string name = "apb_test", uvm_component parent = null );
 	extern virtual function void build_phase(uvm_phase phase);
+
+   extern virtual function void end_of_elaboration_phase(uvm_phase phase);
+   
 	extern virtual task run_phase(uvm_phase phase);  
 endclass
 
@@ -71,10 +83,28 @@ function void apb_test::build_phase(uvm_phase phase);
 		`uvm_fatal(get_full_name(), "No virtual interface specified for this test instance")
 	end
 
+   uvm_top.enable_print_topology = 1;
+   
    m_apb_master_config.vif = vif;
    m_apb_slave_config.vif = vif;
    
 endfunction
+
+
+function void apb_test::end_of_elaboration_phase(uvm_phase phase);
+
+   uvm_top.print_topology();
+   uvm_factory::get().print();
+
+   `uvm_info("CONFIG DEBUG", "printing config for env", UVM_LOW)
+   print_config(1,1);
+
+   `uvm_info("ENV PRINT", "printing environment deets:", UVM_LOW)
+   this.print();
+   
+   
+endfunction // end_of_elaboration_phase
+
 
 // Task: run_phase
 // Definition: standard uvm_phase	

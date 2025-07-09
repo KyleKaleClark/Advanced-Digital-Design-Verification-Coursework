@@ -39,11 +39,8 @@ UVM_FILES = ../apb_vip/src/common/apb_if.sv ../apb_vip/src/common/apb_common_pkg
 INC_DIRS = +incdir+../apb_vip/src/common +incdir+../apb_vip/src/master +incdir+../apb_vip/tb +incdir+../apb_vip/src/slave +incdir+../
 
 #Just for this final APB UVM stuff
-comp_and_sim_matmul:
-		${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${UVM_FILES} -kdb -lca -R |& tee compile_and_sim.log
-
 compile_verdi_matmul:
-	${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${UVM_FILES} -kdb -lca -R  |& tee compile_verdi.log
+	${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${UVM_FILES} -kdb -lca -R +UVM_PHASE_TRACE +UVM_VERBOSITY=UVM_HIGH |& tee compile_verdi.log
 
 
 # This runs simulation

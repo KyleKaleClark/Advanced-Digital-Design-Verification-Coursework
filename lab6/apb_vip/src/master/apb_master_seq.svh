@@ -139,6 +139,10 @@ task apb_custom_test_seq::apb_read(input [`REG_ADDRWIDTH-1:0] addr, output [`REG
    req.addr = addr;
    req.apb_tr = apb_base_seq_item::READ;
 
+   `uvm_info(get_type_name(), "Transaction Print req", UVM_MEDIUM)
+   req.print();
+
+   
    finish_item(req);
 //   get_response(rsp);
    data = req.data;

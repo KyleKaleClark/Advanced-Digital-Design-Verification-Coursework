@@ -256,6 +256,38 @@ module matrix_multiplication(
    end
    
 
+
+   //A bunch of assertions we're adding
+   property prop_idle_to_setup;
+      @(posedge PCLK) ($rose(state == `IDLE)) |-> ##2 (state == `SETUP);
+   endproperty // prop_idle_to_setup
+   assert_idle_to_setup: assert property (prop_idle_to_setup)
+     else $error("assertion failed: state != SETUP after 2 cycles from IDLE");
+
+
+   property prop_done_to_prdata;
+      @(posedge PCLK) (done == 1'b1) |-> ##3 (PRDATA == 16'h8000);
+   endproperty // prop_done_to_prdata
+   assert_done_to_prdata: assert property (prop_done_to_prdata)
+     else $error("assertion failed: Done signal propagated to APB's PRDATA");
+
+
+   property prop_setup_to_rw;
+      @(posedge PCLK) (state == `SETUP) |-> ##1 (state == `READ_ACCESS || state == `WRITE_ACCESS);
+   endproperty // prop_idle_to_rw
+   assert_setup_to_rw: assert property (prop_setup_to_rw)
+     else $error ("assertion failed: SETUP did not go to READ or WRITE");
+
+
+   property prop_done_to_startoff;
+      @(posedge PCLK) (PRDATA == 16'h8000) |-> ##1 (PADDR == '0 && PWDATA == 16'h0000);
+   endproperty // prop_done_to_startoff
+   assert_done_to_startoff: assert property (prop_done_to_startoff)
+     else $error ("assertion failed: Start not turned off after done sets");
+   
+      
+
+
    
 
 

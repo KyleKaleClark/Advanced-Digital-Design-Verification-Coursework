@@ -40,7 +40,7 @@ INC_DIRS = +incdir+../apb_vip/src/common +incdir+../apb_vip/src/master +incdir+.
 
 #Just for this final APB UVM stuff
 compile_verdi_matmul:
-	${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${UVM_FILES} -kdb -lca -R +UVM_PHASE_TRACE +UVM_VERBOSITY=UVM_HIGH |& tee compile_verdi.log
+	${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${UVM_FILES} -kdb -lca -R +UVM_PHASE_TRACE +UVM_VERBOSITY=UVM_HIGH +UVM_OBJECTION_TRACE |& tee compile_verdi.log
 
 
 # This runs simulation

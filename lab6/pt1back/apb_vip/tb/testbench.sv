@@ -26,10 +26,20 @@ import apb_common_pkg::*;
  `define REG_DATAWIDTH 32
  `define REG_ADDRWIDTH 8
 
+//defines to help w/ assertions
+`define IDLE 2'b00
+`define SETUP 2'b01
+`define READ_ACCESS 2'b10
+`define WRITE_ACCESS 2'b11
+
+
 module testbench;
 	logic pclk;
 	logic presetn;
-	
+
+
+   int 	      cyc_cnt;
+   
 /*  
 	logic [31:0] paddr;
 	logic        psel;
@@ -38,6 +48,32 @@ module testbench;
 	logic [31:0] prdata;
 	logic [31:0] pwdata;
 */ //old stuff, we just use the intf signals
+
+
+   //Intentional force statements to break for testing assertions
+   always_ff @(posedge pclk) begin
+      if (!presetn) begin
+	 cyc_cnt <= 0;
+      end
+      else begin
+	 if (cyc_cnt == 46) begin
+
+	    //cyc_cnt == 6 	    //breaks SETUP -> r/w
+	    //cyc_cnt == 5          //breaks IDLE -> SETUP
+//	    force u_matmul.state = `IDLE;
+
+	    //cyc_cnt ==  47          //breaks done -> start = 0
+//	    force u_matmul.PWDATA = 16'hFFFF;
+
+	    //cyc_cnt == 46           //breaks done -> PRDATA 8000
+//	    force u_matmul.PRDATA = 16'h0000;
+	    $display("");
+	 end
+	 cyc_cnt <= cyc_cnt + 1;
+      end
+   end
+   
+
 
    
 	initial begin

@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 `define DWIDTH 8
 `define AWIDTH 10
 `define MEM_SIZE 1024
@@ -9,7 +10,7 @@
 `define BB_MAT_MUL_SIZE `MAT_MUL_SIZE
 `define NUM_CYCLES_IN_MAC 3
 `define MEM_ACCESS_LATENCY 1
-`define REG_DATAWIDTH 16
+`define REG_DATAWIDTH 32
 `define REG_ADDRWIDTH 8
 `define ADDR_STRIDE_WIDTH 8
 `define MAX_BITS_POOL 3
@@ -38,12 +39,31 @@
 
 
 //Design with memories
-
-//APB mode
 module matrix_multiplication(
   clk, 
   resetn, 
   pe_resetn,
+/*  address_mat_a,
+  address_mat_b,
+  address_mat_c,
+  address_stride_a,
+  address_stride_b,
+  address_stride_c,
+  bram_addr_a_ext,
+  bram_rdata_a_ext,
+  bram_wdata_a_ext,
+  bram_we_a_ext,
+  bram_addr_b_ext,
+  bram_rdata_b_ext,
+  bram_wdata_b_ext,
+  bram_we_b_ext,
+  bram_addr_c_ext,
+  bram_rdata_c_ext,
+  bram_wdata_c_ext,
+  bram_we_c_ext,
+  start, //starts the matmul operation
+  done  //asserts when matmul operation is complete
+*/
   PSEL,
   PENABLE,
   PWRITE,
@@ -56,7 +76,27 @@ module matrix_multiplication(
 	input clk;
 	input resetn;
 	input pe_resetn;
-
+/*	input [`AWIDTH-1:0] address_mat_a;
+	input [`AWIDTH-1:0] address_mat_b;
+	input [`AWIDTH-1:0] address_mat_c;
+	input [`ADDR_STRIDE_WIDTH-1:0] address_stride_a;
+	input [`ADDR_STRIDE_WIDTH-1:0] address_stride_b;
+	input [`ADDR_STRIDE_WIDTH-1:0] address_stride_c;
+  input  [`AWIDTH-1:0] bram_addr_a_ext;
+  output [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_rdata_a_ext;
+  input  [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_wdata_a_ext;
+  input  [`MASK_WIDTH-1:0] bram_we_a_ext;
+  input  [`AWIDTH-1:0] bram_addr_b_ext;
+  output [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_rdata_b_ext;
+  input  [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_wdata_b_ext;
+  input  [`MASK_WIDTH-1:0] bram_we_b_ext;
+  input  [`AWIDTH-1:0] bram_addr_c_ext;
+  output [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_rdata_c_ext;
+  input  [`MAT_MUL_SIZE*`DWIDTH-1:0] bram_wdata_c_ext;
+  input  [`MASK_WIDTH-1:0] bram_we_c_ext;
+	input start;
+	output done;
+*/
    input 		   PSEL;
    input 		   PENABLE;
    input 		   PWRITE;
@@ -130,9 +170,56 @@ module matrix_multiplication(
 
     logic      start;
    
-    logic start_mat_mul, done_mat_mul, done;
+    logic start_mat_mul, done_mat_mul;
     assign start_mat_mul = start; //clarity sake
    
+/*    reg start_mat_mul;
+    wire done_mat_mul;
+	
+	//fsm to start matmul
+	always @( posedge clk) 
+	begin
+        if (resetn == 1'b0) 
+        begin
+            state <= 4'b0000;
+            start_mat_mul <= 1'b0;
+        end 
+        else 
+        begin
+            case (state)
+            4'b0000: 
+            begin
+                start_mat_mul <= 1'b0;
+                if (start == 1'b1) 
+                    state <= 4'b0001;
+                else 
+                    state <= 4'b0000;
+            end
+            
+            4'b0001: 
+            begin
+                start_mat_mul <= 1'b1;	      
+                state <= 4'b1010;                    
+            end      
+            
+            
+            4'b1010: 
+            begin                 
+                if (done_mat_mul == 1'b1) 
+                begin
+                    start_mat_mul <= 1'b0;
+                    state <= 4'b0000;
+                end
+                else 
+                    state <= 4'b1010;
+            end
+                      
+            default:
+                state <= 4'b0000;
+            endcase  
+        end 
+    end
+*/
    logic  PCLK, PRESETn;
    assign PCLK = clk;
    assign PRESETn = resetn;
@@ -149,7 +236,6 @@ module matrix_multiplication(
       if (PRESETn == 0) begin
 	 state <= `IDLE;
 	 PRDATA <= 0;
-	 PREADY <= 0;
 	 start <= 0;
 	 address_mat_a <= 0;
 	 address_mat_b <= 0;
@@ -161,14 +247,12 @@ module matrix_multiplication(
       else begin
 	 case(state)
 	   `IDLE: begin
-	      PREADY <= 0;
 	      if (PSEL && !PENABLE) begin
 		 state <= `SETUP;
 	      end
 	   end
 
 	   `SETUP: begin
-	      PREADY <= 0;
 	      if (PSEL && PENABLE) begin
 		 if (PWRITE) begin
 		    state <= `WRITE_ACCESS;
@@ -180,7 +264,6 @@ module matrix_multiplication(
 
 
 	   `WRITE_ACCESS: begin
-	      PREADY <= 1;
 	      if (PWRITE && PENABLE) begin
 		 case (PADDR)
 		   `REG_START_ADDR: begin
@@ -218,24 +301,19 @@ module matrix_multiplication(
 	   
 
 	   `READ_ACCESS: begin
-	      PREADY <= 1;
 	      if (!PWRITE && PENABLE) begin
 		 case (PADDR)
 		   `REG_DONE_ADDR: begin
-		      PRDATA <= {done, 15'b0}; //cpu reads donezo
-		      $display("Setting PRDATA to 0x%04h, done=%b", {done, 15'b0}, done);
-		      
+		      PRDATA <= {done_mat_mul, 15'b0}; //cpu reads donezo
 		   end		   
 		 endcase // case (PADDR)
-		 if (PREADY)
- 		   state <= `IDLE;
+ 		 state <= `IDLE;
+
 	      end
-	      else if (!PSEL || !PENABLE)
-		state <= `IDLE;
+
 	   end // case: `READ_ACCESS
 
 	   default: begin
-	      PREADY <= 0;
 	      state <= `IDLE;
 	   end
 	 endcase // case (state)
@@ -245,50 +323,9 @@ module matrix_multiplication(
    
 
 
-   //keep done signal until reset
-   always_ff @(posedge PCLK) begin
-      if (PRESETn == 0) begin
-	 done <= 0;
-      end
-      else if (done_mat_mul) begin
-	 done <= 1;
-      end
-   end
-   
 
 
-   //A bunch of assertions we're adding
-   property prop_idle_to_setup;
-      @(posedge PCLK) ($rose(state == `IDLE)) |-> ##2 (state == `SETUP);
-   endproperty // prop_idle_to_setup
-   assert_idle_to_setup: assert property (prop_idle_to_setup)
-     else $error("assertion failed: state != SETUP after 2 cycles from IDLE");
 
-
-   property prop_done_to_prdata;
-      @(posedge PCLK) (done == 1'b1) |-> ##3 (PRDATA == 16'h8000);
-   endproperty // prop_done_to_prdata
-   assert_done_to_prdata: assert property (prop_done_to_prdata)
-     else $error("assertion failed: Done signal propagated to APB's PRDATA");
-
-
-   property prop_setup_to_rw;
-      @(posedge PCLK) (state == `SETUP) |-> ##1 (state == `READ_ACCESS || state == `WRITE_ACCESS);
-   endproperty // prop_idle_to_rw
-   assert_setup_to_rw: assert property (prop_setup_to_rw)
-     else $error ("assertion failed: SETUP did not go to READ or WRITE");
-
-
-   property prop_done_to_startoff;
-      @(posedge PCLK) (PRDATA == 16'h8000) |-> ##1 (PADDR == '0 && PWDATA == 16'h0000);
-   endproperty // prop_done_to_startoff
-   assert_done_to_startoff: assert property (prop_done_to_startoff)
-     else $error ("assertion failed: Start not turned off after done sets");
-   
-      
-
-
-   
 
 
 
@@ -296,6 +333,7 @@ module matrix_multiplication(
 
 
 	
+	assign done = done_mat_mul;
 
     wire c_data_available;
 

@@ -44,7 +44,9 @@ module matmul_4x4_systolic(
     validity_mask_b_cols,
     final_mat_mul_size,
     a_loc,
-    b_loc
+    b_loc,
+    a_mem_access,
+    b_mem_access
     );
 
     input clk;
@@ -79,6 +81,8 @@ module matmul_4x4_systolic(
     input [7:0] final_mat_mul_size;
     input [7:0] a_loc;
     input [7:0] b_loc;
+    output logic a_mem_access;
+    output logic b_mem_access;
 
 //////////////////////////////////////////////////////////////////////////
 // Logic for clock counting and when to assert done
@@ -543,7 +547,7 @@ module systolic_data_setup(
 // Logic to generate addresses to BRAM A
 //////////////////////////////////////////////////////////////////////////
     logic [`AWIDTH-1:0] a_addr;
-    logic a_mem_access; //flag that tells whether the matmul is trying to access memory or not
+    //logic a_mem_access; //flag that tells whether the matmul is trying to access memory or not *moved to top level port*
     
     always_ff @(posedge clk) 
     begin
@@ -623,7 +627,7 @@ module systolic_data_setup(
 // Logic to generate addresses to BRAM B
 //////////////////////////////////////////////////////////////////////////
     logic [`AWIDTH-1:0] b_addr;
-    logic b_mem_access; //flag that tells whether the matmul is trying to access memory or not
+    //logic b_mem_access; //flag that tells whether the matmul is trying to access memory or not *moved to top level port*
 
     always_ff @(posedge clk) 
     begin

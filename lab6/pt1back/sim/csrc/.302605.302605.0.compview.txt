@@ -1,9 +1,0 @@
-{"vcs1":{"timestamp_begin":1752033166.920919735, "rt":10.32, "ut":9.39, "st":0.29}}
-{"vcselab":{"timestamp_begin":1752033177.295232719, "rt":0.85, "ut":0.16, "st":0.06}}
-{"link":{"timestamp_begin":1752033178.189698675, "rt":0.72, "ut":0.42, "st":0.16}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1752033166.193798125}
-{"VCS_COMP_START_TIME": 1752033166.193798125}
-{"VCS_COMP_END_TIME": 1752033180.531189903}
-{"VCS_USER_OPTIONS": "+incdir+../apb_vip/src/common +incdir+../apb_vip/src/master +incdir+../apb_vip/tb +incdir+../apb_vip/src/slave +incdir+../ -full64 -sverilog -debug_access+all -ntb_opts uvm ../fp/FPAddSub_AlignModule.sv ../fp/FPAddSub_AlignShift1.sv ../fp/FPAddSub_AlignShift2.sv ../fp/FPAddSub_ExceptionModule.sv ../fp/FPAddSub_ExecutionModule.sv ../fp/FPAddSub_NormalizeModule.sv ../fp/FPAddSub_NormalizeShift1.sv ../fp/FPAddSub_NormalizeShift2.sv ../fp/FPAddSub_PrealignModule.sv ../fp/FPAddSub_RoundModule.sv ../fp/FPAddSub.sv ../fp/FPMult_ExecuteModule.sv ../fp/FPMult_NormalizeModule.sv ../fp/FPMult_PrepModule.sv ../fp/FPMult_RoundModule.sv ../fp/FPMult.sv ../matmul.sv ../matmul_with_ram.sv ../apb_vip/src/common/apb_if.sv ../apb_vip/src/common/apb_common_pkg.sv ../apb_vip/src/master/apb_master_pkg.sv ../apb_vip/src/slave/apb_slave_pkg.sv ../apb_vip/tb/apb_test.svh ../apb_vip/tb/apb_env.svh ../apb_vip/tb/testbench.sv -kdb -lca -R +UVM_PHASE_TRACE +UVM_VERBOSITY=UVM_HIGH +UVM_OBJECTION_TRACE"}
-{"vcs1": {"peak_mem": 532472}}
-{"stitch_vcselab": {"peak_mem": 258088}}

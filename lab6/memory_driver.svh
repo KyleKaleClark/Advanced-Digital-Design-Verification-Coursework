@@ -1,4 +1,4 @@
-class memory_driver extends uvm_driver #(memory_transaction);
+class memory_driver extends uvm_driver#(memory_transaction);
 	`uvm_component_utils(memory_driver)
 
 	virtual memory_if vif;
@@ -54,9 +54,9 @@ class memory_driver extends uvm_driver #(memory_transaction);
 				end
 
 				else begin
-					vif.data <= mem[vif.addr];
+					vif.data <= mem_model[vif.addr];
 					tr.data <= vif.data;
-					tr.addr <= vid.addr;
+					tr.addr <= vif.addr;
 					tr.dir <= READ;
 					`uvm_info("DRIVER", $sformatf("READ: addr=0x%0h, data=0x%0h", vif.addr,vif.data),UVM_MEDIUM)
 				end

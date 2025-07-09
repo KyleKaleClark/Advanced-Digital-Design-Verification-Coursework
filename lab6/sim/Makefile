@@ -32,9 +32,11 @@ compile_uvm:
 
 VCS_FLAGS = -full64 -sverilog -debug_access+all -ntb_opts uvm
 
-SV_FILES = ../fp/FP*.sv ../matmul.sv ../matmul_with_ram.sv
+SV_FILES = ../fp/FP*.sv ../matmul.sv ../matmul_with_ram.sv ../matmul_with_mem_interface.sv
 
 UVM_FILES = ../apb_vip/src/common/apb_if.sv ../apb_vip/src/common/apb_common_pkg.sv ../apb_vip/src/master/apb_master_pkg.sv ../apb_vip/src/slave/apb_slave_pkg.sv ../apb_vip/tb/apb_test.svh ../apb_vip/tb/apb_env.svh ../apb_vip/tb/testbench.sv
+
+MEM_UVM_FILES = ../apb_vip/src/common/apb_if.sv ../apb_vip/src/common/apb_common_pkg.sv ../apb_vip/src/master/apb_master_pkg.sv ../apb_vip/src/slave/apb_slave_pkg.sv ../apb_vip/tb/apb_env.svh ../memory_pkg.svh ../memory_tb.sv
 
 INC_DIRS = +incdir+../apb_vip/src/common +incdir+../apb_vip/src/master +incdir+../apb_vip/tb +incdir+../apb_vip/src/slave +incdir+../
 
@@ -42,7 +44,8 @@ INC_DIRS = +incdir+../apb_vip/src/common +incdir+../apb_vip/src/master +incdir+.
 compile_verdi_matmul:
 	${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${UVM_FILES} -kdb -lca -R +UVM_PHASE_TRACE +UVM_VERBOSITY=UVM_HIGH +UVM_OBJECTION_TRACE |& tee compile_verdi.log
 
-
+compile_verdi_memory:
+	${VCS_HOME}/bin/vcs ${INC_DIRS} ${VCS_FLAGS} ${SV_FILES} ${MEM_UVM_FILES} -kdb -lca -R +UVM_PHASE_TRACE +UVM_VERBOSITY=UVM_HIGH +UVM_OBJECTION_TRACE |& tee compile_verdi.log
 # This runs simulation
 sim:
 	./simv

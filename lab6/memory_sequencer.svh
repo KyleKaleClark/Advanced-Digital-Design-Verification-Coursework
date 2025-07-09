@@ -23,7 +23,8 @@ class memory_sequence extends uvm_sequence #(memory_transaction);
 		super.new(name);
 	endfunction
 
-	virtual task body()
+	virtual task body();
+
 		memory_transaction tr;
 		forever begin
 			tr = memory_transaction::type_id::create("tr", , get_full_name());

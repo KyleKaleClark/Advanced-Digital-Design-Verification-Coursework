@@ -20,7 +20,7 @@ class memory_agent extends uvm_agent;
 	driver = memory_driver::type_id::create("driver",this);
 	sequencer = memory_sequencer::type_id::create("sequencer",this);
 
-	uvm_config_db#(string)::set(this, "driver", "direction", direction;
+	uvm_config_db#(string)::set(this, "driver", "direction", direction);
 
 	endfunction
 

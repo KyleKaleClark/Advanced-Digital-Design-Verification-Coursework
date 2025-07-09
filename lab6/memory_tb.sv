@@ -1,9 +1,5 @@
 import uvm_pkg::*;
 `include "uvm_macros.svh"
-
-import apb_master_pkg::*;
-import apb_slave_pkg::*;
-import apb_common_pkg::*;
 import memory_pkg::*;
 
 module testbench;
@@ -13,7 +9,7 @@ logic clk, reset;
 apb_if apb_interface(clk, reset);
 memory_if mem_a_if(clk, reset);
 memory_if mem_b_if(clk, reset);
-memory_if mem_b_if(clk, reset);
+memory_if mem_c_if(clk, reset);
 
 matrix_multiplication dut(
 	.clk(clk),
@@ -36,6 +32,13 @@ matrix_multiplication dut(
 	.c_addr(mem_c_if.addr),
 	.c_data_available(mem_c_if.en)
 );
+
+always begin
+	clk <= 1'b0;
+	#5;
+	clk <= 1'b1;
+	#5;
+end
 
 initial begin
 	uvm_config_db#(virtual apb_if)::set(null, "*", "apb_vif", apb_interface);

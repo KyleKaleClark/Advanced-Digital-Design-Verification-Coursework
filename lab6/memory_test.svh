@@ -1,3 +1,40 @@
+class memory_test_sequence extends uvm_sequence;
+		`uvm_object_utils(memory_test_sequence)
+
+		function new(string name = "memory_test_sequence");
+			super.new(name);
+		endfunction
+
+		virtual task body();
+		
+			apb_config_sequence apb_config_seq;
+			apb_poll_sequence apb_poll_seq;
+			memory_sequence mem_a_seq, mem_b_seq, mem_c_seq;
+
+			`uvm_info("VIRT SEQ", "Starting virtual sequence", UVM_MEDIUM)
+
+			fork 
+				begin
+					mem_a_seq = memory_sequence::type_id::create("mem_a_seq");
+					mem_a_seq.start(p_sequencer.mem_a_agent.sequencer);
+				end
+				begin
+					mem_b_seq = memory_sequence::type_id::create("mem_b_seq");
+					mem_b_seq.start(p_sequencer.mem_b_agent.sequencer);
+				end
+				begin
+					mem_c_seq = memory_sequence::type_id::create("mem_c_seq");
+					mem_c_seq.start(p_sequencer.mem_c_agent.sequencer);
+				end
+			join_none
+
+			apb_config_seq = apb_config_sequence::type_id::create("apb_config_seq");
+			apb_config_seq.start(p_sequencer.apb_agent.sequencer);
+
+			`uvm_info("VIRT SEQ", "Completed virtual sequence", UVM_MEDIUM)
+		endtask
+endclass
+
 class memory_test extends uvm_test;
 	`uvm_component_utils(memory_test)
 
@@ -13,7 +50,7 @@ class memory_test extends uvm_test;
 	endfunction
 
 	virtual function void build_phase (uvm_phase phase);
-		super.build_phase(phase)
+		super.build_phase(phase);
 		env = memory_env::type_id::create("env",this);
 
 		randomize_matrix();
@@ -86,7 +123,7 @@ class memory_test extends uvm_test;
 
 
 	function void check_results();
-		bit [4'`DWIDTH-1:0] result;
+		bit [4*`DWIDTH-1:0] result;
 		bit test_passed = 1;
 
 		`uvm_info("TEST", "Checking results", UVM_MEDIUM)
@@ -96,8 +133,8 @@ class memory_test extends uvm_test;
 				int addr = i * `MAT_MUL_SIZE + j;
 				if (env.mem_c_agent.mem_model.exists(addr)) begin
 					result = env.mem_c_agent.mem_model[addr];	
-					if (result != expected_c[i][j]) begin
-						`uvm_error("TEST", $sformatf("Mismatch at [%0d][%0d]: expected = 0x%0h, actual - 0x%0h, i ,j, expected_c[i][j], result))
+					if (result != matrix_c[i][j]) begin
+						`uvm_error("TEST", $sformatf("Mismatch at [%0d][%0d]: expected = 0x%0h, actual - 0x%0h", i ,j, matrix_c[i][j], result))
 						test_passed = 0;
 					end
 				end 
@@ -117,41 +154,7 @@ class memory_test extends uvm_test;
 	endfunction
 endclass
 
-class memory_test_sequence extends uvm_sequence;
-		`uvm_object_utils(memory_test_sequence)
 
-		function new(string name = "memory_test_sequence");
-			super.new(name);
-		endfunction
-
-		virtual task body();
-		
-			apb_config_sequence apb_config_seq;
-			apb_poll_sequence apb_poll_seq;
-			memory_sequence mem_a_seq, mem_b_seq, mem_c_seq;
-
-			`uvm_info("VIRT SEQ", "Starting virtual sequence", UVM_MEDIUM)
-
-			fork 
-				begin
-					mem_a_seq = memory_sequence::type_id::create("mem_a_seq");
-					mem_a_seq.start(p_sequencer.mem_a_agent.sequencer);
-				end
-				begin
-					mem_b_seq = memory_sequence::type_id::create("mem_b_seq");
-					mem_b_seq.start(p_sequencer.mem_b_agent.sequencer);
-				end
-					mem_c_seq = memory_sequence::type_id::create("mem_c_seq");
-					mem_c_seq.start(p_sequencer.mem_c_agent.sequencer);
-				end
-			join_none
-
-			apb_config_seq = apb_config_sequence::type_id::create("apb_config_seq");
-			apb_config_seq.start(p_sequencer.apb_agent.sequencer);
-
-			`uvm_info("VIRT SEQ", "Completed virtual sequence", UVM_MEDIUM)
-		endtask
-endclass
 
 
 

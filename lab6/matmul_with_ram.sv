@@ -9,7 +9,7 @@
 `define BB_MAT_MUL_SIZE `MAT_MUL_SIZE
 `define NUM_CYCLES_IN_MAC 3
 `define MEM_ACCESS_LATENCY 1
-`define REG_DATAWIDTH 32
+`define REG_DATAWIDTH 16
 `define REG_ADDRWIDTH 8
 `define ADDR_STRIDE_WIDTH 8
 `define MAX_BITS_POOL 3
@@ -130,7 +130,7 @@ module matrix_multiplication(
 
     logic      start;
    
-    logic start_mat_mul, done_mat_mul;
+    logic start_mat_mul, done_mat_mul, done;
     assign start_mat_mul = start; //clarity sake
    
    logic  PCLK, PRESETn;
@@ -149,6 +149,7 @@ module matrix_multiplication(
       if (PRESETn == 0) begin
 	 state <= `IDLE;
 	 PRDATA <= 0;
+	 PREADY <= 0;
 	 start <= 0;
 	 address_mat_a <= 0;
 	 address_mat_b <= 0;
@@ -160,12 +161,14 @@ module matrix_multiplication(
       else begin
 	 case(state)
 	   `IDLE: begin
+	      PREADY <= 0;
 	      if (PSEL && !PENABLE) begin
 		 state <= `SETUP;
 	      end
 	   end
 
 	   `SETUP: begin
+	      PREADY <= 0;
 	      if (PSEL && PENABLE) begin
 		 if (PWRITE) begin
 		    state <= `WRITE_ACCESS;
@@ -177,6 +180,7 @@ module matrix_multiplication(
 
 
 	   `WRITE_ACCESS: begin
+	      PREADY <= 1;
 	      if (PWRITE && PENABLE) begin
 		 case (PADDR)
 		   `REG_START_ADDR: begin
@@ -214,19 +218,24 @@ module matrix_multiplication(
 	   
 
 	   `READ_ACCESS: begin
+	      PREADY <= 1;
 	      if (!PWRITE && PENABLE) begin
 		 case (PADDR)
 		   `REG_DONE_ADDR: begin
-		      PRDATA <= {done_mat_mul, 15'b0}; //cpu reads donezo
+		      PRDATA <= {done, 15'b0}; //cpu reads donezo
+		      $display("Setting PRDATA to 0x%04h, done=%b", {done, 15'b0}, done);
+		      
 		   end		   
 		 endcase // case (PADDR)
- 		 state <= `IDLE;
-
+		 if (PREADY)
+ 		   state <= `IDLE;
 	      end
-
+	      else if (!PSEL || !PENABLE)
+		state <= `IDLE;
 	   end // case: `READ_ACCESS
 
 	   default: begin
+	      PREADY <= 0;
 	      state <= `IDLE;
 	   end
 	 endcase // case (state)
@@ -236,9 +245,18 @@ module matrix_multiplication(
    
 
 
+   //keep done signal until reset
+   always_ff @(posedge PCLK) begin
+      if (PRESETn == 0) begin
+	 done <= 0;
+      end
+      else if (done_mat_mul) begin
+	 done <= 1;
+      end
+   end
+   
 
-
-
+   
 
 
 
@@ -246,7 +264,6 @@ module matrix_multiplication(
 
 
 	
-	assign done = done_mat_mul;
 
     wire c_data_available;
 

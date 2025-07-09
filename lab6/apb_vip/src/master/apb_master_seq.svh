@@ -50,7 +50,7 @@ endtask
 
 
 //Making our Custy Sequence for our testbench:
-`define REG_DATAWIDTH 32
+`define REG_DATAWIDTH 16
 `define REG_ADDRWIDTH 8
 
 class apb_custom_test_seq extends apb_master_seq;
@@ -90,6 +90,7 @@ task apb_custom_test_seq::body();
 
    //init addr/strides
    apb_write(REG_ADDR_A_ADDR, 10'd0);
+   apb_write(REG_ADDR_A_ADDR, 10'd0);
    apb_write(REG_ADDR_B_ADDR, 10'd0);
    apb_write(REG_ADDR_C_ADDR, 10'd0);
    apb_write(REG_STRIDE_A_ADDR, 8'd1);
@@ -102,7 +103,6 @@ task apb_custom_test_seq::body();
    done_signal = 16'h0;   //intentional, worked in original tb
    while (!done_signal[15]) begin
       apb_read(REG_DONE_ADDR, done_signal); //intentional from og tb
-      #10ns;
    end
 
    //stop op
@@ -131,7 +131,7 @@ endtask // apb_write
 
 task apb_custom_test_seq::apb_read(input [`REG_ADDRWIDTH-1:0] addr, output [`REG_DATAWIDTH-1:0] data);
 
-   apb_master_seq_item req, rsp;
+   apb_master_seq_item req;
    req = apb_master_seq_item::type_id::create("req");
    start_item(req);
 
@@ -140,8 +140,8 @@ task apb_custom_test_seq::apb_read(input [`REG_ADDRWIDTH-1:0] addr, output [`REG
    req.apb_tr = apb_base_seq_item::READ;
 
    finish_item(req);
-   get_response(rsp);
-   data = rsp.data;
+//   get_response(rsp);
+   data = req.data;
    `uvm_info(get_type_name(), $sformatf("read : addr=0x%08h, data = 0x%08h", addr, data), UVM_MEDIUM)
    
 endtask // apb_read

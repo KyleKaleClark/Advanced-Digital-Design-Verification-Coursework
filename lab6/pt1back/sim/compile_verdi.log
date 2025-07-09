@@ -1,0 +1,2497 @@
+                         Chronologic VCS (TM)
+      Version T-2022.06-SP2-1_Full64 -- Wed Jul  9 03:52:46 2025
+
+                    Copyright (c) 1991 - 2023 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS Release Notes
+
+Parsing design file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_version_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/snps_macros.svp'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_message_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_phase_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_object_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_printer_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_tlm_defines.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm_imps.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_tlm_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_sequence_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_callback_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_reg_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/macros/uvm_deprecated_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/directc/uvm_directc.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/directc/uvm_seed.vh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/directc/uvm_directc.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_dpi.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_hdl.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_dpi.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_svcmd_dpi.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_dpi.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_regex.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_dpi.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_version.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_object_globals.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_misc.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_object.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_pool.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_queue.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_factory.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_registry.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_spell_chkr.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_resource.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/deprecated/uvm_resource_converter.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_resource_specializations.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_resource_db.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_config_db.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_printer.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_comparer.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_packer.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_recorder.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_event_callback.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_event.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_barrier.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_callback.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_callback.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_report_catcher.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_report_server.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_report_handler.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_report_object.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_transaction.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_domain.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_bottomup_phase.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_topdown_phase.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_task_phase.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_common_phases.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_runtime_phases.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_component.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_root.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_component.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_objection.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_heartbeat.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_globals.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_cmdline_processor.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm_ifs.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_sqr_ifs.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_port_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm_imps.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_imps.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_ports.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_exports.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_analysis_port.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm_fifo_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm_fifos.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm_req_rsp.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_sqr_connections.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm1/uvm_tlm.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_pair.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_policies.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_in_order_comparator.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_algorithmic_comparator.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_random_stimulus.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_subscriber.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_monitor.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_driver.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_push_driver.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_scoreboard.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_agent.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_env.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_test.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/comps/uvm_comps.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequence_item.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequencer_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequencer_analysis_fifo.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequencer_param_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequencer.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_push_sequencer.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequence_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequence.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequence_library.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_sequence_builtin.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/seq/uvm_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_defines.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_time.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_generic_payload.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_ifs.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_imps.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_ports.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_exports.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_sockets_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2_sockets.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/tlm2/uvm_tlm2.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_item.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_adapter.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_predictor.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_sequence.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_cbs.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_backdoor.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_field.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_vreg_field.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_indirect.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_fifo.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_file.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_mem_mam.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_vreg.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_mem.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_map.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_block.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_reg_hw_reset_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_reg_bit_bash_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_mem_walk_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_mem_access_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_reg_access_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_reg_mem_shared_access_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_reg_mem_built_in_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/sequences/uvm_reg_mem_hdl_paths_seq.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/snps_uvm_reg_bank.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/reg/uvm_reg_model.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/vcs_uvm_alt.sv'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_pkg.sv'.
+Parsing design file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_custom_install_vcs_recorder.sv'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/msglog.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_custom_install_vcs_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_msglog_report_server.sv'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_custom_install_vcs_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_vcs_recorder.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_custom_install_vcs_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_vcs_record_interface.sv'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/vcs/uvm_custom_install_vcs_recorder.sv'.
+Parsing design file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_recorder.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_pli_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_recorder.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_reg_map_recording.sv'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_message_catcher.svh'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_pli_base.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_message_catcher.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/./dpi/uvm_verdi_dpi.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_reg_recording.sv'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/include/verdi_trans_recorder_dpi.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_verdi_pli.svh'.
+Back to file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'.
+Parsing design file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/uvm_custom_install_verdi_recorder.sv'
+Parsing design file '../fp/FPAddSub_AlignModule.sv'
+Parsing design file '../fp/FPAddSub_AlignShift1.sv'
+Parsing design file '../fp/FPAddSub_AlignShift2.sv'
+Parsing design file '../fp/FPAddSub_ExceptionModule.sv'
+Parsing design file '../fp/FPAddSub_ExecutionModule.sv'
+Parsing design file '../fp/FPAddSub_NormalizeModule.sv'
+
+Warning-[DCTTSW] Decimal constant truncated
+  Constant '8' is truncated to 3 bits: 0.
+  "../fp/FPAddSub_NormalizeModule.sv", 28
+  Source info: 	else if (Sum[1]) Shift = 3'd8;         
+
+
+Warning-[DCTTSW] Decimal constant truncated
+  Constant '9' is truncated to 3 bits: 1.
+  "../fp/FPAddSub_NormalizeModule.sv", 29
+  Source info: 	else Shift = 3'd9;   
+
+Parsing design file '../fp/FPAddSub_NormalizeShift1.sv'
+Parsing design file '../fp/FPAddSub_NormalizeShift2.sv'
+Parsing design file '../fp/FPAddSub_PrealignModule.sv'
+Parsing design file '../fp/FPAddSub_RoundModule.sv'
+Parsing design file '../fp/FPAddSub.sv'
+Parsing design file '../fp/FPMult_ExecuteModule.sv'
+Parsing design file '../fp/FPMult_NormalizeModule.sv'
+Parsing design file '../fp/FPMult_PrepModule.sv'
+Parsing design file '../fp/FPMult_RoundModule.sv'
+Parsing design file '../fp/FPMult.sv'
+Parsing design file '../matmul.sv'
+Parsing design file '../matmul_with_ram.sv'
+
+Warning-[TMR] Text macro redefined
+../matmul_with_ram.sv, 12
+  Text macro (REG_DATAWIDTH) is redefined. The last definition will override 
+  previous ones.
+  Location of previous definition: ../matmul.sv, 13.
+  Previous value: 32
+
+Parsing design file '../apb_vip/src/common/apb_if.sv'
+Parsing included file '../apb_vip/src/common/apb_defines.svh'.
+Back to file '../apb_vip/src/common/apb_if.sv'.
+
+Warning-[TMR] Text macro redefined
+../apb_vip/src/common/apb_if.sv, 48
+  Text macro (IDLE) is redefined. The last definition will override previous 
+  ones.
+  Location of previous definition: ../matmul_with_ram.sv, 19.
+  Previous value: 2'b00
+
+
+Warning-[TMR] Text macro redefined
+../apb_vip/src/common/apb_if.sv, 49
+  Text macro (SETUP) is redefined. The last definition will override previous 
+  ones.
+  Location of previous definition: ../matmul_with_ram.sv, 20.
+  Previous value: 2'b01
+
+Parsing design file '../apb_vip/src/common/apb_common_pkg.sv'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/src/common/apb_common_pkg.sv'.
+Parsing included file '../apb_vip/src/common/apb_base_seq_item.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/src/common/apb_base_seq_item.svh, 18
+apb_common_pkg
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/src/common/apb_base_seq_item.svh'.
+Back to file '../apb_vip/src/common/apb_common_pkg.sv'.
+Parsing design file '../apb_vip/src/master/apb_master_pkg.sv'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_config.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_seq_item.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_seq.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/src/master/apb_master_seq.svh, 18
+apb_master_pkg
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/src/master/apb_master_seq.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_sequencer.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_driver.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_monitor.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing included file '../apb_vip/src/master/apb_master_agent.svh'.
+Back to file '../apb_vip/src/master/apb_master_pkg.sv'.
+Parsing design file '../apb_vip/src/slave/apb_slave_pkg.sv'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_config.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_seq_item.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_seq.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_sequencer.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_driver.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_monitor.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing included file '../apb_vip/src/slave/apb_slave_agent.svh'.
+Back to file '../apb_vip/src/slave/apb_slave_pkg.sv'.
+Parsing design file '../apb_vip/tb/apb_test.svh'
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/tb/apb_test.svh'.
+Parsing included file '../apb_vip/tb/apb_env.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/tb/apb_env.svh, 18
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/tb/apb_env.svh'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/tb/apb_env.svh, 21
+$unit
+  Package 'apb_master_pkg' already wildcard imported. 
+  Ignoring apb_master_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/tb/apb_env.svh, 22
+$unit
+  Package 'apb_slave_pkg' already wildcard imported. 
+  Ignoring apb_slave_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Back to file '../apb_vip/tb/apb_test.svh'.
+Parsing design file '../apb_vip/tb/apb_env.svh'
+Parsing design file '../apb_vip/tb/testbench.sv'
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/tb/testbench.sv, 16
+$unit
+  Package 'uvm_pkg' already wildcard imported. 
+  Ignoring uvm_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file '/usr/local2/synopsys/vcs_2022.06/etc/uvm/uvm_macros.svh'.
+Back to file '../apb_vip/tb/testbench.sv'.
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/tb/testbench.sv, 19
+$unit
+  Package 'apb_master_pkg' already wildcard imported. 
+  Ignoring apb_master_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+
+Note-[SV-LCM-PPWI] Package previously wildcard imported
+../apb_vip/tb/testbench.sv, 20
+$unit
+  Package 'apb_slave_pkg' already wildcard imported. 
+  Ignoring apb_slave_pkg::*
+  See the SystemVerilog LRM(1800-2005), section 19.2.1.
+
+Parsing included file '../apb_vip/tb/apb_test.svh'.
+Back to file '../apb_vip/tb/testbench.sv'.
+
+Warning-[TMR] Text macro redefined
+../apb_vip/tb/testbench.sv, 26
+  Text macro (REG_DATAWIDTH) is redefined. The last definition will override 
+  previous ones.
+  Location of previous definition: ../apb_vip/src/master/apb_master_seq.svh, 
+  53.
+  Previous value: 16
+
+Top Level Modules:
+       uvm_custom_install_recording
+       uvm_custom_install_verdi_recording
+       FPAddSub_AlignShift2
+       FPAddSub_NormalizeShift1
+       testbench
+No TimeScale specified
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 98
+  Implicit wire 'bram_addr_a_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 99
+  Implicit wire 'bram_wdata_a_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 100
+  Implicit wire 'bram_we_a_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 111
+  Implicit wire 'bram_addr_b_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 112
+  Implicit wire 'bram_wdata_b_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 113
+  Implicit wire 'bram_we_b_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 124
+  Implicit wire 'bram_addr_c_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 125
+  Implicit wire 'bram_wdata_c_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[IWNF] Implicit wire has no fanin
+../matmul_with_ram.sv, 126
+  Implicit wire 'bram_we_c_ext' does not have any driver, please make sure 
+  this is intended.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 94
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 10-bit port "addr1" of module
+  "ram", instance "matrix_A".
+  Expression: bram_addr_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 94
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "d1" of module 
+  "ram", instance "matrix_A".
+  Expression: bram_wdata_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 94
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 4-bit port "we1" of module 
+  "ram", instance "matrix_A".
+  Expression: bram_we_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 94
+"ram matrix_A( .addr0 (bram_addr_a),  .d0 (bram_wdata_a),  .we0 (bram_we_a),  .q0 (bram_rdata_a),  .addr1 (bram_addr_a_ext),  .d1 (bram_wdata_a_ext),  .we1 (bram_we_a_ext),  .q1 (bram_rdata_a_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "q1" of module 
+  "ram", instance "matrix_A".
+  Expression: bram_rdata_a_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 107
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 10-bit port "addr1" of module
+  "ram", instance "matrix_B".
+  Expression: bram_addr_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 107
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "d1" of module 
+  "ram", instance "matrix_B".
+  Expression: bram_wdata_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 107
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 4-bit port "we1" of module 
+  "ram", instance "matrix_B".
+  Expression: bram_we_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 107
+"ram matrix_B( .addr0 (bram_addr_b),  .d0 (bram_wdata_b),  .we0 (bram_we_b),  .q0 (bram_rdata_b),  .addr1 (bram_addr_b_ext),  .d1 (bram_wdata_b_ext),  .we1 (bram_we_b_ext),  .q1 (bram_rdata_b_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "q1" of module 
+  "ram", instance "matrix_B".
+  Expression: bram_rdata_b_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 120
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 10-bit port "addr1" of module
+  "ram", instance "matrix_C".
+  Expression: bram_addr_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 120
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "d1" of module 
+  "ram", instance "matrix_C".
+  Expression: bram_wdata_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 120
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 4-bit port "we1" of module 
+  "ram", instance "matrix_C".
+  Expression: bram_we_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../matmul_with_ram.sv, 120
+"ram matrix_C( .addr0 (bram_addr_c),  .d0 (bram_wdata_c),  .we0 (bram_we_c),  .q0 (bram_rdata_c),  .addr1 (bram_addr_c_ext),  .d1 (bram_wdata_c_ext),  .we1 (bram_we_c_ext),  .q1 (bram_rdata_c_ext),  .clk (clk));"
+  The following 1-bit expression is connected to 32-bit port "q1" of module 
+  "ram", instance "matrix_C".
+  Expression: bram_rdata_c_ext
+  Instantiated module defined at: "../matmul_with_ram.sv", 344
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../apb_vip/tb/testbench.sv, 62
+"matrix_multiplication u_matmul( .clk (pclk),  .resetn (presetn),  .pe_resetn (presetn),  .PSEL (testbench.apb_if_inst.PSEL),  .PENABLE (testbench.apb_if_inst.PENABLE),  .PWRITE (testbench.apb_if_inst.PWRITE),  .PADDR (testbench.apb_if_inst.PADDR),  .PWDATA (testbench.apb_if_inst.PWDATA),  .PRDATA (testbench.apb_if_inst.PRDATA),  .PREADY (testbench.apb_if_inst.PREADY));"
+  The following 32-bit expression is connected to 4-bit port "PADDR" of module
+  "matrix_multiplication", instance "u_matmul".
+  Expression: testbench.apb_if_inst.PADDR
+  Instantiated module defined at: "../matmul_with_ram.sv", 43
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../apb_vip/tb/testbench.sv, 62
+"matrix_multiplication u_matmul( .clk (pclk),  .resetn (presetn),  .pe_resetn (presetn),  .PSEL (testbench.apb_if_inst.PSEL),  .PENABLE (testbench.apb_if_inst.PENABLE),  .PWRITE (testbench.apb_if_inst.PWRITE),  .PADDR (testbench.apb_if_inst.PADDR),  .PWDATA (testbench.apb_if_inst.PWDATA),  .PRDATA (testbench.apb_if_inst.PRDATA),  .PREADY (testbench.apb_if_inst.PREADY));"
+  The following 32-bit expression is connected to 16-bit port "PWDATA" of 
+  module "matrix_multiplication", instance "u_matmul".
+  Expression: testbench.apb_if_inst.PWDATA
+  Instantiated module defined at: "../matmul_with_ram.sv", 43
+  Use +lint=PCWM for more details.
+
+
+Warning-[PCWM-W] Port connection width mismatch
+../apb_vip/tb/testbench.sv, 62
+"matrix_multiplication u_matmul( .clk (pclk),  .resetn (presetn),  .pe_resetn (presetn),  .PSEL (testbench.apb_if_inst.PSEL),  .PENABLE (testbench.apb_if_inst.PENABLE),  .PWRITE (testbench.apb_if_inst.PWRITE),  .PADDR (testbench.apb_if_inst.PADDR),  .PWDATA (testbench.apb_if_inst.PWDATA),  .PRDATA (testbench.apb_if_inst.PRDATA),  .PREADY (testbench.apb_if_inst.PREADY));"
+  The following 32-bit expression is connected to 16-bit port "PRDATA" of 
+  module "matrix_multiplication", instance "u_matmul".
+  Expression: testbench.apb_if_inst.PRDATA
+  Instantiated module defined at: "../matmul_with_ram.sv", 43
+  Use +lint=PCWM for more details.
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+../apb_vip/src/common/apb_if.sv, 22
+  Illegal combination of structural and procedural drivers.
+  Variable "PRDATA" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "../apb_vip/src/common/apb_if.sv", 22: logic 
+  [(32 - 1):0] PRDATA;
+  The first driver is at "../apb_vip/tb/testbench.sv", 62: 
+  matrix_multiplication u_matmul( .clk (pclk),  .resetn (presetn),  .pe_resetn
+  (presetn),  .PSEL (testbench.apb_if_inst.PSEL),  .PENABLE 
+  (testbench.apb_if_inst. ...
+  The second driver is at "../apb_vip/src/common/apb_if.sv", 38: output PRDATA
+  = PRDATA;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+../apb_vip/src/common/apb_if.sv, 27
+  Illegal combination of structural and procedural drivers.
+  Variable "PREADY" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "../apb_vip/src/common/apb_if.sv", 27: logic 
+  PREADY;
+  The first driver is at "../apb_vip/tb/testbench.sv", 62: 
+  matrix_multiplication u_matmul( .clk (pclk),  .resetn (presetn),  .pe_resetn
+  (presetn),  .PSEL (testbench.apb_if_inst.PSEL),  .PENABLE 
+  (testbench.apb_if_inst. ...
+  The second driver is at "../apb_vip/src/common/apb_if.sv", 38: output PREADY
+  = PREADY;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[DRTZ] Detect delay value roundoff to 0
+  Delay from design or SDF file roundoff to 0 based on timescale
+  Please use switch -diag timescale to dump detailed information.
+
+Starting vcs inline pass...
+
+15 modules and 0 UDP read.
+recompiling package vcs_paramclassrepository
+recompiling package _vcs_DPI_package
+recompiling package uvm_pkg
+recompiling package _vcs_msglog
+recompiling module uvm_custom_install_recording
+recompiling module uvm_custom_install_verdi_recording
+recompiling module FPAddSub_AlignShift2
+recompiling module FPAddSub_NormalizeShift1
+recompiling module processing_element
+recompiling module matrix_multiplication
+recompiling module apb_if
+recompiling package apb_common_pkg
+recompiling package apb_master_pkg
+recompiling package apb_slave_pkg
+recompiling module testbench
+All of 15 modules done
+
+Warning-[ICPSD_W] Illegal combination of drivers
+../apb_vip/src/common/apb_if.sv, 22
+  Illegal combination of structural and procedural drivers.
+  Variable "PRDATA" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "../apb_vip/src/common/apb_if.sv", 22: logic 
+  [(32 - 1):0] PRDATA;
+  The first driver is at "../apb_vip/src/common/apb_if.sv", 38
+  Hierarchical path: testbench.apb_if_inst
+  The second driver is at "../apb_vip/tb/testbench.sv", 62
+  Hierarchical path: testbench
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+../apb_vip/src/common/apb_if.sv, 27
+  Illegal combination of structural and procedural drivers.
+  Variable "PREADY" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "../apb_vip/src/common/apb_if.sv", 27: logic 
+  PREADY;
+  The first driver is at "../apb_vip/src/common/apb_if.sv", 38
+  Hierarchical path: testbench.apb_if_inst
+  The second driver is at "../apb_vip/tb/testbench.sv", 62
+  Hierarchical path: testbench
+  
+  This warning will be upgraded to error in future releases
+  
+
+make[1]: Entering directory '/home/a21164_asu/addv/lab6/sim/csrc'
+make[1]: Leaving directory '/home/a21164_asu/addv/lab6/sim/csrc'
+make[1]: Entering directory '/home/a21164_asu/addv/lab6/sim/csrc'
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+g++ -w  -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -O -I/usr/local2/synopsys/vcs_2022.06/include    -c /usr/local2/synopsys/vcs_2022.06/etc/uvm/dpi/uvm_dpi.cc
+g++ -w  -pipe -DVCS -DUVM_DPI_DO_TYPE_CHECK -fPIC -O -I/usr/local2/synopsys/vcs_2022.06/include    -c /usr/local2/synopsys/vcs_2022.06/etc/uvm/verdi/dpi/uvm_verdi_dpi.cpp
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/usr/local2/synopsys/vcs_2022.06/linux64/lib -L/usr/local2/synopsys/vcs_2022.06/linux64/lib  -Wl,-rpath-link=./  /usr/lib64/libnuma.so.1 uvm_dpi.o uvm_verdi_dpi.o   objs/amcQw_d.o   _303654_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -lreader_common /usr/local2/synopsys/vcs_2022.06/linux64/lib/libBA.a -luclinative /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive       ./../simv.daidir/vc_hdrs.o  _vcs_pli_stub_.o   /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread -ldl 
+../simv up to date
+make[1]: Leaving directory '/home/a21164_asu/addv/lab6/sim/csrc'
+/usr/local2/synopsys/vcs_2022.06/bin/vcs: line 34601: 303838 Segmentation fault      (core dumped) ${TOOL_HOME}/bin/cfs_ident_exec -f ${XML_INPUT_EXE} -o "${fsearchDir}/idents_tapi.xml" -o_SrcFile "${dirSrcFiles}/src_files_c" ${all_dyn_libs} > tapi_xml_writer.log
+
+Warning-[LCA_FEATURES_ENABLED] Usage warning
+  LCA features enabled by '-lca' argument on the command line.  For more 
+  information regarding list of LCA features please refer to Chapter "LCA 
+  features" in the VCS Release Notes
+
+Chronologic VCS simulator copyright 1991-2022
+Contains Synopsys proprietary information.
+Compiler version T-2022.06-SP2-1_Full64; Runtime version T-2022.06-SP2-1_Full64;  Jul  9 03:52 2025
+----------------------------------------------------------------
+UVM-1.1d.Synopsys
+(C) 2007-2013 Mentor Graphics Corporation
+(C) 2007-2013 Cadence Design Systems, Inc.
+(C) 2006-2013 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_MUST_HAVE_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test apb_test...
+*Verdi* Loading libsscore_vcs202206.so
+FSDB Dumper for VCS, Release Verdi_T-2022.06-SP2-1, Linux x86_64/64bit, 01/12/2023
+(C) 1996 - 2023 by Synopsys, Inc.
+*Verdi* : Create FSDB file 'novas.fsdb'
+*Verdi* : Begin traversing the scopes, layer (0).
+*Verdi* : End of traversing.
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'common' (id=176) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'common' (id=176) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'common.build' (id=194) Scheduled from phase common
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'common.build' (id=194) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 0: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.build' (id=194) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'common.build' (id=194) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'common.build' (id=194) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'common.connect' (id=206) Scheduled from phase common.build
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'common.connect' (id=206) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 0: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.connect' (id=206) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'common.connect' (id=206) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'common.connect' (id=206) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'common.end_of_elaboration' (id=218) Scheduled from phase common.connect
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'common.end_of_elaboration' (id=218) Starting phase
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+---------------------------------------------------------------
+Name                        Type                    Size  Value
+---------------------------------------------------------------
+uvm_test_top                apb_test                -     @463 
+  env                       apb_env                 -     @471 
+    master_agent            apb_master_agent        -     @490 
+      m_apb_master_driver   apb_master_driver       -     @537 
+        rsp_port            uvm_analysis_port       -     @554 
+        seq_item_port       uvm_seq_item_pull_port  -     @545 
+      m_apb_master_monitor  apb_master_monitor      -     @520 
+        ap                  uvm_analysis_port       -     @528 
+      m_sequencer           apb_master_sequencer    -     @563 
+        rsp_export          uvm_analysis_export     -     @571 
+        seq_item_export     uvm_seq_item_pull_imp   -     @677 
+        arbitration_queue   array                   0     -    
+        lock_queue          array                   0     -    
+        num_last_reqs       integral                32    'd1  
+        num_last_rsps       integral                32    'd1  
+    slave_agent             apb_slave_agent         -     @498 
+      m_apb_slave_driver    apb_slave_driver        -     @723 
+        rsp_port            uvm_analysis_port       -     @740 
+        seq_item_port       uvm_seq_item_pull_port  -     @731 
+      m_apb_slave_monitor   apb_slave_monitor       -     @706 
+        ap                  uvm_analysis_port       -     @714 
+      m_sequencer           apb_slave_sequencer     -     @749 
+        rsp_export          uvm_analysis_export     -     @757 
+        seq_item_export     uvm_seq_item_pull_imp   -     @863 
+        arbitration_queue   array                   0     -    
+        lock_queue          array                   0     -    
+        num_last_reqs       integral                32    'd1  
+        num_last_rsps       integral                32    'd1  
+---------------------------------------------------------------
+
+UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
+---------------------------------------------------------------
+Name                        Type                    Size  Value
+---------------------------------------------------------------
+uvm_test_top                apb_test                -     @463 
+  env                       apb_env                 -     @471 
+    master_agent            apb_master_agent        -     @490 
+      m_apb_master_driver   apb_master_driver       -     @537 
+        rsp_port            uvm_analysis_port       -     @554 
+        seq_item_port       uvm_seq_item_pull_port  -     @545 
+      m_apb_master_monitor  apb_master_monitor      -     @520 
+        ap                  uvm_analysis_port       -     @528 
+      m_sequencer           apb_master_sequencer    -     @563 
+        rsp_export          uvm_analysis_export     -     @571 
+        seq_item_export     uvm_seq_item_pull_imp   -     @677 
+        arbitration_queue   array                   0     -    
+        lock_queue          array                   0     -    
+        num_last_reqs       integral                32    'd1  
+        num_last_rsps       integral                32    'd1  
+    slave_agent             apb_slave_agent         -     @498 
+      m_apb_slave_driver    apb_slave_driver        -     @723 
+        rsp_port            uvm_analysis_port       -     @740 
+        seq_item_port       uvm_seq_item_pull_port  -     @731 
+      m_apb_slave_monitor   apb_slave_monitor       -     @706 
+        ap                  uvm_analysis_port       -     @714 
+      m_sequencer           apb_slave_sequencer     -     @749 
+        rsp_export          uvm_analysis_export     -     @757 
+        seq_item_export     uvm_seq_item_pull_imp   -     @863 
+        arbitration_queue   array                   0     -    
+        lock_queue          array                   0     -    
+        num_last_reqs       integral                32    'd1  
+        num_last_rsps       integral                32    'd1  
+---------------------------------------------------------------
+
+
+#### Factory Configuration (*)
+
+  No instance or type overrides are registered with this factory
+
+All types registered with the factory: 60 total
+(types without type names will not be printed)
+
+  Type Name
+  ---------
+  apb_base_seq_item
+  apb_custom_test_seq
+  apb_env
+  apb_master_agent
+  apb_master_config
+  apb_master_driver
+  apb_master_monitor
+  apb_master_seq
+  apb_master_seq_item
+  apb_master_sequencer
+  apb_slave_agent
+  apb_slave_config
+  apb_slave_driver
+  apb_slave_monitor
+  apb_slave_seq
+  apb_slave_seq_item
+  apb_slave_sequencer
+  apb_test
+  snps_uvm_reg_bank_group
+  snps_uvm_reg_map
+(*) Types with no associated type name will be printed as <unknown>
+
+####
+
+UVM_INFO ../apb_vip/tb/apb_test.svh(99) @ 0: uvm_test_top [CONFIG DEBUG] printing config for env
+UVM_INFO @ 0: uvm_test_top [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_apb_master_driver [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_apb_master_driver.rsp_port [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_apb_master_driver.seq_item_port [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_apb_master_monitor [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_apb_master_monitor.ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.req_fifo [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.req_fifo.get_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.req_fifo.get_peek_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.req_fifo.put_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.req_fifo.put_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.rsp_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.seq_item_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.sqr_rsp_analysis_fifo [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.sqr_rsp_analysis_fifo.analysis_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.sqr_rsp_analysis_fifo.get_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.sqr_rsp_analysis_fifo.get_peek_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.sqr_rsp_analysis_fifo.put_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.master_agent.m_sequencer.sqr_rsp_analysis_fifo.put_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_apb_slave_driver [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_apb_slave_driver.rsp_port [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_apb_slave_driver.seq_item_port [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_apb_slave_monitor [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_apb_slave_monitor.ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.req_fifo [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.req_fifo.get_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.req_fifo.get_peek_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.req_fifo.put_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.req_fifo.put_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.rsp_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.seq_item_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.sqr_rsp_analysis_fifo [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.sqr_rsp_analysis_fifo.analysis_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.sqr_rsp_analysis_fifo.get_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.sqr_rsp_analysis_fifo.get_peek_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.sqr_rsp_analysis_fifo.put_ap [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO @ 0: uvm_test_top.env.slave_agent.m_sequencer.sqr_rsp_analysis_fifo.put_export [CFGPRT] visible resources:
+apb_vif [] : (virtual interface apb_if) ?
+-  
+  --------
+   reads: 1 @ 0  writes: 1 @ 0
+  uvm_test_top reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.master_agent.m_apb_master_monitor reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_driver reads: 1 @ 0  writes: 0 @ 0
+  uvm_test_top.env.slave_agent.m_apb_slave_monitor reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_slave_config [] : (class apb_slave_pkg::apb_slave_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.slave_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+apb_master_config [] : (class apb_master_pkg::apb_master_config) ?
+-  
+  --------
+   reads: 0 @ 0  writes: 1 @ 0
+  uvm_test_top.env.master_agent reads: 1 @ 0  writes: 0 @ 0
+ 
+UVM_INFO ../apb_vip/tb/apb_test.svh(102) @ 0: uvm_test_top [ENV PRINT] printing environment deets:
+---------------------------------------------------------------
+Name                        Type                    Size  Value
+---------------------------------------------------------------
+uvm_test_top                apb_test                -     @463 
+  env                       apb_env                 -     @471 
+    master_agent            apb_master_agent        -     @490 
+      m_apb_master_driver   apb_master_driver       -     @537 
+        rsp_port            uvm_analysis_port       -     @554 
+        seq_item_port       uvm_seq_item_pull_port  -     @545 
+      m_apb_master_monitor  apb_master_monitor      -     @520 
+        ap                  uvm_analysis_port       -     @528 
+      m_sequencer           apb_master_sequencer    -     @563 
+        rsp_export          uvm_analysis_export     -     @571 
+        seq_item_export     uvm_seq_item_pull_imp   -     @677 
+        arbitration_queue   array                   0     -    
+        lock_queue          array                   0     -    
+        num_last_reqs       integral                32    'd1  
+        num_last_rsps       integral                32    'd1  
+    slave_agent             apb_slave_agent         -     @498 
+      m_apb_slave_driver    apb_slave_driver        -     @723 
+        rsp_port            uvm_analysis_port       -     @740 
+        seq_item_port       uvm_seq_item_pull_port  -     @731 
+      m_apb_slave_monitor   apb_slave_monitor       -     @706 
+        ap                  uvm_analysis_port       -     @714 
+      m_sequencer           apb_slave_sequencer     -     @749 
+        rsp_export          uvm_analysis_export     -     @757 
+        seq_item_export     uvm_seq_item_pull_imp   -     @863 
+        arbitration_queue   array                   0     -    
+        lock_queue          array                   0     -    
+        num_last_reqs       integral                32    'd1  
+        num_last_rsps       integral                32    'd1  
+---------------------------------------------------------------
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 0: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.end_of_elaboration' (id=218) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'common.end_of_elaboration' (id=218) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'common.end_of_elaboration' (id=218) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'common.start_of_simulation' (id=230) Scheduled from phase common.end_of_elaboration
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'common.start_of_simulation' (id=230) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 0: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.start_of_simulation' (id=230) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'common.start_of_simulation' (id=230) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'common.start_of_simulation' (id=230) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'common.run' (id=242) Scheduled from phase common.start_of_simulation
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'common.run' (id=242) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm' (id=291) Scheduled from phase common.start_of_simulation
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm' (id=291) Starting phase
+UVM_INFO @ 0: run [OBJTN_TRC] Object uvm_test_top raised 1 objection(s) (Starting apb_test run phase): count=1  total=1
+UVM_INFO @ 0: run [OBJTN_TRC] Object uvm_top added 1 objection(s) to its total (raised from source object uvm_test_top, Starting apb_test run phase): count=0  total=1
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm' (id=291) Completed phase
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(89) @ 0: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] starting test seq
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched' (id=303) Scheduled from phase uvm
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched' (id=303) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched' (id=303) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.pre_reset' (id=321) Scheduled from phase uvm.uvm_sched
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.pre_reset' (id=321) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.pre_reset' (id=321) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1242) @ 0: reporter [PH/TRC/TO_WAIT] Phase 'common.run' (id=242) STARTING PHASE TIMEOUT WATCHDOG (timeout ==                 9200)
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.pre_reset' (id=321) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.pre_reset' (id=321) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.pre_reset' (id=321) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.reset' (id=333) Scheduled from phase uvm.uvm_sched.pre_reset
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.reset' (id=333) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.reset' (id=333) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.reset' (id=333) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.reset' (id=333) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.reset' (id=333) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.post_reset' (id=345) Scheduled from phase uvm.uvm_sched.reset
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.post_reset' (id=345) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.post_reset' (id=345) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.post_reset' (id=345) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.post_reset' (id=345) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.post_reset' (id=345) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.pre_configure' (id=357) Scheduled from phase uvm.uvm_sched.post_reset
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.pre_configure' (id=357) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.pre_configure' (id=357) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.pre_configure' (id=357) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.pre_configure' (id=357) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.pre_configure' (id=357) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.configure' (id=369) Scheduled from phase uvm.uvm_sched.pre_configure
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.configure' (id=369) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.configure' (id=369) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.configure' (id=369) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.configure' (id=369) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.configure' (id=369) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.post_configure' (id=381) Scheduled from phase uvm.uvm_sched.configure
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.post_configure' (id=381) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.post_configure' (id=381) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.post_configure' (id=381) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.post_configure' (id=381) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.post_configure' (id=381) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.pre_main' (id=393) Scheduled from phase uvm.uvm_sched.post_configure
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.pre_main' (id=393) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.pre_main' (id=393) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.pre_main' (id=393) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.pre_main' (id=393) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.pre_main' (id=393) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.main' (id=405) Scheduled from phase uvm.uvm_sched.pre_main
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.main' (id=405) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.main' (id=405) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.main' (id=405) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.main' (id=405) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.main' (id=405) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.post_main' (id=417) Scheduled from phase uvm.uvm_sched.main
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.post_main' (id=417) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.post_main' (id=417) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.post_main' (id=417) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.post_main' (id=417) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.post_main' (id=417) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.pre_shutdown' (id=429) Scheduled from phase uvm.uvm_sched.post_main
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.pre_shutdown' (id=429) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.pre_shutdown' (id=429) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.pre_shutdown' (id=429) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.pre_shutdown' (id=429) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.pre_shutdown' (id=429) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.shutdown' (id=441) Scheduled from phase uvm.uvm_sched.pre_shutdown
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.shutdown' (id=441) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.shutdown' (id=441) No objections raised, skipping phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 0: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.shutdown' (id=441) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 0: reporter [PH_END] Phase 'uvm.uvm_sched.shutdown' (id=441) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 0: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.shutdown' (id=441) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 0: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched.post_shutdown' (id=453) Scheduled from phase uvm.uvm_sched.shutdown
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 0: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched.post_shutdown' (id=453) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1209) @ 0: reporter [PH/TRC/SKIP] Phase 'uvm.uvm_sched.post_shutdown' (id=453) No objections raised, skipping phase
+UVM_INFO @ 30: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=2 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 30: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000002, data = 0x00000000
+UVM_INFO ../apb_vip/tb/testbench.sv(119) @ 41: reporter [TESTBENCH] matrix data injected
+UVM_INFO ../apb_vip/src/slave/apb_slave_driver.svh(81) @ 50: uvm_test_top.env.slave_agent.m_apb_slave_driver [apb_slave_driver] finish drive
+UVM_INFO @ 110: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=2 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 110: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000002, data = 0x00000000
+UVM_INFO @ 110: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=2 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 110: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=2 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 190: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=3 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 190: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000003, data = 0x00000000
+UVM_INFO @ 190: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=3 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 190: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=3 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 270: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=4 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 270: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000004, data = 0x00000000
+UVM_INFO @ 270: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=4 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 270: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=4 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 350: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=5 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 350: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000005, data = 0x00000001
+UVM_INFO @ 350: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=5 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 350: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=5 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 430: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=6 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 430: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000006, data = 0x00000001
+UVM_INFO @ 430: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=6 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 430: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=6 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 510: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=7 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 510: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000007, data = 0x00000001
+UVM_INFO @ 510: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=7 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 510: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=7 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 590: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=0 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 590: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000000, data = 0x00000001
+UVM_INFO @ 590: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=0 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO @ 590: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=0 
+ DATA=1 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 590: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1121                                               
+  begin_time                   time                 64    590                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+Setting PRDATA to 0x0000, done=0
+Setting PRDATA to 0x0000, done=0
+UVM_INFO @ 670: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 670: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00000000
+UVM_INFO @ 670: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 670: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 670: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1137                                               
+  begin_time                   time                 64    670                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+UVM_INFO @ 710: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 710: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00000000
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 710: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1153                                               
+  begin_time                   time                 64    710                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+UVM_INFO @ 750: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 750: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00000000
+UVM_INFO @ 750: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 750: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 750: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1161                                               
+  begin_time                   time                 64    750                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+Setting PRDATA to 0x0000, done=0
+Setting PRDATA to 0x0000, done=0
+UVM_INFO @ 830: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 830: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00000000
+UVM_INFO @ 830: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 830: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 830: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1177                                               
+  begin_time                   time                 64    830                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+UVM_INFO @ 870: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 870: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00000000
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 870: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1193                                               
+  begin_time                   time                 64    870                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+UVM_INFO @ 910: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 910: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00000000
+UVM_INFO @ 910: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO @ 910: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(142) @ 910: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] Transaction Print req
+--------------------------------------------------------------------------------------------------------------
+Name                           Type                 Size  Value                                               
+--------------------------------------------------------------------------------------------------------------
+req                            apb_master_seq_item  -     @1201                                               
+  begin_time                   time                 64    910                                                 
+  depth                        int                  32    'd2                                                 
+  parent sequence (name)       string               10    master_seq                                          
+  parent sequence (full name)  string               52    uvm_test_top.env.master_agent.m_sequencer.master_seq
+  sequencer                    string               41    uvm_test_top.env.master_agent.m_sequencer           
+--------------------------------------------------------------------------------------------------------------
+Setting PRDATA to 0x8000, done=1
+Setting PRDATA to 0x8000, done=1
+UVM_INFO @ 990: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=8000 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(149) @ 990: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] read : addr=0x00000001, data = 0x00008000
+UVM_INFO @ 990: uvm_test_top.env.master_agent.m_apb_master_monitor [APB_MASTER_MONITOR] 
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=8000 
+ --------------------------------------------------------------
+UVM_INFO @ 990: uvm_test_top.env.slave_agent.m_apb_slave_monitor [APB_SLAVE_MONITOR] 
+ -------------------------APB_SLAVE_TRANSFER------------------------- 
+ DIR.=READ 
+ ADDR=1 
+ DATA=8000 
+ --------------------------------------------------------------
+UVM_INFO @ 1030: uvm_test_top.env.master_agent.m_apb_master_driver [APB_MASTER_DRIVER ]  
+ -------------------------APB_MASTER_TRANSFER------------------------- 
+ DIR.=WRITE 
+ ADDR=0 
+ DATA=0 
+ --------------------------------------------------------------
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(128) @ 1030: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] write: addr=0x00000000, data = 0x00000000
+UVM_INFO ../apb_vip/src/master/apb_master_seq.svh(111) @ 1030: uvm_test_top.env.master_agent.m_sequencer@@master_seq [apb_custom_test_seq] custom seq ended :D
+UVM_INFO @ 1030: run [OBJTN_TRC] Object uvm_test_top dropped 1 objection(s) (Finished apb_test in run phase): count=0  total=0
+UVM_INFO @ 1030: run [OBJTN_TRC] Object uvm_test_top all_dropped 1 objection(s) (Finished apb_test in run phase): count=0  total=0
+UVM_INFO @ 1030: run [OBJTN_TRC] Object uvm_top subtracted 1 objection(s) from its total (dropped from source object uvm_test_top, Finished apb_test in run phase): count=0  total=0
+UVM_INFO @ 1030: run [OBJTN_TRC] Object uvm_top subtracted 1 objection(s) from its total (all_dropped from source object uvm_test_top, Finished apb_test in run phase): count=0  total=0
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_objection.svh(1274) @ 1030: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 1030: reporter [PH_READY_TO_END_CB] Phase 'uvm.uvm_sched.post_shutdown' (id=453) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1224) @ 1030: reporter [PH_READY_TO_END_CB] Phase 'common.run' (id=242) CALLING READY_TO_END CB
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 1030: reporter [PH_END] Phase 'common.run' (id=242) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 1030: reporter [PH_END] Phase 'uvm.uvm_sched.post_shutdown' (id=453) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'common.run' (id=242) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched.post_shutdown' (id=453) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'common.extract' (id=249) Scheduled from phase common.run
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_sched_end' (id=309) Scheduled from phase uvm.uvm_sched.post_shutdown
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'uvm.uvm_sched_end' (id=309) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'uvm.uvm_sched_end' (id=309) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'uvm.uvm_end' (id=297) Scheduled from phase uvm.uvm_sched_end
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'uvm.uvm_end' (id=297) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'uvm.uvm_end' (id=297) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'common.extract' (id=249) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 1030: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.extract' (id=249) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 1030: reporter [PH_END] Phase 'common.extract' (id=249) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'common.extract' (id=249) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'common.check' (id=261) Scheduled from phase common.extract
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'common.check' (id=261) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 1030: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.check' (id=261) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 1030: reporter [PH_END] Phase 'common.check' (id=261) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'common.check' (id=261) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'common.report' (id=273) Scheduled from phase common.check
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'common.report' (id=273) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 1030: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.report' (id=273) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 1030: reporter [PH_END] Phase 'common.report' (id=273) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'common.report' (id=273) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'common.final' (id=285) Scheduled from phase common.report
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'common.final' (id=285) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1505) @ 1030: reporter [PH/TRC/WAIT_PRED_OF_SUCC] Phase 'common.final' (id=285) *** No pred to succ other than myself, so ending phase ***
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1362) @ 1030: reporter [PH_END] Phase 'common.final' (id=285) ENDING PHASE
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'common.final' (id=285) Completed phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1409) @ 1030: reporter [PH/TRC/SCHEDULED] Phase 'common.common_end' (id=182) Scheduled from phase common.final
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1130) @ 1030: reporter [PH/TRC/STRT] Phase 'common.common_end' (id=182) Starting phase
+UVM_INFO /usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_phase.svh(1387) @ 1030: reporter [PH/TRC/DONE] Phase 'common.common_end' (id=182) Completed phase
+
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :  256
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[APB_MASTER_DRIVER ]    16
+[APB_MASTER_MONITOR]    12
+[APB_SLAVE_MONITOR]    12
+[CFGPRT]    42
+[CONFIG DEBUG]     1
+[ENV PRINT]     1
+[OBJTN_TRC]     6
+[PH/TRC/DONE]    27
+[PH/TRC/SCHEDULED]    26
+[PH/TRC/SKIP]    12
+[PH/TRC/STRT]    27
+[PH/TRC/TO_WAIT]     1
+[PH/TRC/WAIT_PRED_OF_SUCC]     8
+[PH_END]    21
+[PH_READY_TO_END_CB]    13
+[RNTST]     1
+[TESTBENCH]     1
+[TEST_DONE]     1
+[UVMTOP]     2
+[apb_custom_test_seq]    25
+[apb_slave_driver]     1
+$finish called from file "/usr/local2/synopsys/vcs_2022.06/etc/uvm/base/uvm_root.svh", line 437.
+$finish at simulation time                 1030
+"../apb_vip/src/common/apb_if.sv", 75: testbench.apb_if_inst.unnamed$$_1, 51 attempts, 49 match
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 1030
+CPU Time:      0.330 seconds;       Data structure size:   0.7Mb
+Wed Jul  9 03:53:00 2025
+CPU time: 9.721 seconds to compile + .242 seconds to elab + .673 seconds to link + .361 seconds in simulation
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)

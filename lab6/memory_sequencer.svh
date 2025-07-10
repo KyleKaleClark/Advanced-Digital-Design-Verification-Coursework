@@ -1,13 +1,14 @@
 class memory_transaction extends uvm_sequence_item;
 	bit [`AWIDTH-1:0] addr;
 	rand logic [4*`DWIDTH-1:0] data;
-	typedef enum {READ,WRITE} data_direction;
-	data_direction dir;
+        rand mem_op_t dir;
+   
+
 
 	`uvm_object_utils_begin(memory_transaction)
 		`uvm_field_int(addr, UVM_DEFAULT)
 		`uvm_field_int(data, UVM_DEFAULT)
-		`uvm_field_enum(data_direction, dir, UVM_DEFAULT)
+		`uvm_field_enum(mem_op_t, dir, UVM_DEFAULT)
 	`uvm_object_utils_end
 
 		function new(string name = "memory_transaction");

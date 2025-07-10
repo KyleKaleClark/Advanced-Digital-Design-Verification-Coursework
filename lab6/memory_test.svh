@@ -1,4 +1,12 @@
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
+import apb_master_pkg::*;
+import apb_slave_pkg::*;
 `include "apb_env.svh"
+
+
+
 class memory_test_sequence extends uvm_sequence;
 		`uvm_object_utils(memory_test_sequence)
 
@@ -7,7 +15,10 @@ class memory_test_sequence extends uvm_sequence;
 		endfunction
 		
 		memory_env env;
-		apb_env aenv;
+//		apb_env aenv;
+   apb_master_agent apb_agent;
+
+   
 		virtual task body();
 		
 			apb_master_seq apb_master_sequence;
@@ -16,6 +27,14 @@ class memory_test_sequence extends uvm_sequence;
 
 			`uvm_info("VIRT SEQ", "Starting virtual sequence", UVM_MEDIUM)
 
+//		   if (!uvm_config_db#(memory_env)::get(null, get_full_name(), "env", env)) begin
+//		      `uvm_fatal("VIRT_SEQ", "Cannot get env from config")
+//		   end
+
+		   apb_agent = env.apb_agent;
+		   
+
+		   
 			fork 
 				begin
 					mem_a_seq = memory_sequence::type_id::create("mem_a_seq");
@@ -31,8 +50,8 @@ class memory_test_sequence extends uvm_sequence;
 				end
 			join_none
 
-			apb_master_sequence = apb_master_seq::type_id::create("apb_master_sequence");
-			apb_master_sequence.start(aenv.apb_master_agent.sequencer);
+//			apb_master_sequence = apb_master_seq::type_id::create("apb_master_sequence");
+//			apb_master_sequence.start(aenv.apb_master_agent.sequencer);
 
 			`uvm_info("VIRT SEQ", "Completed virtual sequence", UVM_MEDIUM)
 		endtask
@@ -56,6 +75,9 @@ class memory_test extends uvm_test;
 		super.build_phase(phase);
 		env = memory_env::type_id::create("env",this);
 
+	        uvm_config_db#(memory_env)::set(this, "*", "env", env);
+	   
+	   
 		randomize_matrix();
 		expected_results();
 
@@ -115,6 +137,7 @@ class memory_test extends uvm_test;
 		`uvm_info("TEST", "Starting matrix multiplication", UVM_MEDIUM)
 
 		vseq = memory_test_sequence::type_id::create("vseq");
+	   vseq.env = this.env;
 		vseq.start(null);
 
 		#1000;

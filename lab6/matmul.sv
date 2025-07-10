@@ -177,7 +177,9 @@ module matmul_4x4_systolic(
         .validity_mask_b_cols(validity_mask_b_cols),
         .final_mat_mul_size(final_mat_mul_size),
         .a_loc(a_loc),
-        .b_loc(b_loc)
+        .b_loc(b_loc),
+      .a_mem_access(a_mem_access),
+      .b_mem_access(b_mem_access)
         );
 
 
@@ -504,7 +506,9 @@ module systolic_data_setup(
     validity_mask_b_cols,
     final_mat_mul_size,
     a_loc,
-    b_loc
+    b_loc,
+    a_mem_access,
+    b_mem_access		   
     );
 
     input clk;
@@ -533,6 +537,9 @@ module systolic_data_setup(
     input [7:0] final_mat_mul_size;
     input [7:0] a_loc;
     input [7:0] b_loc;
+    output logic	a_mem_access;
+    output logic	b_mem_access;
+   
     
     logic [`DWIDTH-1:0] a0_data;
     logic [`DWIDTH-1:0] a1_data;

@@ -51,8 +51,11 @@ function void apb_master_agent::build_phase(uvm_phase phase);
 	
 	// get configuration object
 	if (m_cfg == null) begin
-		if (!uvm_config_db#(apb_master_config)::get(this, "*", "apb_master_config", m_cfg))
-			`uvm_warning(get_full_name(), "Config not set for master agent, using default is_active field")
+		if (!uvm_config_db#(apb_master_config)::get(this, "*", "apb_master_config", m_cfg)) begin
+		   `uvm_warning(get_full_name(), "Config not set for master agent, using default is_active field")
+		   m_cfg = apb_master_config::type_id::create("m_cfg");
+		   m_cfg.is_active = UVM_ACTIVE;
+		end
 	end	
 	
 	m_apb_master_seq_item		= apb_master_seq_item::type_id::create("m_apb_master_seq_item");

@@ -1,7 +1,7 @@
 `define DWIDTH 8
 `define AWIDTH 10
 
-interface memory_if (input logic clk, reset)
+interface memory_if (input logic clk, reset);
 
 	logic [`AWIDTH-1:0] addr;
 	logic [4*`DWIDTH-1:0] data;

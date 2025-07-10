@@ -1,14 +1,17 @@
+`include "apb_env.svh"
 class memory_test_sequence extends uvm_sequence;
 		`uvm_object_utils(memory_test_sequence)
 
 		function new(string name = "memory_test_sequence");
 			super.new(name);
 		endfunction
-
+		
+		memory_env env;
+		apb_env aenv;
 		virtual task body();
 		
-			apb_config_sequence apb_config_seq;
-			apb_poll_sequence apb_poll_seq;
+			apb_master_seq apb_master_sequence;
+			//apb_poll_sequence apb_poll_seq;
 			memory_sequence mem_a_seq, mem_b_seq, mem_c_seq;
 
 			`uvm_info("VIRT SEQ", "Starting virtual sequence", UVM_MEDIUM)
@@ -16,20 +19,20 @@ class memory_test_sequence extends uvm_sequence;
 			fork 
 				begin
 					mem_a_seq = memory_sequence::type_id::create("mem_a_seq");
-					mem_a_seq.start(p_sequencer.mem_a_agent.sequencer);
+					mem_a_seq.start(env.mem_a_agent.sequencer);
 				end
 				begin
 					mem_b_seq = memory_sequence::type_id::create("mem_b_seq");
-					mem_b_seq.start(p_sequencer.mem_b_agent.sequencer);
+					mem_b_seq.start(env.mem_b_agent.sequencer);
 				end
 				begin
 					mem_c_seq = memory_sequence::type_id::create("mem_c_seq");
-					mem_c_seq.start(p_sequencer.mem_c_agent.sequencer);
+					mem_c_seq.start(env.mem_c_agent.sequencer);
 				end
 			join_none
 
-			apb_config_seq = apb_config_sequence::type_id::create("apb_config_seq");
-			apb_config_seq.start(p_sequencer.apb_agent.sequencer);
+			apb_master_sequence = apb_master_seq::type_id::create("apb_master_sequence");
+			apb_master_sequence.start(aenv.apb_master_agent.sequencer);
 
 			`uvm_info("VIRT SEQ", "Completed virtual sequence", UVM_MEDIUM)
 		endtask
@@ -139,7 +142,7 @@ class memory_test extends uvm_test;
 					end
 				end 
 				else begin
-					`uvm_info("TEST", $sformatf("No result written to address [%0d][%0d]",i,j))
+					`uvm_error("TEST", $sformatf("No result written to address [%0d][%0d]",i,j))
 					test_passed = 0;
 				end
 			end

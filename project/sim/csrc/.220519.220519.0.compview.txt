@@ -1,8 +1,0 @@
-{"vcs1":{"timestamp_begin":1750649373.243776612, "rt":0.89, "ut":0.10, "st":0.06}}
-Command terminated by signal 2
-{"vcselab":{"timestamp_begin":1750649374.188948090, "rt":0.11, "ut":0.00, "st":0.00}}
-{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750649373.019803983}
-{"VCS_COMP_START_TIME": 1750649373.019803983}
-{"VCS_COMP_END_TIME": 1750649374.314499453}
-{"VCS_USER_OPTIONS": "-full64 -sverilog ../fifo.c ../fifo.sv ../fifo_tb.sv -debug_access+all"}
-{"vcs1": {"peak_mem": 368564}}

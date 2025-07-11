@@ -1,7 +1,0 @@
-simSetSimulator "-vcssv" -exec "./simv" -args
-debImport "-dbdir" "./simv.daidir"
-debLoadSimResult /home/a21164_asu/addv/lab4/sim/novas.fsdb
-wvCreateWindow
-verdiWindowResize -win $_Verdi_1 "611" "20" "1678" "1187"
-verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
-debExit

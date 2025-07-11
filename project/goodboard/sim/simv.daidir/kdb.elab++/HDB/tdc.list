@@ -1,0 +1,2 @@
+../fifo.sv
+../fifo_tb_scoreboard.sv

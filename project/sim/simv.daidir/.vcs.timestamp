@@ -1,0 +1,112 @@
+0
+34
++itf+/usr/local2/synopsys/vcs_2022.06/linux64/lib/vcsdp_lite.tab
++vcsd1
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/usr/local2/synopsys/vcs_2022.06/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=../fifo.c
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvirsim.so /usr/local2/synopsys/vcs_2022.06/linux64/lib/liberrorinf.so /usr/local2/synopsys/vcs_2022.06/linux64/lib/libsnpsmalloc.so /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvfs.so
+-Mout=simv
+-Msaverestoreobj=/usr/local2/synopsys/vcs_2022.06/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=/usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/pli.a -ldl
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/usr/local2/synopsys/vcs_2022.06/include
+-Mxllcflags=
+-P
+-Xufe=2steps
+-debug_access+all
+-fsdb
+-full64
+-gen_obj
+-kdb
+-lca
+-picarchive
+-sverilog
+/usr/local2/synopsys/vcs_2022.06/linux64/bin/vcs1
+/usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/verdi.tab
+../fifo.sv
+../fifo_tb_scoreboard.sv
+60
+which_declare=declare -f
+XRDP_SOCKET_PATH=/run/xrdp
+XRDP_SESSION=1
+XRDP_PULSE_SOURCE_SOCKET=xrdp_chansrv_audio_in_socket_13
+XRDP_PULSE_SINK_SOCKET=xrdp_chansrv_audio_out_socket_13
+XMODIFIERS=@im=ibus
+XDG_SESSION_ID=c1430
+XDG_RUNTIME_DIR=/run/user/1533248
+XDG_MENU_PREFIX=gnome-
+XDG_DATA_DIRS=/home/a21164_asu/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+XDG_CURRENT_DESKTOP=GNOME
+VTE_VERSION=5204
+VMR_MODE_FLAG=64
+VERDI_HOME=/usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1
+VENDOR=unknown
+VCS_PATHMAP_PRELOAD_DONE=1
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LCAMSG_PRINT_OFF=1
+VCS_HOME=/usr/local2/synopsys/vcs_2022.06
+VCS_EXEC_DONE=1
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UNAME=/bin/uname
+TOOL_HOME=/usr/local2/synopsys/vcs_2022.06/linux64
+SSH_AUTH_SOCK=/run/user/1533248/keyring/ssh
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SSH_AGENT_PID=383706
+SNPS_VERDI_INTERNAL_LP_XML_NEW_FLOW=1
+SNPS_VCS_CLANG_PATH=/usr/local2/synopsys/vcs_2022.06/linux64/clang
+SNPS_INTERNAL_VCS_LINUX_OS=linux
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/383530,unix/unix:/tmp/.ICE-unix/383530
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+QT_IM_MODULE=ibus
+PULSE_SCRIPT=/etc/xrdp/pulse/default.pa
+PDK_DIR=/usr/local2/cadence/NCSU/SRC/FreePDK45
+OVA_UUM=0
+OS_LDFLAGS=
+OSTYPE=linux
+MFLAGS=
+MAKE_TERMOUT=/dev/pts/3
+MAKE_TERMERR=/dev/pts/3
+MAKELEVEL=1
+MAKEFLAGS=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+KRB5CCNAME=FILE:/tmp/krb5cc_1533248
+HOSTTYPE=x86_64-linux
+HISTCONTROL=ignoreboth
+GROUP=a21164_asu
+GNOME_TERMINAL_SERVICE=:1.75
+GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/f6c301ea_d865_460a_9436_ed239086d48f
+GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+GJS_DEBUG_TOPICS=JS ERROR;JS LOG
+GJS_DEBUG_OUTPUT=stderr
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1533248/bus
+COLORTERM=truecolor
+BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@_}
+0
+0
+4
+1752205609 ../fifo_tb_scoreboard.sv
+1752205609 ../fifo.sv
+1673520352 /usr/local2/synopsys/verdi_2022.06/verdi/T-2022.06-SP2-1/share/PLI/VCS/LINUX64/verdi.tab
+1674705950 /usr/local2/synopsys/vcs_2022.06/linux64/lib/vcsdp_lite.tab
+5
+1752205609 ../fifo.c
+1674707991 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvirsim.so
+1674707009 /usr/local2/synopsys/vcs_2022.06/linux64/lib/liberrorinf.so
+1674706922 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libsnpsmalloc.so
+1674707006 /usr/local2/synopsys/vcs_2022.06/linux64/lib/libvfs.so
+1752205662 simv.daidir
+-1 partitionlib

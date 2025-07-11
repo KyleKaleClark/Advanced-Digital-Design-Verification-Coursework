@@ -1,0 +1,8 @@
+import_DPI push _vcs_unit__1582881416
+import_DPI pop _vcs_unit__1582881416
+import_DPI rst_r_ptr _vcs_unit__1582881416
+import_DPI rst_w_ptr _vcs_unit__1582881416
+import_DPI is_empty _vcs_unit__1582881416
+import_DPI is_full _vcs_unit__1582881416
+import_DPI get_r_ptr _vcs_unit__1582881416
+import_DPI get_w_ptr _vcs_unit__1582881416

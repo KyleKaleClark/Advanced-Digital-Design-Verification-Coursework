@@ -1,0 +1,7 @@
+Command exited with non-zero status 255
+{"vcs1":{"timestamp_begin":1750819562.185159865, "rt":0.73, "ut":0.04, "st":0.02}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1750819561.930291127}
+{"VCS_COMP_START_TIME": 1750819561.930291127}
+{"VCS_COMP_END_TIME": 1750819562.961979863}
+{"VCS_USER_OPTIONS": "-full64 -sverilog +define+BUG=0 ../fifo.c ../fifo.sv ../fifo_tb_scoreboard.sv -debug_access+all"}
+{"vcs1": {"peak_mem": 353704}}

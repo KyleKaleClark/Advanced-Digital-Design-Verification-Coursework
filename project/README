@@ -1,0 +1,19 @@
+to compile and run either version i created 2 separate tcsh scripts that take in a parameter to activate the bug or not. To activate the bug, you can just pass in the string "bug" after the tcsh script name to pass it in as an arg and automatically select the correct compile options that utilize the +define for argument passing.
+
+
+For every case:
+    > source env.cshrc
+    > cd sim/
+
+For DPI Testbench:
+    Bug-free:
+	> tcsh run_and_verdi.tcsh
+    Bug-activated:
+	> tcsh run_and_verdi.tcsh bug
+
+
+For Scoreboard Testbench:
+    Bug-free:
+	> tcsh run_and_verdi_sb.tcsh
+    Bug-activated:
+	> tcsh run_and_verdi_sb.tcsh bug

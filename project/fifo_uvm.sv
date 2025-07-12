@@ -309,6 +309,8 @@ class fifo_scoreboard extends uvm_scoreboard;
 endclass // fifo_scoreboard
 
 
+
+
 class fifo_agent extends uvm_agent;
 
    `uvm_component_utils(fifo_agent)
@@ -348,6 +350,8 @@ class fifo_env extends uvm_env;
    fifo_agent agent;
    fifo_scoreboard scoreboard;
 
+   
+   
    function new(string name = "fifo_env", uvm_component parent);
       super.new(name, parent);
    endfunction // new

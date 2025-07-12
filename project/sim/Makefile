@@ -38,16 +38,19 @@ compile_verdi_fifo_sb:
 
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.c ../fifo.sv ../fifo_uvm.sv -debug_access+all -ntb_opts uvm -kdb -lca -R |& tee compile_uvm.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.c ../fifo.sv ../fifo_uvm.sv -debug_access+all -ntb_opts uvm -kdb -lca -cm line+cond+fsm+tgl+branch+assert -cm_name fifo_coverage -cm_dir ./coverage.vdb -R |& tee compile_uvm.log
 
 
 # This runs simulation
 sim:
-	./simv
+	./simv -cm line+cond+fsm+tgl+branch+assert -cm_name fifo_coverage -cm_dir ./coverage.vdb
 
 # This launches Verdi
 waves_verdi:
 	$(VERDI_HOME)/bin/verdi -dbdir ./simv.daidir -ssf novas.fsdb -nologo
+
+coverage_verdi:
+	$(VERDI_HOME)/bin/verdi -cov -covdir ./coverage.vdb -nologo
 
 clean:
 	\rm -rf *.log *.h  csrc DVEFiles simv.daidir simv ucli.key vcdplus.svpd *.syn *.pvl *.mr *.svf command.log *.txt novas.conf  novas.rc  verdi_config_file  verdiLog novas.fsdb novas.log novas_dump.log

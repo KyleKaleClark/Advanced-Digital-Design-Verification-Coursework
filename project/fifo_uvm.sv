@@ -330,10 +330,7 @@ endclass // fifo_scoreboard
 class fifo_coverage extends uvm_subscriber #(fifo_transaction);
 
    `uvm_component_utils(fifo_coverage)
-
-   bit prev_rempty = 1;
-   bit prev_wfull = 0;
-
+   
    covergroup fifo_basic_cg with function sample(fifo_transaction txn);
 
       wdata_bins: coverpoint txn.wdata
@@ -356,17 +353,7 @@ class fifo_coverage extends uvm_subscriber #(fifo_transaction);
       }
 
    endgroup // fifo_basic_cg
-
-
-//   covergroup fifo_pattern_cg with function sample(fifo_transaction txn);
-
-  //    fill_sequence: coverpoint {curr_empty, prev_empty, curr_full, prev_full} 
-//	{
-//	 bins empty_to_not_empty = {4'b1100}
-//	 }
-      
-  // endgroup // fifo_pattern_cg
-   
+  
 
    //fill group here
    

@@ -25,6 +25,6 @@ echo "compiled verdi"
 make sim >> kyle.log
 echo "made sim"
 echo "making verdi!"
-make waves_verdi &
-
+#make waves_verdi &
+make coverage_verdi &
 echo "exited verdi"

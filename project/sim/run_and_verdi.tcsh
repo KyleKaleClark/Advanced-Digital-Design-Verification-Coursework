@@ -19,18 +19,10 @@ echo "running all compiles and opening verdi"
 
 sleep 5
 
-make compile_fifo
-echo "compiled"
-
-if ($bugmode) then
-    make compile_verdi_fifo_bug
-else
-    make compile_verdi_fifo
-endif
-
+make compile_uvm > kyle.log
 
 echo "compiled verdi"
-make sim
+make sim >> kyle.log
 echo "made sim"
 echo "making verdi!"
 make waves_verdi &

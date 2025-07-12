@@ -33,9 +33,12 @@ compile_verdi_fifo_bug_sb:
 compile_verdi_fifo_sb:
 	${VCS_HOME}/bin/vcs -full64 -sverilog  ../fifo.c ../fifo.sv ../fifo_tb_scoreboard.sv -debug_access+all -kdb -lca |& tee compile_verdi.log
 
+
+
+
 #This compiles UVM as well, but we are not using it for now
 compile_uvm:
-	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.c ../fifo.sv ../fifo_tb.sv -debug_access+all -ntb_opts uvm |& tee compile_uvm.log
+	${VCS_HOME}/bin/vcs -full64 -sverilog ../fifo.c ../fifo.sv ../fifo_uvm.sv -debug_access+all -ntb_opts uvm -kdb -lca -R |& tee compile_uvm.log
 
 
 # This runs simulation

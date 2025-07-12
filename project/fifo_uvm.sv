@@ -308,8 +308,61 @@ class fifo_scoreboard extends uvm_scoreboard;
    
 endclass // fifo_scoreboard
 
+//coverage collection :D
+class fifo_coverage extends uvm_subscriber #(fifo_transaction);
 
+   `uvm_component_utils(fifo_coverage)
 
+   bit prev_rempty = 1;
+   bit prev_wfull = 0;
+
+   covergroup fifo_basic_cg with function sample(fifo_transaction txn);
+
+      wdata_bins: coverpoint txn.wdata
+	{
+	 bins low_range = {[0:10]};
+	 bins mid_range = {[11:100]};
+	 bins high_range = {[101:255]};
+      }
+
+      wfull_coverage: coverpoint txn.wfull 
+	{
+	 bins not_full = {1'b0};
+	 bins full = {1'b1};
+      }
+
+      rempty_coverage: coverpoint txn.rempty
+	{
+	 bins not_empty = {1'b0};
+	 bins empty = {1'b1};
+      }
+
+   endgroup // fifo_basic_cg
+
+   //fill group here
+   
+   function new(string name = "fifo_coverage", uvm_component parent);
+      super.new(name, parent);
+      fifo_basic_cg = new();
+      //fill part here
+   endfunction // new
+
+   function void write(fifo_transaction t);
+      fifo_basic_cg.sample(t);
+
+      //fill here
+
+      //update previous state for fill
+   endfunction // write
+
+   function void report_phase(uvm_phase phase);
+      `uvm_info("COVERAGE", $sformatf("FIFO Basic Coverage: %.2f%%", fifo_basic_cg.get_coverage()), UVM_LOW)
+      //fill here
+   endfunction // report_phase
+   
+endclass // fifo_coverage
+
+     
 
 class fifo_agent extends uvm_agent;
 
@@ -350,7 +403,7 @@ class fifo_env extends uvm_env;
    fifo_agent agent;
    fifo_scoreboard scoreboard;
 
-   
+   fifo_coverage coverage;
    
    function new(string name = "fifo_env", uvm_component parent);
       super.new(name, parent);
@@ -361,11 +414,15 @@ class fifo_env extends uvm_env;
 
       agent = fifo_agent::type_id::create("agent", this);
       scoreboard = fifo_scoreboard::type_id::create("scoreboard", this);
+
+      coverage = fifo_coverage::type_id::create("coverage", this);
    endfunction // build_phase
 
    function void connect_phase(uvm_phase phase);
       super.connect_phase(phase);
       agent.monitor.ap.connect(scoreboard.ap_imp);
+      
+      agent.monitor.ap.connect(coverage.analysis_export);
    endfunction // connect_phase
 
 endclass // fifo_env
@@ -414,7 +471,7 @@ class fifo_fill_sequence extends fifo_base_sequence;
 
 
       //fill fifo w/ sequential data
-      for (int i = 1; i <= 15; i++) begin
+      for (int i = 1; i <= 17; i++) begin
 	 req = fifo_transaction::type_id::create($sformatf("write_%0d_enable", i));
 	 req.wdata = i;
 	 req.winc = 1;
@@ -494,6 +551,9 @@ class fifo_random_burst extends fifo_base_sequence;
       `uvm_info("SEQUENCE", "Starting FIFO randomized burst", UVM_LOW)
 
       //hard resets before starting
+      rst_r_ptr();
+      rst_w_ptr();
+      
       req = fifo_transaction::type_id::create("reset_req");
       req.wrst_n = 0;
       req.rrst_n = 0;

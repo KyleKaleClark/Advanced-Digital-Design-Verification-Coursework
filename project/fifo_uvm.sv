@@ -243,13 +243,6 @@ class fifo_monitor extends uvm_monitor;
       end // forever begin
 
 
-      //check for resets
-//      if (!vif.wrst_n || !vif.rrst_n) begin
-//	 txn = fifo_transaction::type_id::create("reset_txn");
-//	 txn.wrst_n = vif.wrst_n;
-//	 txn.rrst_n = vif.rrst_n;
-//	 ap.write(txn);
-//      end
       
    endtask // run_phase
    
@@ -265,18 +258,22 @@ class fifo_monitor extends uvm_monitor;
    endfunction // check_read_data
 
    function void check_empty_flag(fifo_transaction txn);
-      if (golden_empty == txn.rempty) begin
-	 `uvm_info("MONITOR", $sformatf("Successful empty flag match!"), UVM_MEDIUM)
-      end else begin
-	 `uvm_error("MONITOR", $sformatf("FAIL!! Empty mismatch: golden: %b || DUT: %b", golden_empty, txn.rempty))
-      end
+      if (golden_empty) begin
+	 if (golden_empty == txn.rempty) begin
+	    `uvm_info("MONITOR", $sformatf("Successful empty flag match!"), UVM_MEDIUM)
+	 end else begin
+	    `uvm_error("MONITOR", $sformatf("FAIL!! Empty mismatch: golden: %b || DUT: %b", golden_empty, txn.rempty))
+	 end
+      end      
    endfunction // check_empty_flag
 
    function void check_full_flag(fifo_transaction txn);
-      if (golden_full == txn.wfull) begin
-	 `uvm_info("MONITOR", "Sucessfull full flag check!", UVM_MEDIUM)
-      end else begin
-	 `uvm_error("MONITOR", $sformatf("FAIL!! Full mismatch: golden: %b || DUT: %b", golden_full, txn.wfull))
+      if (golden_full) begin
+	 if (golden_full == txn.wfull) begin
+	    `uvm_info("MONITOR", "Sucessfull full flag check!", UVM_MEDIUM)
+	 end else begin
+	    `uvm_error("MONITOR", $sformatf("FAIL!! Full mismatch: golden: %b || DUT: %b", golden_full, txn.wfull))
+	 end
       end
    endfunction // check_full_flag
    

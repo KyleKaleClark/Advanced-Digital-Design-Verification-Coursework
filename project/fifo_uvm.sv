@@ -471,6 +471,90 @@ class fifo_empty_sequence extends fifo_base_sequence;
 endclass // fifo_empty_sequence
 
 
+//Randomized Sequences
+class fifo_random_burst extends fifo_base_sequence;
+
+   `uvm_object_utils(fifo_random_burst)
+
+   function new(string name = "fifo_random_burst");
+      super.new(name);
+   endfunction // new
+
+   task body();
+
+      fifo_transaction req;
+      int fifo_depth = 0; //current depth
+      int total_ops = 0;
+      int max_ops = 32; //however long we want to go
+
+      `uvm_info("SEQUENCE", "Starting FIFO randomized burst", UVM_LOW)
+
+      //hard resets before starting
+      req = fifo_transaction::type_id::create("reset_req");
+      req.wrst_n = 0;
+      req.rrst_n = 0;
+      req.winc = 0;
+      req.rinc = 0;
+      start_item(req);
+      finish_item(req);
+
+      req = fifo_transaction::type_id::create("reset_release");
+      req.wrst_n = 1;
+      req.rrst_n = 1;
+      req.winc = 0;
+      req.rinc = 0;
+      start_item(req);
+      finish_item(req);
+
+      
+      while(total_ops < max_ops) begin
+
+	 int burst_len = $urandom_range(1, 8); //burst lengths
+	 int do_write = $urandom_range(0, 1); //pick read/writes randomly
+	 
+	 if (do_write || fifo_depth < 3) begin
+	    //write burst
+	    for (int i = 0; i < burst_len && total_ops < max_ops; i++) begin
+	       req = fifo_transaction::type_id::create($sformatf("burst_write_%0d", total_ops));
+	       req.wdata = $urandom_range(0, 255);
+	       req.winc = 1;
+	       req.rinc = 0;
+	       req.wrst_n = 1;
+	       req.rrst_n = 1;
+	       start_item(req);
+	       finish_item(req);
+	       fifo_depth++;
+	       total_ops++;
+	       
+	    end // for (int i = 0; i < burst_len && total_ops < max_ops; i++)
+	 end // if (do_write || fifo_depth == 0)
+
+	 else begin 
+	    //do read burst
+	    for (int i = 0; i < burst_len && fifo_depth > 0 && total_ops < max_ops; i++) begin
+	       req = fifo_transaction::type_id::create($sformatf("burst_read_%0d", total_ops));
+	       req.winc = 0;
+	       req.rinc = 1;
+	       req.wrst_n = 1;
+	       req.rrst_n = 1;
+	       start_item(req);
+	       finish_item(req);
+	       fifo_depth--;
+	       total_ops++;
+	    end // for (int i = 0; i < burst_len && fifo_depth > 0 && total_ops < max_ops; i++)
+	 end // else: !if(do_write || fifo_depth == 0)
+      end // while (total_ops < max_ops)
+      
+   `uvm_info("SEQUENCE", "FIFO randomized bursts complete", UVM_LOW)
+   endtask // body
+   
+
+endclass // fifo_random_burst
+
+
+
+
+
 
 
 
@@ -493,8 +577,10 @@ class fifo_test extends uvm_test;
    task run_phase(uvm_phase phase);
       fifo_fill_sequence fill_seq;
       fifo_empty_sequence empty_seq;
-      //put concurrent one here
-
+      //randomized burst one      
+      fifo_random_burst burst_seq;
+      
+      
       phase.raise_objection(this);
 
       fill_seq = fifo_fill_sequence::type_id::create("fill_seq");
@@ -503,6 +589,10 @@ class fifo_test extends uvm_test;
       empty_seq = fifo_empty_sequence::type_id::create("empty_seq");
       empty_seq.start(env.agent.sequencer);
 
+
+      `uvm_info("SEQUENCE", "\n\nStarting Randomized Burst Sequence", UVM_LOW)
+      burst_seq = fifo_random_burst::type_id::create("burst_seq");
+      burst_seq.start(env.agent.sequencer);
       //concurrent one here
 
       #1000;

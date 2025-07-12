@@ -222,6 +222,16 @@ class fifo_monitor extends uvm_monitor;
 	    check_full_flag(txn);
 	    ap.write(txn);
 	 end
+	 else begin
+	    txn = fifo_transaction::type_id::create("wfull_monitor_txn");
+	    txn.winc = 0;
+	    txn.wfull = vif.wfull;
+
+	    //check full
+	    check_full_flag(txn);
+	    ap.write(txn);
+	 end // else: !if(vif.winc && vif.wrst_n)
+	 
 
 
 	 @(posedge vif.rclk);
@@ -239,7 +249,15 @@ class fifo_monitor extends uvm_monitor;
 	    check_read_data(txn);
 	    check_empty_flag(txn);
 	    ap.write(txn);
-	 end
+	 end // if (vif.rinc && vif.rrst_n)
+	 else begin //added
+	    txn = fifo_transaction::type_id::create("rempty_monitor_txn");
+	    txn.rinc = 0;
+	    txn.rempty = vif.rempty;
+	    check_empty_flag(txn);
+	    ap.write(txn);
+	 end // else: !if(vif.rinc && vif.rrst_n)
+	 
       end // forever begin
 
 
@@ -338,6 +356,17 @@ class fifo_coverage extends uvm_subscriber #(fifo_transaction);
       }
 
    endgroup // fifo_basic_cg
+
+
+//   covergroup fifo_pattern_cg with function sample(fifo_transaction txn);
+
+  //    fill_sequence: coverpoint {curr_empty, prev_empty, curr_full, prev_full} 
+//	{
+//	 bins empty_to_not_empty = {4'b1100}
+//	 }
+      
+  // endgroup // fifo_pattern_cg
+   
 
    //fill group here
    
@@ -471,7 +500,7 @@ class fifo_fill_sequence extends fifo_base_sequence;
 
 
       //fill fifo w/ sequential data
-      for (int i = 1; i <= 17; i++) begin
+      for (int i = 1; i <= 16; i++) begin
 	 req = fifo_transaction::type_id::create($sformatf("write_%0d_enable", i));
 	 req.wdata = i;
 	 req.winc = 1;
@@ -524,7 +553,18 @@ class fifo_empty_sequence extends fifo_base_sequence;
 	 finish_item(req);
       end
       
-
+      for(int i = 0; i <= 1; i++) begin
+	 req = fifo_transaction::type_id::create($sformatf("idle_%0d", i));
+	 req.winc = 0;
+	 req.rinc = 0;
+	 req.wrst_n = 1;
+	 req.rrst_n = 1;
+	 req.read_delay = 1;
+	 start_item(req);
+	 finish_item(req);
+	 `uvm_info("SEQUENCE", "FIFO idle to ensure rempty", UVM_LOW)
+      end
+      
       `uvm_info("SEQUENCE", "FIFO empty test complete", UVM_LOW)
    endtask // body
    

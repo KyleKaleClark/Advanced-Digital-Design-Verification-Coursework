@@ -1,194 +1,646 @@
-module fifo #(parameter DSIZE=8, parameter ASIZE=4)
-(
-	input [DSIZE-1:0] wdata,
-	input winc, wclk, wrst_n,
-	input rinc, rclk, rrst_n,
-	
-	output [DSIZE-1:0] rdata,
-	output wfull, wfull_a,
-	output rempty, rempty_a
-);
-
-	logic [ASIZE-1:0] waddr, raddr;
-	logic [ASIZE:0] wptr, rptr, wq2_rptr, rq2_wptr;
-	
-	
-	//synchronizer blocks
-	sync_r2w #(.ADDRSIZE(ASIZE)) sync_r2w (.rptr(rptr), .wclk(wclk), .wrst_n(wrst_n), .wq2_rptr(wq2_rptr));
-	sync_w2r #(.ADDRSIZE(ASIZE)) sync_w2r (.wptr(wptr), .rclk(rclk), .rrst_n(rrst_n), .rq2_wptr(rq2_wptr));
-	
-	//this one can't be .* because we set winc to wclken
-	fifomem #(DSIZE, ASIZE) fifomem(.rdata(rdata), .wdata(wdata),
-									.waddr(waddr), .raddr(raddr),
-									.wclken(winc), .wfull(wfull),
-									.wclk(wclk));
-
-	//empty/full signal blocks
-	rptr_empty #(ASIZE) rptr_empty(.*);
-	wptr_full #(ASIZE) wptr_full(.*);
-
-endmodule	
+import uvm_pkg::*;
+`include "uvm_macros.svh"
 
 
-module fifomem #(	parameter DATASIZE = 8,
-					parameter ADDRSIZE = 4)
-(
-	input [DATASIZE-1:0] 	wdata, 
-	input [ADDRSIZE-1:0] 	waddr, raddr,
-	input 					wclken, wfull, wclk,
-	output [DATASIZE-1:0]	rdata
-);
-
-	localparam DEPTH = 1<<ADDRSIZE;
-	logic [DATASIZE-1:0] mem [0:DEPTH-1];
-	
-	assign rdata = mem[raddr];
-	
-	always_ff @(posedge wclk)
-	  `ifdef BUG
-	      if (wclken && !wfull && waddr%DEPTH-4 !=0 ) begin
-		 mem[waddr] <= wdata;
-	      end
-	  `else
-              if (wclken && !wfull) begin
-		 mem[waddr] <= wdata;
-	      end
-	  `endif
-
-endmodule
+import "DPI-C" function int push(int wdata);
+import "DPI-C" function int pop();
+import "DPI-C" function int rst_r_ptr();
+import "DPI-C" function int rst_w_ptr();
+import "DPI-C" function int is_empty();
+import "DPI-C" function int is_full();
+import "DPI-C" function int get_r_ptr();
+import "DPI-C" function int get_w_ptr();
 
 
-module sync_r2w #(parameter ADDRSIZE=4)
-(
-	input 			[ADDRSIZE:0]	rptr,
-	input							wclk, wrst_n,
-	output logic 	[ADDRSIZE:0]	wq2_rptr
-);
+class fifo_transaction extends uvm_sequence_item;
 
-	logic [ADDRSIZE:0] wq1_rptr;
+   rand bit [7:0] wdata;
+   rand bit winc;
+   rand bit rinc;
+   rand bit wrst_n;
+   rand bit rrst_n;
 
-	always_ff @(posedge wclk or negedge wrst_n) begin
-		if (!wrst_n)
-			{wq2_rptr, wq1_rptr} <= 0;
-		else
-			{wq2_rptr, wq1_rptr} <= {wq1_rptr, rptr};
-	end
+   bit [7:0] rdata;
+   bit 	     wfull;
+   bit 	     rempty;
 
-endmodule
+   //timing
+   int 	     write_delay;
+   int 	     read_delay;
 
-module sync_w2r #(parameter ADDRSIZE=4)
-(
-	input		[ADDRSIZE:0] 	wptr,
-	input 						rclk, rrst_n,
-	output logic [ADDRSIZE:0]	rq2_wptr
-);
+   `uvm_object_utils_begin(fifo_transaction)
+      `uvm_field_int(wdata, UVM_ALL_ON)
+      `uvm_field_int(winc, UVM_ALL_ON)
+      `uvm_field_int(rinc, UVM_ALL_ON)
+      `uvm_field_int(wrst_n, UVM_ALL_ON)
+      `uvm_field_int(rrst_n, UVM_ALL_ON)
+      `uvm_field_int(rdata, UVM_ALL_ON)
+      `uvm_field_int(wfull, UVM_ALL_ON)
+      `uvm_field_int(rempty, UVM_ALL_ON)
+      `uvm_field_int(write_delay, UVM_ALL_ON)
+      `uvm_field_int(read_delay, UVM_ALL_ON)
+   `uvm_object_utils_end
+   
 
-	logic [ADDRSIZE:0] rq1_wptr;
-
-	always_ff @(posedge rclk or negedge rrst_n) begin
-		if (!rrst_n)
-			{rq2_wptr, rq1_wptr} <= 0;
-		else
-			{rq2_wptr, rq1_wptr} <= {rq1_wptr, wptr};
-	end
-	
-endmodule
+   function new(string name = "fifo_transaction");
+      super.new(name);
+   endfunction // new
 
 
-module rptr_empty #(parameter ADDRSIZE = 4)
-(
-	input		[ADDRSIZE:0]	rq2_wptr,
-	input						rinc, rclk, rrst_n,
-	output logic [ADDRSIZE:0]	rptr,
-	output logic				rempty, rempty_a,
-	output 		[ADDRSIZE-1:0]	raddr
-);
+//   constraint c_reset_logic{
+//      
+//			    }
 
-	logic [ADDRSIZE:0] rbin;
-	logic [ADDRSIZE:0] rgraynext, rbinnext;
-	
-	//Gray Pointer
-	always_ff @(posedge rclk or negedge rrst_n) begin
-		if (!rrst_n)
-			{rbin, rptr} <= 0;
-		else
-			{rbin, rptr} <= {rbinnext, rgraynext};
-	end
-	
-	assign raddr = rbin[ADDRSIZE-1:0];
-	assign rbinnext = rbin + (rinc & ~rempty);
-	assign rgraynext = (rbinnext>>1) ^ rbinnext;
-	
-	
-	//empty values
-	assign rempty_val = (rgraynext == rq2_wptr);
-	
-	//almost empty is always when rq2_wptr top 4 MSB = 0 101... because of mathmatical reasons, so we flip those to match the max gray value of 1 000
-	//and thats when we know we're 3/4th of the way through dumping the data
-	assign rempty_almost_val = (rgraynext[ADDRSIZE:ADDRSIZE-2] == {~rq2_wptr[ADDRSIZE], rq2_wptr[ADDRSIZE-1], rq2_wptr[ADDRSIZE-2]} | rempty_val);
+endclass // fifo_transaction
+
+
+interface fifo_if(input wclk, input rclk);
+
+   logic [7:0] wdata, rdata;
+   logic       winc, rinc;
+   logic       wrst_n, rrst_n;
+   logic       wfull, rempty;
+   
+endinterface // fifo_if
+
+
+class fifo_sequencer extends  uvm_sequencer #(fifo_transaction);
+
+   `uvm_component_utils(fifo_sequencer)
+
+   function new(string name = "fifo_sequencer", uvm_component parent);
+      super.new(name, parent);
+   endfunction // new
+
+endclass // fifo_sequencer
+
+
+
+class fifo_driver extends uvm_driver #(fifo_transaction);
+
+   `uvm_component_utils(fifo_driver)
+
+   virtual     fifo_if vif;
+
+   function new (string name = "fifo_driver", uvm_component parent);
+      super.new(name, parent);
+   endfunction // new
+
+   function void build_phase(uvm_phase phase);
+
+      super.build_phase(phase);
+      if (!uvm_config_db#(virtual fifo_if)::get(this, "", "vif", vif))
+	`uvm_fatal("DRIVER", "vif not found")
+   endfunction // build_phase
+
+
+   task run_phase(uvm_phase phase);
+
+      fifo_transaction req;
+
+      //init signals
+      vif.wdata <= 0;
+      vif.winc <= 0;
+      vif.wrst_n <= 0;
+      vif.rinc <= 0;
+      vif.rrst_n <= 0;
+
+      //wait for reset release
+      repeat(10) @(posedge vif.wclk);
+      vif.wrst_n <= 1;
+      vif.rrst_n <= 1;
+
+      forever begin
+	 seq_item_port.get_next_item(req);
+	 drive_transaction(req);
+	 seq_item_port.item_done();
+      end
+   endtask // run_phase
+   
+   task drive_transaction(fifo_transaction req);
+
+      //drive reset
+      if (!req.wrst_n) begin
+	 vif.wrst_n <= 0;
+	 vif.wdata <= 0;
+	 vif.winc <= 0;
+	 @(posedge vif.wclk);
+	 rst_w_ptr(); //dpi model
+	 return;
+      end
+
+      if(!req.rrst_n) begin
+	 vif.rrst_n <= 0;
+	 vif.rinc <= 0;
+	 @(posedge vif.rclk);
+	 rst_r_ptr(); //dpi stuff
+	 return;
+      end
+
+      //release resets
+      vif.wrst_n <= req.wrst_n;
+      vif.rrst_n <= req.rrst_n;
+
+      
+      //drive write trans
+      if (req.wrst_n && req.winc) begin
+	 vif.wdata <= req.wdata;
+	 vif.winc <= 1;
+
+	 @(posedge vif.wclk);
+
+
+	 vif.winc <= 0;
+	 vif.wdata <= 0;
+
+	 push(req.wdata); //pass into dpi fifo
+	 `uvm_info("DRIVER", $sformatf("PUSH: %h", req.wdata), UVM_MEDIUM)
+      end else begin
+	 vif.winc <= 0;
+	 @(posedge vif.wclk);
+      end
+
+
+      //drive reads
+      if (req.rrst_n && req.rinc) begin
+	 vif.rinc <= 1;
+	 @(posedge vif.rclk);
+	 vif.rinc <= 0;
+      end else begin
+	 @(posedge vif.rclk);
+      end
+            
+
+      //add delays if req
+      if (req.write_delay > 0) repeat(req.write_delay) @(vif.wclk);
+      if (req.read_delay >0) repeat(req.read_delay) @(vif.rclk);
+      
+   endtask // drive_transaction
+endclass // fifo_driver
+
+class fifo_monitor extends uvm_monitor;
+
+   `uvm_component_utils(fifo_monitor)
+
+   virtual fifo_if vif;
+   uvm_analysis_port #(fifo_transaction) ap;
+
+   //golden model stuff
+   logic [7:0] golden_data;
+   logic       golden_empty, golden_full;
+   logic [7:0] golden_rptr, golden_wptr;
+
+
+   function new(string name = "fifo_monitor", uvm_component parent);
+      super.new(name, parent);
+      ap = new("ap", this);
+   endfunction
+
+   function void build_phase(uvm_phase phase);
+      super.build_phase(phase);
+      if (!uvm_config_db#(virtual fifo_if)::get(this, "", "vif", vif))
+	`uvm_fatal("MONITOR", "vif couldn't get got")
+   endfunction // build_phase
+
+   task run_phase(uvm_phase phase);
+      fifo_transaction txn;
+
+      forever begin
+	 @(posedge vif.wclk);
+	 //update gold model
+	 golden_full = is_full();
+	 golden_wptr = get_w_ptr();
+
+	 //check for writes
+	 if (vif.winc && vif.wrst_n) begin
+	    txn = fifo_transaction::type_id::create("write_txn");
+	    txn.wdata = vif.wdata;
+	    txn.winc = 1;
+	    txn.wfull = vif.wfull;
+
+	    //check full
+	    check_full_flag(txn);
+	    ap.write(txn);
+	 end
+	 else begin
+	    txn = fifo_transaction::type_id::create("wfull_monitor_txn");
+	    txn.winc = 0;
+	    txn.wfull = vif.wfull;
+
+	    //check full
+	    check_full_flag(txn);
+	    ap.write(txn);
+	 end // else: !if(vif.winc && vif.wrst_n)
 	 
-	
-	always_ff @(posedge rclk or negedge rrst_n) begin
-		if (!rrst_n) begin
-			rempty <= 1'b1;
-			rempty_a <= 1'b0;
-		end
-		else begin
-			rempty <= rempty_val;
-			rempty_a <= rempty_almost_val;
-		end
-	end
-	
-	
-endmodule
 
 
-module wptr_full	#(parameter ADDRSIZE = 4)
-(
-	input		[ADDRSIZE:0]		wq2_rptr,
-	input							winc, wclk, wrst_n,
-	output logic					wfull, wfull_a,
-	output		[ADDRSIZE-1:0]		waddr,
-	output logic [ADDRSIZE:0]		wptr
-);
-
-	logic	[ADDRSIZE:0] wbin;
-	logic	[ADDRSIZE:0] wgraynext, wbinnext;
-	
-	always_ff @(posedge wclk or negedge wrst_n) begin
-		if (!wrst_n)
-			{wbin, wptr} <= 0;
-		else
-			{wbin, wptr} <= {wbinnext, wgraynext};
-	end
-	
-	//memory write
-	assign waddr = wbin[ADDRSIZE-1:0];
-	
-	assign wbinnext = wbin + (winc & ~wfull);
-	assign wgraynext = (wbinnext>>1) ^ wbinnext;
-	
-	//buffer full signal
-	assign wfull_val = (wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});
-	
-	//almost full = when gray = A, so we have to match wq2rptr, which happens with top 4 MSB = 0 10, so we have to invert the all 0s to = 0 10, hence . ~. OR if its just full, b/c almost full is full
-	assign wfull_almost_val = (wgraynext[ADDRSIZE:ADDRSIZE-2] == {wq2_rptr[ADDRSIZE], ~wq2_rptr[ADDRSIZE-1], wq2_rptr[ADDRSIZE-2]} | wgraynext == {~wq2_rptr[ADDRSIZE:ADDRSIZE-1], wq2_rptr[ADDRSIZE-2:0]});
-	
-	
-	always_ff @(posedge wclk or negedge wrst_n) begin
-		if (!wrst_n) begin
-			wfull <= 1'b0;
-			wfull_a <= 1'b0;
-		end
-		else begin
-			wfull <= wfull_val;
-			wfull_a <= wfull_almost_val;			
-		end
-	end
-
-endmodule
+	 @(posedge vif.rclk);
+	 //check for reads
+	 golden_empty = is_empty();
+	 golden_rptr = get_r_ptr();
+	 
+	 if (vif.rinc && vif.rrst_n) begin
+	    golden_data = pop();
+	    txn = fifo_transaction::type_id::create("read_txn");
+	    txn.rinc = 1;
+	    txn.rdata = vif.rdata;
+	    txn.rempty = vif.rempty;
+	    //check rdata & empty
+	    check_read_data(txn);
+	    check_empty_flag(txn);
+	    ap.write(txn);
+	 end // if (vif.rinc && vif.rrst_n)
+	 else begin //added
+	    txn = fifo_transaction::type_id::create("rempty_monitor_txn");
+	    txn.rinc = 0;
+	    txn.rempty = vif.rempty;
+	    check_empty_flag(txn);
+	    ap.write(txn);
+	 end // else: !if(vif.rinc && vif.rrst_n)
+	 
+      end // forever begin
 
 
+      
+   endtask // run_phase
+   
+
+
+   //actual monitoring functions   
+   function void check_read_data(fifo_transaction txn);
+      if (golden_data == txn.rdata) begin
+	 `uvm_info("MONITOR", $sformatf("Successful read: golden data: %h || DUT: %h", golden_data, txn.rdata), UVM_MEDIUM)
+      end else begin
+	 `uvm_error("MONITOR", $sformatf("FAIL!! READ: golden data: %h || DUT: %h", golden_data, txn.rdata))
+      end
+   endfunction // check_read_data
+
+   function void check_empty_flag(fifo_transaction txn);
+      if (golden_empty) begin
+	 if (golden_empty == txn.rempty) begin
+	    `uvm_info("MONITOR", $sformatf("Successful empty flag match!"), UVM_MEDIUM)
+	 end else begin
+	    `uvm_error("MONITOR", $sformatf("FAIL!! Empty mismatch: golden: %b || DUT: %b", golden_empty, txn.rempty))
+	 end
+      end      
+   endfunction // check_empty_flag
+
+   function void check_full_flag(fifo_transaction txn);
+      if (golden_full) begin
+	 if (golden_full == txn.wfull) begin
+	    `uvm_info("MONITOR", "Sucessfull full flag check!", UVM_MEDIUM)
+	 end else begin
+	    `uvm_error("MONITOR", $sformatf("FAIL!! Full mismatch: golden: %b || DUT: %b", golden_full, txn.wfull))
+	 end
+      end
+   endfunction // check_full_flag
+   
+   
+endclass // fifo_monitor
+
+class fifo_scoreboard extends uvm_scoreboard;
+
+   `uvm_component_utils(fifo_scoreboard)
+
+   uvm_analysis_imp #(fifo_transaction, fifo_scoreboard) ap_imp;
+
+   //the stats
+   int wcnt;
+   int rcnt;
+   int errcnt;
+
+   function new(string name = "fifo_scoreboard", uvm_component parent);
+      super.new(name, parent);
+      ap_imp = new("ap_imp", this);
+   endfunction // new
+
+   function void write(fifo_transaction txn);
+      if (txn.winc) wcnt++;
+      if (txn.rinc) rcnt++;
+   endfunction // write
+
+   function void report_phase(uvm_phase phase);
+      `uvm_info("SCOREBOARD", $sformatf("Test summary: Writes=%0d, Reads=%0d, Errors=%0d", wcnt, rcnt, errcnt), UVM_LOW)
+   endfunction // report_phase
+   
+   
+endclass // fifo_scoreboard
+
+//coverage collection :D
+class fifo_coverage extends uvm_subscriber #(fifo_transaction);
+
+   `uvm_component_utils(fifo_coverage)
+   
+   covergroup fifo_basic_cg with function sample(fifo_transaction txn);
+
+      wdata_bins: coverpoint txn.wdata
+	{
+	 bins low_range = {[0:10]};
+	 bins mid_range = {[11:100]};
+	 bins high_range = {[101:255]};
+      }
+
+      wfull_coverage: coverpoint txn.wfull 
+	{
+	 bins not_full = {1'b0};
+	 bins full = {1'b1};
+      }
+
+      rempty_coverage: coverpoint txn.rempty
+	{
+	 bins not_empty = {1'b0};
+	 bins empty = {1'b1};
+      }
+
+   endgroup // fifo_basic_cg
+  
+
+   //fill group here
+   
+   function new(string name = "fifo_coverage", uvm_component parent);
+      super.new(name, parent);
+      fifo_basic_cg = new();
+      //fill part here
+   endfunction // new
+
+   function void write(fifo_transaction t);
+      fifo_basic_cg.sample(t);
+
+      //fill here
+
+      //update previous state for fill
+   endfunction // write
+
+   function void report_phase(uvm_phase phase);
+      `uvm_info("COVERAGE", $sformatf("FIFO Basic Coverage: %.2f%%", fifo_basic_cg.get_coverage()), UVM_LOW)
+      //fill here
+   endfunction // report_phase
+   
+endclass // fifo_coverage
+
+     
+
+class fifo_agent extends uvm_agent;
+
+   `uvm_component_utils(fifo_agent)
+
+   fifo_driver driver;
+   fifo_monitor monitor;
+   fifo_sequencer sequencer;
+
+   function new(string name = "fifo_agent", uvm_component parent);
+      super.new(name, parent);
+   endfunction // new
+
+   function void build_phase(uvm_phase phase);
+      super.build_phase(phase);
+
+      driver = fifo_driver::type_id::create("driver", this);
+      monitor = fifo_monitor::type_id::create("monitor", this);
+
+      if (get_is_active() == UVM_ACTIVE) begin
+	 sequencer = fifo_sequencer::type_id::create("sequencer", this);
+      end
+   endfunction // build_phase
+
+   function void connect_phase(uvm_phase phase);
+      super.connect_phase(phase);
+      if (get_is_active() === UVM_ACTIVE) begin
+	 driver.seq_item_port.connect(sequencer.seq_item_export);
+      end
+   endfunction // connect_phase
+
+endclass // fifo_agent
+
+class fifo_env extends uvm_env;
+
+   `uvm_component_utils(fifo_env)
+
+   fifo_agent agent;
+   fifo_scoreboard scoreboard;
+
+   fifo_coverage coverage;
+   
+   function new(string name = "fifo_env", uvm_component parent);
+      super.new(name, parent);
+   endfunction // new
+
+   function void build_phase(uvm_phase phase);
+      super.build_phase(phase);
+
+      agent = fifo_agent::type_id::create("agent", this);
+      scoreboard = fifo_scoreboard::type_id::create("scoreboard", this);
+
+      coverage = fifo_coverage::type_id::create("coverage", this);
+   endfunction // build_phase
+
+   function void connect_phase(uvm_phase phase);
+      super.connect_phase(phase);
+      agent.monitor.ap.connect(scoreboard.ap_imp);
+      
+      agent.monitor.ap.connect(coverage.analysis_export);
+   endfunction // connect_phase
+
+endclass // fifo_env
+
+class fifo_base_sequence extends uvm_sequence #(fifo_transaction);
+
+   `uvm_object_utils(fifo_base_sequence)
+
+   function new(string name = "fifo_base_sequence");
+      super.new(name);
+   endfunction // new
+   
+   
+endclass // fifo_base_sequence
+
+class fifo_fill_sequence extends fifo_base_sequence;
+
+   `uvm_object_utils(fifo_fill_sequence)
+
+   function new(string name = "fifo_fill_sequence");
+      super.new(name);
+   endfunction // new
+
+   task body();
+      fifo_transaction req;
+
+      `uvm_info("SEQUENCE", "starting fifo fill test", UVM_LOW)
+
+      //reset
+      req = fifo_transaction::type_id::create("reset_req");
+      req.wrst_n = 0;
+      req.rrst_n = 0;
+      req.winc = 0;
+      req.rinc = 0;
+      start_item(req);
+      finish_item(req);
+
+      //let go reset
+      req = fifo_transaction::type_id::create("reset_release");
+      req.wrst_n = 1;
+      req.rrst_n = 1;
+      req.winc = 0;
+      req.rinc = 0;
+      start_item(req);
+      finish_item(req);
+
+
+      //fill fifo w/ sequential data
+      for (int i = 1; i <= 16; i++) begin
+	 req = fifo_transaction::type_id::create($sformatf("write_%0d_enable", i));
+	 req.wdata = i;
+	 req.winc = 1;
+	 req.rinc = 0;
+	 req.wrst_n = 1;
+	 req.rrst_n = 1;
+	 //req.write_delay = 1;
+	 start_item(req);
+	 finish_item(req);
+
+	 req = fifo_transaction::type_id::create($sformatf("write_%0d_disable", i));	 
+	 req.wdata = i;
+	 req.winc = 0;
+	 req.rinc = 0;
+	 req.wrst_n = 1;
+	 req.rrst_n = 1;
+	 //req.write_delay = 1;
+	 start_item(req);
+	 finish_item(req);
+
+	 
+      end
+      
+      `uvm_info("SEQUENCE", "FIFO fill test complete!", UVM_LOW)
+   endtask // body
+
+endclass // fifo_fill_sequence
+
+class fifo_empty_sequence extends fifo_base_sequence;
+
+   `uvm_object_utils(fifo_empty_sequence)
+
+   function new(string name = "fifo_empty_sequence");
+      super.new(name);
+   endfunction // new
+
+   task body();
+      fifo_transaction req;
+
+      `uvm_info("SEQUENCE", "Starting FIFO Empty seq", UVM_LOW)
+
+      for(int i = 0; i <= 15; i++) begin
+	 req = fifo_transaction::type_id::create($sformatf("read_%0d", i));
+	 req.winc = 0;
+	 req.rinc = 1;
+	 req.wrst_n = 1;
+	 req.rrst_n = 1;
+	 req.read_delay = 1;
+	 start_item(req);
+	 finish_item(req);
+      end
+      
+      for(int i = 0; i <= 1; i++) begin
+	 req = fifo_transaction::type_id::create($sformatf("idle_%0d", i));
+	 req.winc = 0;
+	 req.rinc = 0;
+	 req.wrst_n = 1;
+	 req.rrst_n = 1;
+	 req.read_delay = 1;
+	 start_item(req);
+	 finish_item(req);
+	 `uvm_info("SEQUENCE", "FIFO idle to ensure rempty", UVM_LOW)
+      end
+      
+      `uvm_info("SEQUENCE", "FIFO empty test complete", UVM_LOW)
+   endtask // body
+   
+   
+endclass // fifo_empty_sequence
+
+
+//Randomized Sequences
+class fifo_random_burst extends fifo_base_sequence;
+
+   `uvm_object_utils(fifo_random_burst)
+
+   function new(string name = "fifo_random_burst");
+      super.new(name);
+   endfunction // new
+
+   task body();
+
+      fifo_transaction req;
+      int fifo_depth = 0; //current depth
+      int total_ops = 0;
+      int max_ops = 32; //however long we want to go
+
+      `uvm_info("SEQUENCE", "Starting FIFO randomized burst", UVM_LOW)
+
+      //hard resets before starting
+      rst_r_ptr();
+      rst_w_ptr();
+      
+      req = fifo_transaction::type_id::create("reset_req");
+      req.wrst_n = 0;
+      req.rrst_n = 0;
+      req.winc = 0;
+      req.rinc = 0;
+      start_item(req);
+      finish_item(req);
+
+      req = fifo_transaction::type_id::create("reset_release");
+      req.wrst_n = 1;
+      req.rrst_n = 1;
+      req.winc = 0;
+      req.rinc = 0;
+      start_item(req);
+      finish_item(req);
+
+      
+      while(total_ops < max_ops) begin
+
+	 int burst_len = $urandom_range(1, 8); //burst lengths
+	 int do_write = $urandom_range(0, 1); //pick read/writes randomly
+	 
+	 if (do_write || fifo_depth < 3) begin
+	    //write burst
+	    for (int i = 0; i < burst_len && total_ops < max_ops; i++) begin
+	       req = fifo_transaction::type_id::create($sformatf("burst_write_%0d", total_ops));
+	       req.wdata = $urandom_range(0, 255);
+	       req.winc = 1;
+	       req.rinc = 0;
+	       req.wrst_n = 1;
+	       req.rrst_n = 1;
+	       start_item(req);
+	       finish_item(req);
+	       fifo_depth++;
+	       total_ops++;
+	       
+	    end // for (int i = 0; i < burst_len && total_ops < max_ops; i++)
+	 end // if (do_write || fifo_depth == 0)
+
+	 else begin 
+	    //do read burst
+	    for (int i = 0; i < burst_len && fifo_depth > 0 && total_ops < max_ops; i++) begin
+	       req = fifo_transaction::type_id::create($sformatf("burst_read_%0d", total_ops));
+	       req.winc = 0;
+	       req.rinc = 1;
+	       req.wrst_n = 1;
+	       req.rrst_n = 1;
+	       start_item(req);
+	       finish_item(req);
+	       fifo_depth--;
+	       total_ops++;
+	    end // for (int i = 0; i < burst_len && fifo_depth > 0 && total_ops < max_ops; i++)
+	 end // else: !if(do_write || fifo_depth == 0)
+      end // while (total_ops < max_ops)
+      
+   `uvm_info("SEQUENCE", "FIFO randomized bursts complete", UVM_LOW)
+   endtask // body
+   
+
+endclass // fifo_random_burst
 
 
 
@@ -198,21 +650,90 @@ endmodule
 
 
 
+class fifo_test extends uvm_test;
+
+   `uvm_component_utils(fifo_test)
+
+   fifo_env env;
+
+   function new(string name = "fifo_test", uvm_component parent);
+      super.new(name, parent);
+   endfunction // new
+
+   function void build_phase(uvm_phase phase);
+      super.build_phase(phase);
+      env = fifo_env::type_id::create("env", this);
+   endfunction // build_phase
+
+   task run_phase(uvm_phase phase);
+      fifo_fill_sequence fill_seq;
+      fifo_empty_sequence empty_seq;
+      //randomized burst one      
+      fifo_random_burst burst_seq;
+      
+      
+      phase.raise_objection(this);
+
+      fill_seq = fifo_fill_sequence::type_id::create("fill_seq");
+      fill_seq.start(env.agent.sequencer);
+
+      empty_seq = fifo_empty_sequence::type_id::create("empty_seq");
+      empty_seq.start(env.agent.sequencer);
 
 
+      `uvm_info("SEQUENCE", "\n\nStarting Randomized Burst Sequence", UVM_LOW)
+      burst_seq = fifo_random_burst::type_id::create("burst_seq");
+      burst_seq.start(env.agent.sequencer);
+      //concurrent one here
+
+      #1000;
+      phase.drop_objection(this);
+   endtask // run_phase
+   
+
+endclass // fifo_test
 
 
+module fifo_tb_top;
+
+   logic wclk, rclk;
+
+   initial begin
+      wclk = 0;
+      forever #5 wclk = ~wclk;
+   end
+
+   initial begin
+      rclk = 0;
+      forever #10 rclk = ~rclk;
+   end
+
+   //interface
+   fifo_if vif(wclk, rclk);
 
 
+   fifo dut(
+	    .wclk(wclk),
+	    .rclk(rclk),
+	    .wdata(vif.wdata),
+	    .rdata(vif.rdata),
+	    .winc(vif.winc),
+	    .rinc(vif.rinc),
+	    .wrst_n(vif.wrst_n),
+	    .rrst_n(vif.rrst_n),
+	    .wfull(vif.wfull),
+	    .rempty(vif.rempty)
+	    );
 
+   initial begin
+      uvm_config_db#(virtual fifo_if)::set(null, "*", "vif", vif);
+      run_test("fifo_test");
+   end
 
+   initial begin
+      $fsdbDumpvars();
+   end
+   
+   
 
-
-
-
-
-
-
-
-
-
+endmodule // fifo_tb_top

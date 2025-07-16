@@ -1,0 +1,9 @@
+FIFO w/ UVM and Coverage Integration
+
+to compile and run just
+
+source env.cshrc
+cd sim
+tcsh run_and_verdi.tcsh
+
+This will automatically open up verdi w/ coverage view

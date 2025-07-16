@@ -19,10 +19,10 @@ echo "running all compiles and opening verdi"
 
 sleep 5
 
-make compile_uvm > kyle.log
+make compile_uvm
 
 echo "compiled verdi"
-make sim >> kyle.log
+make sim
 echo "made sim"
 echo "making verdi!"
 #make waves_verdi &
